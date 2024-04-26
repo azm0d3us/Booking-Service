@@ -1,4 +1,4 @@
-package com.training.bookin.booking;
+package com.training.booking.booking;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
