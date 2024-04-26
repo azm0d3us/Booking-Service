@@ -3,6 +3,7 @@ package com.training.booking.services;
 import com.training.booking.entities.Camera;
 import com.training.booking.errors.InternalServerErrorException;
 import com.training.booking.errors.NotFoundException;
+import com.training.booking.errors.handler.RestExceptionHandler;
 import com.training.booking.repository.CameraRepository;
 import com.training.booking.services.interfaces.ICameraService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -3,6 +3,7 @@ package com.training.booking.controllers;
 import com.training.booking.POJOs.UserPOJO;
 import com.training.booking.controllers.business.UtenteBusiness;
 import com.training.booking.entities.Utente;
+import com.training.booking.errors.ForbiddenException;
 import com.training.booking.errors.InternalServerErrorException;
 import com.training.booking.errors.NotFoundException;
 import com.training.booking.errors.NotValidException;

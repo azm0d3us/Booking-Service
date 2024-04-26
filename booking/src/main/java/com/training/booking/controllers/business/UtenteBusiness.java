@@ -33,13 +33,13 @@ public class UtenteBusiness {
         if(utenteOptional.isPresent()) {
            return utenteOptional.get();
         } else {
-            throw new NotFoundException("Utente non trovato");
+            throw new NotFoundException();
         }
     }
 
     public Utente getUser(String username, String password) throws NotFoundException, NotValidException, InternalServerErrorException {
         if(username.trim().isEmpty() || password.trim().isEmpty()) {
-            throw new NotValidException("Utente o password mancanti");
+            throw new NotValidException();
         }
         Optional<Utente> utenteOptional = userService.getByUsernameEquals(username);
         if(utenteOptional.isPresent()) {
@@ -50,7 +50,7 @@ public class UtenteBusiness {
                 throw new NotValidException("Password errata");
             }
         } else {
-            throw new NotFoundException("Utente non trovato");
+            throw new NotFoundException();
         }
     }
 
