@@ -91,18 +91,16 @@ public class PrenotazioneBusiness {
         Long period = ChronoUnit.DAYS.between(checkIn.toLocalDate(), checkOut.toLocalDate());
 
         /*Controllare che la prenotazione accavalli listini speciali e nel caso sommare sul totale usando prezzi base e prezzi differenziati al caso*/
-        //Probabilmente non funziona su più listini.
         for(ListaPrezzi l : setListini) {
+            //Escludo listini che non mi interessano
             if(!(l.getValiditaInizio().before(checkIn) && l.getValiditaFine().before(checkIn) ||
                     l.getValiditaInizio().after(checkOut) && l.getValiditaFine().after(checkOut))){
-
-                period -= ChronoUnit.DAYS.between(l.getValiditaInizio().toLocalDate().isBefore(checkIn.toLocalDate()) ? checkIn.toLocalDate() : l.getValiditaInizio().toLocalDate(),
+                //Calcolo permanenza sotto prezzo alterato
+                Long periodoListino = ChronoUnit.DAYS.between(l.getValiditaInizio().toLocalDate().isBefore(checkIn.toLocalDate()) ? checkIn.toLocalDate() : l.getValiditaInizio().toLocalDate(),
                         l.getValiditaFine().toLocalDate().isAfter(checkOut.toLocalDate()) ? checkOut.toLocalDate() : l.getValiditaFine().toLocalDate());
-
-                for(int i = 0; i < ChronoUnit.DAYS.between(l.getValiditaInizio().toLocalDate().isBefore(checkIn.toLocalDate()) ? checkIn.toLocalDate() : l.getValiditaInizio().toLocalDate(),
-                        l.getValiditaFine().toLocalDate().isAfter(checkOut.toLocalDate()) ? checkOut.toLocalDate() : l.getValiditaFine().toLocalDate()); i++){
-                    totale += l.getPrezzo();
-                }
+                //Ricalcolo periodo totale da preventivare sul prezzo base della camera.
+                period -= periodoListino;
+                totale += periodoListino * l.getPrezzo();
             }
         }
         totale += period * camera.getPrezzoBase();
