@@ -2,6 +2,7 @@ export class User {
   id?: number;
   nome?: string;
   cognome?: string;
+  email?: string;
   ddn?: Date;
   cf?: string;
   codDoc?: string;

@@ -5,6 +5,7 @@ import { Component } from '@angular/core';
 import { User } from '../../models/user';
 import { AuthorizationService } from '../../services/authorization.service';
 import { Route, Router } from '@angular/router';
+import { SweetAlertType } from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -30,7 +31,7 @@ export class LoginComponent {
       if(this.authService.autentica(this.username, this.password, this.utente)) {
         this.router.navigate(['carousel']);
       } else {
-        alert("Non autenticato");
+        console.log(this.errorMsg);
       }
     });
     console.log(this.utente);

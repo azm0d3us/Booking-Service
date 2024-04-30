@@ -1,6 +1,7 @@
 package com.training.booking.controllers;
 
 import com.training.booking.POJOs.UserPOJO;
+import com.training.booking.POJOs.UtenteRegistra;
 import com.training.booking.controllers.business.UtenteBusiness;
 import com.training.booking.entities.Utente;
 import com.training.booking.errors.ForbiddenException;
@@ -48,8 +49,8 @@ public class UtenteController {
         }
     }
 
-    @PostMapping(value = "/signin", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> sigIn(@RequestBody Utente utente) {
+    @PostMapping(value = "/signUp", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> sigIn(@RequestBody UtenteRegistra utente) {
         try {
             return new ResponseEntity<>(utenteBusiness.saveUtente(utente), HttpStatus.OK);
         } catch (NotValidException | InternalServerErrorException e) {

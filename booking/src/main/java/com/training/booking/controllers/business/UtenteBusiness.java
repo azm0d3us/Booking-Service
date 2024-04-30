@@ -1,5 +1,6 @@
 package com.training.booking.controllers.business;
 
+import com.training.booking.POJOs.UtenteRegistra;
 import com.training.booking.entities.Utente;
 import com.training.booking.errors.InternalServerErrorException;
 import com.training.booking.errors.NotFoundException;
@@ -54,12 +55,12 @@ public class UtenteBusiness {
         }
     }
 
-    public Utente saveUtente(Utente utente) throws InternalServerErrorException, NotValidException {
+    public Utente saveUtente(UtenteRegistra utente) throws InternalServerErrorException, NotValidException {
         if(!utenteValidation(utente)) {
             throw new NotValidException();
         }
         try {
-            return userService.save(utente);
+            return userService.save(new Utente(null, utente.getNome(), null, null, null, null, utente.getEmail(), utente.getUsername(), utente.getPassword(), false, null));
         } catch (HttpServerErrorException.InternalServerError e) {
             throw new InternalServerErrorException();
         }
@@ -86,6 +87,15 @@ public class UtenteBusiness {
     private boolean utenteValidation(Utente utente) {
         if(utente.getNome().trim().isEmpty() || utente.getCognome().trim().isEmpty() || utente.getUsername().trim().isEmpty()
         || !passwordValidation(utente.getPassword()) || utente.getCodDoc().trim().isEmpty()){
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    private boolean utenteValidation(UtenteRegistra utente) {
+        if(utente.getNome().trim().isEmpty() || utente.getUsername().trim().isEmpty()
+                || !passwordValidation(utente.getPassword())){
             return false;
         } else {
             return true;

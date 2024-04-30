@@ -24,7 +24,11 @@ export class UserService {
    }
 
    public login(simpleUser: any): Observable<User> {
-    return this.http.post<User>("http://localhost:8080/api/utenti/login", simpleUser)
+    return this.http.post<User>("http://localhost:8080/api/utenti/login", simpleUser);
+   }
+
+   public newUser(user: any): Observable<User> {
+    return this.http.post<User>("http://localhost:8080/api/utenti/signUp", user);
    }
 
 }
