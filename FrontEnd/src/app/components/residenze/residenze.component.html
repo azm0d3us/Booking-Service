@@ -1,0 +1,14 @@
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">Nome Residenza</th>
+      <th scope="col">Indirizzo</th>
+    </tr>
+  </thead>
+  <tbody *ngFor="let residenza of residenze">
+    <tr>
+      <td>{{residenza.nome}}</td>
+      <td>{{residenza.indirizzo}}</td>
+    </tr>
+  </tbody>
+</table>
