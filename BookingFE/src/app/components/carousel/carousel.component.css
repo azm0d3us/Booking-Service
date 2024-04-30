@@ -1,16 +1,11 @@
-
-.my-carousel {
-
-  width: 600px; /* Imposta la larghezza desiderata per il carosello*/
-  height: 400px; /* Imposta l'altezza desiderata per il carosello*/
-  overflow: hidden; /* Nasconde eventuali immagini che sforano dal carosello*/
+.carousel {
   margin: auto;
+  position: center;
+  width:640px;
+  height:360px;
 }
 
-.my-carousel img {
-  width: 100%; /* Fai sì che le immagini riempiano completamente il carosello*/
-  height: auto; /* Mantieni l'aspetto proporzionato delle immagini*/
-  margin-top: auto;
-  overflow: hidden;
-
+.carousel-item {
+  width: 640px;
+  height: 360px;
 }

@@ -5,14 +5,14 @@ import { ErrorComponent } from './components/error/error.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { RouteguardService } from './services/routeguard.service';
 // import { WelcomeComponent } from './components/welcome/welcome.component';
-import { CarousalComponent } from './components/carousal/carousal.component';
 import { ResidenzeComponent } from './components/residenze/residenze.component';
 import { CameraComponent } from './components/camera/camera.component';
 import { SignupComponent } from './components/signup/signup.component';
+import { CarouselComponent } from './components/carousel/carousel.component';
 
 const routes: Routes = [
   {path: "", component: LoginComponent},
-  {path: "carousel", component: CarousalComponent},
+  {path: "carousel", component: CarouselComponent},
   {path: "residenze", component: ResidenzeComponent},
   {path: "camere", component: CameraComponent},
   {path: "login", component: LoginComponent},
