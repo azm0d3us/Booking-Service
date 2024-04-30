@@ -29,7 +29,7 @@ public class CameraController {
         }
     }
 
-    @PostMapping(value = "/camere/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/camere/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> getById(@PathVariable("id") Long id) {
         try {
             return new ResponseEntity<>(cameraBusiness.getById(id), HttpStatus.OK);

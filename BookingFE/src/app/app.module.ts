@@ -14,6 +14,8 @@ import { ResidenzeComponent } from './components/residenze/residenze.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CameraComponent } from './components/camera/camera.component';
 import { SignupComponent } from './components/signup/signup.component';
+import { CameraSingolaComponent } from './components/camera-singola/camera-singola.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -28,11 +30,13 @@ import { SignupComponent } from './components/signup/signup.component';
     ResidenzeComponent,
     CameraComponent,
     SignupComponent,
+    CameraSingolaComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -16,8 +16,11 @@ export class CameraService {
    }
 
    public getAll(): Observable<Camera[]> {
-    this.camereUrl = this.urlBase;
-    this.camereUrl += "camere";
+    this.camereUrl = this.urlBase + "camere";
     return this.http.get<Camera[]>(this.camereUrl);
+   }
+
+   public getById(id: any): Observable<Camera> {
+    return this.http.get<Camera>(`http://localhost:8080/api/camere/camere/${id}`);
    }
 }

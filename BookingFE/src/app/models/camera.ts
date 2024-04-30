@@ -1,5 +1,5 @@
 export class Camera {
-  id?: number;
+  idCamera?: number;
   postiLetto?: number;
   disponibile?: boolean;
   prezzoBase?: number;

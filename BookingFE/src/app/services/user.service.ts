@@ -18,4 +18,13 @@ export class UserService {
     this.userUrl += "login";
     return this.http.get<User>(this.userUrl);
   }
+
+  public getById(id: any): Observable<User> {
+    return this.http.get<User>(`http://localhost:8080/api/utenti/utenti/${id}`);
+   }
+
+   public login(simpleUser: any): Observable<User> {
+    return this.http.post<User>("http://localhost:8080/api/utenti/login", simpleUser)
+   }
+
 }
