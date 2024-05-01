@@ -8,11 +8,14 @@ import { AuthorizationService } from '../../services/authorization.service';
 })
 export class NavbarComponent {
 
+
   ngOnInit(): void {
 
   }
 
   constructor(public basicAuth: AuthorizationService) {
   }
+
+
 
 }

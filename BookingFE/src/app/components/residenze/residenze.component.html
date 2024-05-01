@@ -1,12 +1,17 @@
 <table class="table table-bordered">
   <thead>
     <tr>
+      <th scope="col">Foto</th>
       <th scope="col">Nome Residenza</th>
       <th scope="col">Indirizzo</th>
     </tr>
   </thead>
-  <tbody *ngFor="let residenza of residenze">
-    <tr>
+  <tbody>
+    <tr *ngFor="let residenza of residenze">
+      <td>
+        <img *ngIf="residenza.urlImg !== null" [src]="'/assets/images/residenze/' + residenza.urlImg" alt="Foto Residenza">
+        <img *ngIf="residenza.urlImg === null" src="/assets/images/residenze/residenzaNoPhoto.jpg" alt="Foto Mancante">
+      </td>
       <td>{{residenza.nome}}</td>
       <td>{{residenza.indirizzo}}</td>
     </tr>

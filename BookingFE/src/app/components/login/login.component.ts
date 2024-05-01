@@ -34,6 +34,5 @@ export class LoginComponent {
         console.log(this.errorMsg);
       }
     });
-    console.log(this.utente);
   }
 }

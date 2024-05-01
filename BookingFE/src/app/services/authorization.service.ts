@@ -12,7 +12,7 @@ export class AuthorizationService {
     var retVal = (userid === user.username && password === user.password) ? true : false;
 
     if(retVal) {
-      sessionStorage.setItem("Utente", userid);
+      sessionStorage.setItem("Utente", user?.username!);
     }
 
     return retVal;

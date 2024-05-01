@@ -1,3 +1,5 @@
+import { Foto } from "./foto";
+
 export class User {
   id?: number;
   nome?: string;
@@ -9,4 +11,5 @@ export class User {
   username?: string;
   password?: string;
   admin?: boolean;
+  foto?: Foto;
 }
