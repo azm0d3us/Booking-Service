@@ -2,3 +2,16 @@
   margin-left: 10px;
   margin-right: 10px;
 }
+
+img {
+  display: inline-block;
+}
+
+.dduser {
+  margin-right: 50px;
+  margin-left: 20px;
+}
+
+nav {
+  margin-bottom: 0.8%;
+}

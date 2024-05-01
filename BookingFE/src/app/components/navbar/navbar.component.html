@@ -37,7 +37,7 @@
           <li><a class="dropdown-item" *ngIf="!basicAuth.isLogged()" routerLink="/login">Accedi</a></li>
           <li><a class="dropdown-item" *ngIf="!basicAuth.isLogged()" routerLink="/signup">Registrati</a></li>
           <li><hr class="dropdown-divider"></li>
-          <li><a class="dropdown-item" *ngIf="basicAuth.isLogged()" routerLink="/login">Logout {{basicAuth.loggedUser()}}</a></li>
+          <li><a class="dropdown-item" *ngIf="basicAuth.isLogged()" routerLink="/logout">Logout {{basicAuth.loggedUser()}}</a></li>
         </ul>
       </div>
     </div>
