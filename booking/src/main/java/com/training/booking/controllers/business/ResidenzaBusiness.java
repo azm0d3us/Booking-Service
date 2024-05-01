@@ -1,6 +1,7 @@
 package com.training.booking.controllers.business;
 
 import com.training.booking.POJOs.ResidenzaPOJO;
+import com.training.booking.entities.Immagine;
 import com.training.booking.entities.Residenza;
 import com.training.booking.errors.InternalServerErrorException;
 import com.training.booking.errors.NotFoundException;
@@ -24,8 +25,10 @@ public class ResidenzaBusiness {
         if(residenzaList.isEmpty()) {
             throw new NotFoundException();
         } else {
-            record r(String nome, String indirizzo){};
-            return residenzaList.stream().map(e -> new r(e.getNome(), e.getIndirizzo())).collect(Collectors.toList());
+            //Prendi l'url se l'immagine c'è, se no mett la stringa a null
+            record r(Long id, String nome, String indirizzo, String urlImg){};
+            return residenzaList.stream().map(e -> new r(e.getIdResidenza(), e.getNome(), e.getIndirizzo(),
+                    e.getImmagineResidenza() != null ? e.getImmagineResidenza().getUrl() : null)).collect(Collectors.toList());
         }
     }
 
@@ -70,7 +73,7 @@ public class ResidenzaBusiness {
         if(!residenzaValidation(residenza) || residenzaService.existsResidenzaByNomeOrIndirizzo(residenza.getNome(), residenza.getIndirizzo())) {
             throw new NotValidException();
         } else {
-            Residenza r = new Residenza(null, residenza.getNome(), residenza.getIndirizzo(), null);
+            Residenza r = new Residenza(null, residenza.getNome(), residenza.getIndirizzo(), null, null);
             return residenzaService.save(r);
         }
     }
@@ -79,7 +82,7 @@ public class ResidenzaBusiness {
         if(!residenzaValidation(residenza) || residenzaService.existsResidenzaByNomeOrIndirizzo(residenza.getNome(), residenza.getIndirizzo())) {
             throw new NotValidException();
         } else {
-            Residenza r = new Residenza(null, residenza.getNome(), residenza.getIndirizzo(), null);
+            Residenza r = new Residenza(null, residenza.getNome(), residenza.getIndirizzo(), null, null);
             return residenzaService.update(r);
         }
     }

@@ -60,7 +60,7 @@ public class UtenteBusiness {
             throw new NotValidException();
         }
         try {
-            return userService.save(new Utente(null, utente.getNome(), null, null, null, null, utente.getEmail(), utente.getUsername(), utente.getPassword(), false, null));
+            return userService.save(new Utente(null, utente.getNome(), null, null, null, null, utente.getEmail(), utente.getUsername(), utente.getPassword(), false, null, null));
         } catch (HttpServerErrorException.InternalServerError e) {
             throw new InternalServerErrorException();
         }

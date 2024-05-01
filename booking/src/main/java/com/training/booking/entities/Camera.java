@@ -53,4 +53,14 @@ public class  Camera {
     @JsonManagedReference
     @OneToMany(mappedBy = "cameraPrenotata")
     private List<Prenotazione> prenotazioni;
+
+    @JsonManagedReference
+    @ManyToMany(cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE
+})
+    @JoinTable(name = "camere_immagini",
+    joinColumns = @JoinColumn(name = "id_camera"),
+    inverseJoinColumns = @JoinColumn(name = "id_immagine"))
+    private List<Immagine> immaginiCamera;
 }
