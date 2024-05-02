@@ -1,0 +1,18 @@
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">Posti Letto</th>
+      <th scope="col">PrezzoBase</th>
+      <th scope="col">Tipo</th>
+      <th scope="col">Orario Check Out</th>
+    </tr>
+  </thead>
+  <tbody *ngFor="let camera of alloggi">
+    <tr>
+      <td>{{camera.postiLetto}}</td>
+      <td>{{camera.prezzoBase}}</td>
+      <td>{{camera.tipo}}</td>
+      <td>{{camera.infoCheckOut}}</td>
+    </tr>
+  </tbody>
+</table>

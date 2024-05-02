@@ -44,6 +44,15 @@ public class UtenteService implements IUtenteService {
     }
 
     @Override
+    public Optional<Utente> getUserIdByUsername(String username) throws InternalServerErrorException {
+        try {
+            return utenteRepository.findUserIdByUsername(username);
+        } catch (HttpServerErrorException.InternalServerError e) {
+            throw new InternalServerErrorException();
+        }
+    }
+
+    @Override
     public Utente save(Utente obj) throws InternalServerErrorException {
         try {
             return utenteRepository.save(obj);

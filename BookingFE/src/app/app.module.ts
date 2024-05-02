@@ -17,6 +17,10 @@ import { CameraSingolaComponent } from './components/camera-singola/camera-singo
 import { FormsModule } from '@angular/forms';
 import { DatepickerComponent } from './components/datepicker/datepicker.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ModificaUtenteComponent } from './components/modifica-utente/modifica-utente.component';
+import { PasswordResetComponent } from './components/password-reset/password-reset.component';
+import { SuccessComponent } from './components/success/success.component';
+import { CamereDisponibiliComponent } from './components/camere-disponibili/camere-disponibili.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +36,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     SignupComponent,
     CameraSingolaComponent,
     DatepickerComponent,
+    ModificaUtenteComponent,
+    PasswordResetComponent,
+    SuccessComponent,
+    CamereDisponibiliComponent,
   ],
   imports: [
     BrowserModule,

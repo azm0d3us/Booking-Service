@@ -1,10 +1,10 @@
 package com.training.booking.controllers;
 
+import com.training.booking.DTOs.GenericDTO;
 import com.training.booking.POJOs.UserPOJO;
 import com.training.booking.POJOs.UtenteRegistra;
+import com.training.booking.POJOs.UtenteUpdate;
 import com.training.booking.controllers.business.UtenteBusiness;
-import com.training.booking.entities.Utente;
-import com.training.booking.errors.ForbiddenException;
 import com.training.booking.errors.InternalServerErrorException;
 import com.training.booking.errors.NotFoundException;
 import com.training.booking.errors.NotValidException;
@@ -40,6 +40,24 @@ public class UtenteController {
         }
     }
 
+    @PostMapping(value = "/getIdByUsername", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> getUserIdByUsername(@RequestBody String username) {
+        try {
+            return new ResponseEntity<>(utenteBusiness.getUserIdByUsername(username), HttpStatus.OK);
+        } catch (InternalServerErrorException | NotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @PostMapping(value = "/byUsername", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> getUserByUsername(@RequestBody String username) {
+        try {
+            return new ResponseEntity<>(utenteBusiness.getByUsername(username), HttpStatus.OK);
+        } catch (NotValidException | NotFoundException | InternalServerErrorException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     @PostMapping(value = "/login", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> logIn(@RequestBody UserPOJO userPOJO) {
         try {
@@ -59,10 +77,10 @@ public class UtenteController {
     }
 
     @PostMapping(value = "/updateUtente", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> userUpdate(@RequestBody Utente utente) {
+    public ResponseEntity<?> userUpdate(@RequestBody UtenteUpdate utente) {
         try {
             return new ResponseEntity<>(utenteBusiness.update(utente), HttpStatus.OK);
-        } catch (InternalServerErrorException | NotValidException e) {
+        } catch (InternalServerErrorException | NotValidException | NotFoundException e) {
             throw new RuntimeException(e);
         }
     }

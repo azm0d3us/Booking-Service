@@ -57,7 +57,7 @@ public class CameraBusiness {
                     true, camera.getPrezzoBase(),
                     camera.getTipo(), camera.getNumero(),
                     camera.getInfoCheckOut(), residenza ,
-                    null, null, null));
+                    null, null));
         }
     }
 
@@ -69,7 +69,7 @@ public class CameraBusiness {
                 camera.getTipo(), camera.getNumero(),
                 cameraPOJO.getInfoCheckOut(), camera.getResidenza(),
                 (camera.getListini().isEmpty()) ? null : camera.getListini(),
-                (camera.getPrenotazioni().isEmpty()) ? null : camera.getPrenotazioni(), null));
+                (camera.getPrenotazioni().isEmpty()) ? null : camera.getPrenotazioni()));
     }
 
     public Object deleteCamera(GenericDTO generic) throws InternalServerErrorException, NotFoundException {

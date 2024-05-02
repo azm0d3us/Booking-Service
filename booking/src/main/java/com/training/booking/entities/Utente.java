@@ -53,9 +53,4 @@ public class Utente {
     @JsonManagedReference
     @OneToMany(mappedBy = "utentePrenotante")
     private List<Prenotazione> prenotazione;
-
-    @JsonManagedReference
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_immagine", referencedColumnName = "id_immagine")
-    private Immagine immagineUtente;
 }

@@ -25,7 +25,6 @@ export class LoginComponent {
   }
 
   gestioneLogIn() {
-    console.log(this.username, this.password);
     this.userService.login(new SimpleUser(this.username, this.password)).subscribe( data => {
       this.utente = data;
       if(this.authService.autentica(this.username, this.password, this.utente)) {

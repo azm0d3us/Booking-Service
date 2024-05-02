@@ -1,6 +1,7 @@
 package com.training.booking.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,26 +15,14 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "immagini")
+@Table(name = "img_residenza")
 public class Immagine {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_immagine")
-    private Long idImmagine;
+    @Column(name = "id_img_residenza")
+    private Long idImgResidenza;
 
     @Column(name = "url")
     private String url;
-
-    @JsonBackReference
-    @OneToOne(mappedBy = "immagineUtente")
-    private Utente utente;
-
-    @JsonBackReference
-    @OneToOne(mappedBy = "immagineResidenza")
-    private Residenza residenza;
-
-    @JsonBackReference
-    @ManyToMany(mappedBy = "immaginiCamera")
-    private List<Camera> camere;
 }

@@ -1,6 +1,8 @@
 package com.training.booking.controllers.business;
 
+import com.training.booking.DTOs.GenericDTO;
 import com.training.booking.POJOs.UtenteRegistra;
+import com.training.booking.POJOs.UtenteUpdate;
 import com.training.booking.entities.Utente;
 import com.training.booking.errors.InternalServerErrorException;
 import com.training.booking.errors.NotFoundException;
@@ -38,6 +40,28 @@ public class UtenteBusiness {
         }
     }
 
+    public Long getUserIdByUsername(String username) throws InternalServerErrorException, NotFoundException {
+        Optional<Utente> utenteOptional = userService.getUserIdByUsername(username);
+        if(!utenteOptional.isPresent()) {
+            throw new NotFoundException();
+        } else {
+            return utenteOptional.get().getIdUser();
+        }
+    }
+
+    public Utente getByUsername(String username) throws NotValidException, InternalServerErrorException, NotFoundException {
+        if(username.trim().isEmpty()) {
+            throw new NotValidException();
+        }
+        Optional<Utente> utenteOptional = userService.getByUsernameEquals(username);
+        if(!utenteOptional.isPresent()) {
+            throw new NotFoundException();
+        } else {
+            return utenteOptional.get();
+        }
+
+    }
+
     public Utente getUser(String username, String password) throws NotFoundException, NotValidException, InternalServerErrorException {
         if(username.trim().isEmpty() || password.trim().isEmpty()) {
             throw new NotValidException();
@@ -60,16 +84,26 @@ public class UtenteBusiness {
             throw new NotValidException();
         }
         try {
-            return userService.save(new Utente(null, utente.getNome(), null, null, null, null, utente.getEmail(), utente.getUsername(), utente.getPassword(), false, null, null));
+            return userService.save(new Utente(null, utente.getNome(), null, null, null, null, utente.getEmail(), utente.getUsername(), utente.getPassword(), false, null));
         } catch (HttpServerErrorException.InternalServerError e) {
             throw new InternalServerErrorException();
         }
     }
 
-    public Utente update(Utente utente) throws InternalServerErrorException, NotValidException {
-        if(!utenteValidation(utente)) {
-            throw new NotValidException();
+    public Utente update(UtenteUpdate utenteUpdate) throws InternalServerErrorException, NotValidException, NotFoundException {
+        Optional<Utente> utenteOptional = userService.getById(utenteUpdate.getId());
+        if(!utenteOptional.isPresent()) {
+            throw new NotFoundException();
         }
+        Utente utente = utenteOptional.get();
+        utente.setNome(utenteUpdate.getNome());
+        utente.setCognome(utenteUpdate.getCognome());
+        utente.setDdn(utenteUpdate.getDdn());
+        utente.setCodDoc(utenteUpdate.getDocCod());
+        utente.setCf(utenteUpdate.getCf());
+//        if(!utenteValidation(utente)) {
+//            throw new NotValidException();
+//        }
         return userService.update(utente);
     }
 

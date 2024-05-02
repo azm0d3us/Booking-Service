@@ -1,5 +1,6 @@
 package com.training.booking.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -53,14 +54,4 @@ public class  Camera {
     @JsonManagedReference
     @OneToMany(mappedBy = "cameraPrenotata")
     private List<Prenotazione> prenotazioni;
-
-    @JsonManagedReference
-    @ManyToMany(cascade = {
-            CascadeType.PERSIST,
-            CascadeType.MERGE
-})
-    @JoinTable(name = "camere_immagini",
-    joinColumns = @JoinColumn(name = "id_camera"),
-    inverseJoinColumns = @JoinColumn(name = "id_immagine"))
-    private List<Immagine> immaginiCamera;
 }

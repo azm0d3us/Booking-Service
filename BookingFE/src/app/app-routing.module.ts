@@ -4,11 +4,13 @@ import { LoginComponent } from './components/login/login.component';
 import { ErrorComponent } from './components/error/error.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { RouteguardService } from './services/routeguard.service';
-// import { WelcomeComponent } from './components/welcome/welcome.component';
 import { ResidenzeComponent } from './components/residenze/residenze.component';
 import { CameraComponent } from './components/camera/camera.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
+import { ModificaUtenteComponent } from './components/modifica-utente/modifica-utente.component';
+import { SuccessComponent } from './components/success/success.component';
+import { CamereDisponibiliComponent } from './components/camere-disponibili/camere-disponibili.component';
 
 const routes: Routes = [
   {path: "", component: LoginComponent},
@@ -17,7 +19,10 @@ const routes: Routes = [
   {path: "camere", component: CameraComponent},
   {path: "login", component: LoginComponent},
   {path: "signup", component: SignupComponent},
-  {path: "logout", component: LogoutComponent},
+  {path: "logout", component: LogoutComponent, canActivate: [RouteguardService]},
+  {path: "modifica", component: ModificaUtenteComponent, canActivate: [RouteguardService]},
+  {path: "camereDisponibili", component: CamereDisponibiliComponent},
+  {path: "success", component: SuccessComponent, canActivate: [RouteguardService]},
   {path: "**", component: ErrorComponent}
 ];
 

@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light rounded" aria-label="Eleventh navbar example">
   <div class="container-fluid">
-    <a class="navbar-brand" routerLink="/login">Booking Service</a>
+    <a class="navbar-brand" routerLink="/carousel">Booking Service</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample09" aria-controls="navbarsExample09" aria-expanded="true" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -14,7 +14,7 @@
           <a class="nav-link" routerLink="/residenze">Strutture</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/camere">Camere</a>
+          <a class="nav-link" routerLink="/camere">Tutte Le Camere</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="dropdown09" data-bs-toggle="dropdown" aria-expanded="false">Contatti</a>
@@ -36,7 +36,9 @@
         <ul class="dropdown-menu">
           <li><a class="dropdown-item" *ngIf="!basicAuth.isLogged()" routerLink="/login">Accedi</a></li>
           <li><a class="dropdown-item" *ngIf="!basicAuth.isLogged()" routerLink="/signup">Registrati</a></li>
+          <li><a class="dropdown-item" routerLink="/carousel">Esplora</a></li>
           <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item" *ngIf="basicAuth.isLogged()" routerLink="/modifica">Area Personale</a></li>
           <li><a class="dropdown-item" *ngIf="basicAuth.isLogged()" routerLink="/logout">Logout {{basicAuth.loggedUser()}}</a></li>
         </ul>
       </div>

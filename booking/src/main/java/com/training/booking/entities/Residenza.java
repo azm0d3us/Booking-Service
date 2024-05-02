@@ -8,7 +8,6 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
 import java.util.Set;
 
 @EqualsAndHashCode
@@ -35,7 +34,7 @@ public class Residenza {
     private Set<Camera> camere;
 
     @JsonManagedReference
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_immagine", referencedColumnName = "id_immagine")
-    private Immagine immagineResidenza;
+    @OneToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "id_img_residenza", referencedColumnName = "id_img_residenza")
+    private Immagine imgResidenza;
 }
