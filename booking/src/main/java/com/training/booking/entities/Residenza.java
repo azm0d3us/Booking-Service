@@ -36,5 +36,5 @@ public class Residenza {
     @JsonManagedReference
     @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "id_img_residenza", referencedColumnName = "id_img_residenza")
-    private Immagine imgResidenza;
+    private ImmagineResidenza imgResidenza;
 }

@@ -1,4 +1,4 @@
-<table class="table table-bordered">
+<!-- <table class="table table-bordered">
   <thead>
     <tr>
       <th scope="col">Posti Letto</th>
@@ -16,3 +16,40 @@
     </tr>
   </tbody>
 </table>
+
+
+<tr *ngFor="let camera of alloggi">
+  <div class="card" style="width: 18rem;">
+    <img src="/assets/images/1.jpg" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Qualche titolo</h5>
+      <div class="card-text">
+        Posti Letto: {{camera.postiLetto}}<hr>
+        Prezzo Base: {{camera.prezzoBase}} € a notte<hr>
+        Tipologia: {{camera.tipo}}<hr>
+        Orario Check-Out: {{camera.infoCheckOut}}
+      </div>
+      <a href="#" class="btn btn-primary">Prenota</a>
+    </div>
+    </div>
+</tr> -->
+
+<div class="row">
+  <div class="col-sm-4" *ngFor="let camera of alloggi">
+    <div class="card" style="width: 18rem;">
+      <img src="/assets/images/1.jpg" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Titolo camera</h5>
+        <p class="card-text">Eventuale breve descrizione o simili.</p>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">Posti Letto: {{camera.postiLetto}}</li>
+        <li class="list-group-item">Prezzo Base: {{camera.prezzoBase}} € a notte</li>
+        <li class="list-group-item">Orario Check-Out: {{camera.infoCheckOut}}</li>
+      </ul>
+      <div class="card-body">
+        <a href="#" class="btn btn-primary">Prenota</a>
+      </div>
+    </div>
+  </div>
+</div>

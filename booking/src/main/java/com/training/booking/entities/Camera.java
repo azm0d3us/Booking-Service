@@ -54,4 +54,8 @@ public class  Camera {
     @JsonManagedReference
     @OneToMany(mappedBy = "cameraPrenotata")
     private List<Prenotazione> prenotazioni;
+
+    @JsonManagedReference
+    @OneToMany(mappedBy = "immagineCamera")
+    private Set<ImmagineCamera> immaginiCamera;
 }
