@@ -68,14 +68,14 @@ public class PrenotazioneController {
         }
     }
 
-    @PostMapping(value = "/disponibili", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> camereDisponibili(@RequestBody DatesPOJO date) {
-        try {
-            return new ResponseEntity<>(prenotazioneBusiness.getStruttureDisponibili(date.getCheckIn(), date.getCheckOut()), HttpStatus.OK);
-        } catch (InternalServerErrorException | NotFoundException e) {
-            throw new RuntimeException(e);
-        }
-    }
+//    @PostMapping(value = "/disponibili", produces = MediaType.APPLICATION_JSON_VALUE)
+//    public ResponseEntity<?> camereDisponibili(@RequestBody DatesPOJO date) {
+//        try {
+//            return new ResponseEntity<>(prenotazioneBusiness.getStruttureDisponibili(date.getCheckIn(), date.getCheckOut()), HttpStatus.OK);
+//        } catch (InternalServerErrorException | NotFoundException e) {
+//            throw new RuntimeException(e);
+//        }
+//    }
 
     @PostMapping(value = "/nuovaPrenotazione", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> newPrenotazione(@RequestBody PrenotazionePOJO prenotazione) {

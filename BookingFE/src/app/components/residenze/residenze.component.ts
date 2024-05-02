@@ -15,9 +15,13 @@ export class ResidenzeComponent {
   }
 
   ngOnInit() : void {
-    this.residenzeService.getAll().subscribe(data => {
-      this.residenze = data;
-      console.log(data);
+    this.residenzeService.getAll().subscribe({
+      next: (data) => {
+        this.residenze = data;
+      },
+      error: (e) => {
+        console.error("Errore durante la richiesta HTTP: ", e.message);
+      }
     })
   }
 

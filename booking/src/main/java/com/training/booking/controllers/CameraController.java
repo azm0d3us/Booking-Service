@@ -2,15 +2,19 @@ package com.training.booking.controllers;
 
 import com.training.booking.DTOs.GenericDTO;
 import com.training.booking.POJOs.CameraPOJO;
+import com.training.booking.POJOs.DatesPOJO;
 import com.training.booking.controllers.business.CameraBusiness;
 import com.training.booking.errors.InternalServerErrorException;
 import com.training.booking.errors.NotFoundException;
 import com.training.booking.errors.NotValidException;
+import com.training.booking.repository.CameraRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.sql.Date;
 
 @CrossOrigin("http://localhost:4200")
 @RestController
@@ -65,7 +69,16 @@ public class CameraController {
         }
     }
 
-    @PostMapping(value = "newCamera", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/getDisponibili", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> getCamereDisponibili(@RequestBody DatesPOJO date) {
+        try {
+            return new ResponseEntity<>(cameraBusiness.getCamereDisponibili(date.getCheckIn(), date.getCheckOut()), HttpStatus.OK);
+        } catch (InternalServerErrorException | NotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @PostMapping(value = "/newCamera", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> newCamera(@RequestBody CameraPOJO camera) {
         try {
             return new ResponseEntity<>(cameraBusiness.newCamera(camera), HttpStatus.OK);
@@ -74,7 +87,7 @@ public class CameraController {
         }
     }
 
-    @PostMapping(value = "editCamera", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/editCamera", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> editCamera(@RequestBody CameraPOJO camera) {
         try {
             return new ResponseEntity<>(cameraBusiness.editCamera(camera), HttpStatus.OK);
@@ -83,7 +96,7 @@ public class CameraController {
         }
     }
 
-    @PostMapping(value = "deleteCamera", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/deleteCamera", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> deleteCamera(@RequestBody GenericDTO camera) {
         try {
             return new ResponseEntity<>(cameraBusiness.deleteCamera(camera), HttpStatus.OK);

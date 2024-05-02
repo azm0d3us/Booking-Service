@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpServerErrorException;
 
+import java.sql.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -88,6 +89,15 @@ public class CameraService implements ICameraService {
             }
         } catch (HttpServerErrorException.InternalServerError e) {
             throw new InternalServerErrorException(MSG);
+        }
+    }
+
+    @Override
+    public List<Camera> getCamereDisponibili(Date checkIn, Date checkOut) throws InternalServerErrorException {
+        try {
+            return cameraRepository.findCamereDisponibili(checkIn, checkOut);
+        } catch (HttpServerErrorException.InternalServerError e) {
+            throw new InternalServerErrorException();
         }
     }
 

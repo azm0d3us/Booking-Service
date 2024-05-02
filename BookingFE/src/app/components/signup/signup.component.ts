@@ -24,16 +24,21 @@ export class SignupComponent {
 
   gestioneRegistrazione() {
     if(this.nome === "" || this.username === "" || this.email ==="" || this.password === "" || this.confirmPassword === "") {
-      console.log("Compilare tutti i campi");
+      console.log("Compilare tutti i campi"); //Ci va un alert qui! o qualche controllo sul form, meglio!
       return;
     }
     if(this.confirmPassword !== this.password) {
-      console.log("Errore, password non corrispondenti");
+      console.log("Errore, password non corrispondenti"); //Qui un alert meglio...
     } else {
-      this.userService.newUser(new UserRegistrationModel(this.nome, this.email, this.username, this.password)).subscribe( data => {
-        this.nuovoUtente = data;
-        console.log("Registrazione avvenuta con successo");
-        this.router.navigate(["/login"]);
+      this.userService.newUser(new UserRegistrationModel(this.nome, this.email, this.username, this.password)).subscribe({
+        next: (data) => {
+          this.nuovoUtente = data;
+          console.log("Registrazione avvenuta con successo"); //Meglio alert o success redirection, con modifica sul link però
+          this.router.navigate(["/login"]);
+        },
+        error: (e) => {
+          console.error("Errore durante la richiesta HTTP: ", e.message);
+        }
       })
     }
 

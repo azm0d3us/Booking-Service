@@ -4,6 +4,7 @@ import com.training.booking.entities.Camera;
 import com.training.booking.errors.InternalServerErrorException;
 import com.training.booking.errors.NotFoundException;
 
+import java.sql.Date;
 import java.util.List;
 
 public interface ICameraService {
@@ -17,6 +18,8 @@ public interface ICameraService {
     List<Camera> getByPostiLetto(Integer postiLetto) throws InternalServerErrorException, NotFoundException;
 
     List<Camera> getByPrezzoBaseBetween(Double prezzoMin, Double prezzoMax) throws InternalServerErrorException, NotFoundException;
+
+    List<Camera> getCamereDisponibili(Date checkIn, Date checkOut) throws InternalServerErrorException;
 
     public Camera save(Camera camera) throws InternalServerErrorException;
 

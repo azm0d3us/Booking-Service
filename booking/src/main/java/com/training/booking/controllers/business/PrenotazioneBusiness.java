@@ -63,17 +63,17 @@ public class PrenotazioneBusiness {
         }
     }
 
-    public Set<?> getStruttureDisponibili(Date checkIn, Date checkOut) throws InternalServerErrorException, NotFoundException {
-        List<Prenotazione> lista = prenotazioneService.getStruttureDisponibili(checkIn, checkOut);
-        if(lista.isEmpty()) {
-            throw new NotFoundException();
-        } else {
-            record r(Long id, Integer postiLetto, Double prezzoBase, String tipo, String infoCheckOut, Residenza residenza){};
-            Set<r> lc = lista.stream().map(l -> new r(l.getCameraPrenotata().getIdCamera(), l.getCameraPrenotata().getPostiLetto(),
-                    l.getCameraPrenotata().getPrezzoBase(), l.getCameraPrenotata().getTipo(), l.getCameraPrenotata().getInfoCheckOut(), l.getCameraPrenotata().getResidenza())).collect(Collectors.toSet());
-            return lc;
-        }
-    }
+//    public Set<?> getStruttureDisponibili(Date checkIn, Date checkOut) throws InternalServerErrorException, NotFoundException {
+//        List<Prenotazione> lista = prenotazioneService.getStruttureDisponibili(checkIn, checkOut);
+//        if(lista.isEmpty()) {
+//            throw new NotFoundException();
+//        } else {
+//            record r(Long id, Integer postiLetto, Double prezzoBase, String tipo, String infoCheckOut, Residenza residenza){};
+//            Set<r> lc = lista.stream().map(l -> new r(l.getCameraPrenotata().getIdCamera(), l.getCameraPrenotata().getPostiLetto(),
+//                    l.getCameraPrenotata().getPrezzoBase(), l.getCameraPrenotata().getTipo(), l.getCameraPrenotata().getInfoCheckOut(), l.getCameraPrenotata().getResidenza())).collect(Collectors.toSet());
+//            return lc;
+//        }
+//    }
 
     @Autowired
     ListaPrezziBusiness listaPrezziBusiness;

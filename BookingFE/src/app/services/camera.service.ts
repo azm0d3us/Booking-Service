@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Camera } from '../models/camera';
+import { DateCustom } from '../models/date-custom';
+import { CameraCustom } from '../models/camera-custom';
 
 @Injectable({
   providedIn: 'root'
@@ -16,11 +18,14 @@ export class CameraService {
    }
 
    public getAll(): Observable<Camera[]> {
-    this.camereUrl = this.urlBase + "camere";
-    return this.http.get<Camera[]>(this.camereUrl);
+    return this.http.get<Camera[]>("http://localhost:8080/api/camere/camere");
    }
 
    public getById(id: any): Observable<Camera> {
     return this.http.get<Camera>(`http://localhost:8080/api/camere/camere/${id}`);
+   }
+
+   public getDisponibili(date: DateCustom): Observable<CameraCustom> {
+    return this.http.post<CameraCustom>("http://localhost:8080/api/camere/getDisponibili", date);
    }
 }

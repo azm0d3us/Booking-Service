@@ -37,15 +37,15 @@ public class PrenotazioneService implements IPrenotazioneService {
         return prenotazioneRepository.findByNumPersone(nPersone);
     }
 
-    @Override
-    public List<Prenotazione> getStruttureDisponibili(Date checkIn, Date checkOut) throws InternalServerErrorException {
-        try {
-            return prenotazioneRepository.findByCheckOutBeforeOrCheckInAfterOrCheckOutBeforeAndCheckInAfter(
-                    Date.valueOf(checkIn.toLocalDate().plusDays(1L)), Date.valueOf(checkOut.toLocalDate().minusDays(1L)), checkIn, checkOut);
-        } catch (HttpServerErrorException.InternalServerError e) {
-            throw new InternalServerErrorException();
-        }
-    }
+//    @Override
+//    public List<Prenotazione> getStruttureDisponibili(Date checkIn, Date checkOut) throws InternalServerErrorException {
+//        try {
+//            return prenotazioneRepository.findByCheckOutBeforeOrCheckInAfterOrCheckOutBeforeAndCheckInAfter(
+//                    Date.valueOf(checkIn.toLocalDate().plusDays(1L)), Date.valueOf(checkOut.toLocalDate().minusDays(1L)), checkIn, checkOut);
+//        } catch (HttpServerErrorException.InternalServerError e) {
+//            throw new InternalServerErrorException();
+//        }
+//    }
 
     @Override
     public Prenotazione newPrenotazione(Prenotazione prenotazione) throws InternalServerErrorException {

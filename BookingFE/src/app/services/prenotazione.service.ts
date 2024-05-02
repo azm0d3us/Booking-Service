@@ -14,8 +14,4 @@ export class PrenotazioneService {
   constructor(private http: HttpClient) {
     this.prenotazioneUrl = "http://localhost:8080/api/prenotazioni/"
    }
-
-   public getDisponibili(date: DateCustom): Observable<CameraCustom> {
-    return this.http.post<CameraCustom>("http://localhost:8080/api/prenotazioni/disponibili", date);
-   }
 }

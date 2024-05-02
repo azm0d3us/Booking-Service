@@ -17,18 +17,9 @@ public interface PrenotazioneRepository extends JpaRepository<Prenotazione, Long
 
     List<Prenotazione> findByCheckInBetweenOrCheckOutBetween(Date checkInMin, Date checkInMax, Date checkOutMin, Date checkOutMax);
 
-    List<Prenotazione> findByCheckInAfterOrCheckOutBefore(Date checkIn, Date checkOut);
-
     List<Prenotazione> findByNumPersone(Integer nPersone);
 
-    List<Prenotazione> findByCheckOutBeforeOrCheckInAfterOrCheckOutBeforeAndCheckInAfter(Date checkIn1, Date checkOut1, Date checkIn2, Date checkOut2);
-
-    List<Camera> findCameraPrenotataByCheckOutBeforeOrCheckInAfterOrCheckOutBeforeAndCheckInAfter(Date checkIn1, Date checkOut1, Date checkIn2, Date checkOut2);
-
-    @Query("SELECT p FROM Prenotazione p " +
-            "WHERE NOT ((p.checkIn < :dataCheckIn AND p.checkOut > :dataCheckOut) " +
-            "OR (p.checkIn > :dataCheckIn AND p.checkOut < :dataCheckOut))")
-    List<Prenotazione> findDisponibili(@Param("dataCheckIn") Date dataCheckIn, @Param("dataCheckOut") Date dataCheckOut);
+//    List<Prenotazione> findByCheckOutBeforeOrCheckInAfterOrCheckOutBeforeAndCheckInAfter(Date checkIn1, Date checkOut1, Date checkIn2, Date checkOut2);
 
     @Transactional
     Prenotazione save(Prenotazione prenotazione);

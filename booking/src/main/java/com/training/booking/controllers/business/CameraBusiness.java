@@ -12,6 +12,7 @@ import com.training.booking.services.interfaces.IResidenzaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.sql.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -44,6 +45,15 @@ public class CameraBusiness {
     public List<?> getByPrezzoBaseBetween(double prezzoMin, double prezzoMax) throws InternalServerErrorException, NotFoundException {
         List<Camera> cameraList = cameraService.getByPrezzoBaseBetween(prezzoMin, prezzoMax);
         return makeRecordList(cameraList);
+    }
+
+    public List<?> getCamereDisponibili(Date checkIn, Date checkOut) throws InternalServerErrorException, NotFoundException {
+        List<Camera> cameraList = cameraService.getCamereDisponibili(checkIn, checkOut);
+        if(cameraList.isEmpty()) {
+            throw new NotFoundException();
+        } else {
+            return makeRecordList(cameraList);
+        }
     }
 
     @Autowired
@@ -85,14 +95,14 @@ public class CameraBusiness {
     }
 
     private List<?> makeRecordList(List<Camera> cameraList) {
-        record r(String nomeResidenza, int postiLetto, boolean disponibile, Double prezzoBase, String tipo, String infoCheckOut){};
-        List<r> lr = cameraList.stream().map(c -> new r(c.getResidenza().getNome(), c.getPostiLetto(), c.isDisponibile(), c.getPrezzoBase(), c.getTipo(), c.getInfoCheckOut())).collect(Collectors.toList());
+        record r(Long id, String nomeResidenza, int postiLetto, boolean disponibile, Double prezzoBase, String tipo, String infoCheckOut){};
+        List<r> lr = cameraList.stream().map(c -> new r(c.getIdCamera(), c.getResidenza().getNome(), c.getPostiLetto(), c.isDisponibile(), c.getPrezzoBase(), c.getTipo(), c.getInfoCheckOut())).collect(Collectors.toList());
         return lr;
     }
 
     private Object makeRecord(Camera camera) {
-        record r(String nomeResidenza, int postiLetto, boolean disponibile, Double prezzoBase, String tipo, String infoCheckOut){};
-        return new r(camera.getResidenza().getNome(), camera.getPostiLetto(), camera.isDisponibile(), camera.getPrezzoBase(), camera.getTipo(), camera.getInfoCheckOut());
+        record r(Long id, String nomeResidenza, int postiLetto, boolean disponibile, Double prezzoBase, String tipo, String infoCheckOut){};
+        return new r(camera.getIdCamera(), camera.getResidenza().getNome(), camera.getPostiLetto(), camera.isDisponibile(), camera.getPrezzoBase(), camera.getTipo(), camera.getInfoCheckOut());
     }
 
 }

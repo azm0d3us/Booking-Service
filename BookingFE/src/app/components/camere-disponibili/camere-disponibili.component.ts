@@ -8,18 +8,23 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class CamereDisponibiliComponent {
 
-  alloggi: any;
+  camere: any;
 
   constructor(private route: ActivatedRoute) {
 
   }
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe(params => {
-      if(params["alloggi"]) {
-        this.alloggi = JSON.parse(params["alloggi"]);
+    this.route.queryParams.subscribe({
+      next: (params) => {
+        if(params["camere"]) {
+          this.camere = JSON.parse(params["camere"]);
+        }
+      },
+      error: (e) => {
+        console.error("Errore dutante la richiesta HTTP: ", e.message);
       }
-    })
+    });
   }
 
 }

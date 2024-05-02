@@ -25,12 +25,15 @@ export class LoginComponent {
   }
 
   gestioneLogIn() {
-    this.userService.login(new SimpleUser(this.username, this.password)).subscribe( data => {
-      this.utente = data;
-      if(this.authService.autentica(this.username, this.password, this.utente)) {
-        this.router.navigate(['carousel']);
-      } else {
-        console.log(this.errorMsg);
+    this.userService.login(new SimpleUser(this.username, this.password)).subscribe({
+      next: (data) => {
+        this.utente = data;
+        if(this.authService.autentica(this.username, this.password, this.utente)) {
+          this.router.navigate(['carousel']);
+        }
+      },
+      error: (e) => {
+        console.error("Errore durante la richiesta HTTP: ", e.message);
       }
     });
   }

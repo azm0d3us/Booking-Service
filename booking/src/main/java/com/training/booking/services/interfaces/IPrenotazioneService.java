@@ -17,7 +17,7 @@ public interface IPrenotazioneService {
 
     List<Prenotazione> getByNumPersone(Integer nPersone) throws InternalServerErrorException;
 
-    List<Prenotazione> getStruttureDisponibili(Date checkIn, Date checkOut) throws InternalServerErrorException;
+//    List<Prenotazione> getStruttureDisponibili(Date checkIn, Date checkOut) throws InternalServerErrorException;
 
     Prenotazione newPrenotazione(Prenotazione prenotazione) throws InternalServerErrorException;
 }

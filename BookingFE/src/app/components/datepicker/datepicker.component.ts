@@ -1,8 +1,9 @@
-import { Component, inject } from '@angular/core';
+import { Component, } from '@angular/core';
 import { NgbCalendar, NgbDate, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
-import { PrenotazioneService } from '../../services/prenotazione.service';
 import { DateCustom } from '../../models/date-custom';
 import { Router } from '@angular/router';
+import { CameraService } from '../../services/camera.service';
+import { CameraCustom } from '../../models/camera-custom';
 
 @Component({
   selector: 'app-datepicker',
@@ -13,9 +14,9 @@ export class DatepickerComponent {
 
   checkIn?: Date;
   checkOut?: Date;
-  alloggi?: any;
+  camere?: CameraCustom;
 
-  constructor(public calendar: NgbCalendar, public formatter: NgbDateParserFormatter, public prenotazioneService: PrenotazioneService, private router: Router) {}
+  constructor(public calendar: NgbCalendar, public formatter: NgbDateParserFormatter, public cameraService: CameraService, private router: Router) {}
 
 
 	hoveredDate: NgbDate | null = null;
@@ -58,16 +59,19 @@ export class DatepickerComponent {
 	}
 
   trovaAlloggi() {
-    this.checkIn = new Date(this.fromDate?.year!, this.fromDate?.month!, this.fromDate?.day);
-    this.checkOut = new Date(this.toDate?.year!, this.toDate?.month!, this.toDate?.day);
-    this.prenotazioneService.getDisponibili(new DateCustom(this.checkIn, this.checkOut)).subscribe( data => {
-      this.alloggi = data;
-      console.log(this.alloggi);
-      this.router.navigate(["/camereDisponibili"], { queryParams: { alloggi: JSON.stringify(this.alloggi) } });
-    }, error => {
-      console.error("Errore durante la richiesta HTTP: ", error.message);
-    });
-
+    this.checkIn = new Date(this.fromDate?.year!, this.fromDate?.month! - 1, this.fromDate?.day);
+    this.checkOut = new Date(this.toDate?.year!, this.toDate?.month! - 1, this.toDate?.day);  //le date maledettissime
+    // console.log(this.checkIn.toJSON())
+    // console.log(this.checkOut.toJSON())
+    this.cameraService.getDisponibili(new DateCustom(this.checkIn, this.checkOut)).subscribe({
+      next: (data) => {
+        this.camere = data;
+        console.log(this.camere);
+        this.router.navigate(["/camereDisponibili"], { queryParams: { camere: JSON.stringify(this.camere)}});
+      },
+      error: (e) => {
+        console.error("Errore durante la richiesta HTTP: ", e.message);
+      }
+    })
   }
-
 }

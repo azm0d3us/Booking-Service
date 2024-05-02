@@ -15,10 +15,14 @@ export class CameraComponent {
   }
 
   ngOnInit(): void {
-    this.cameraService.getAll().subscribe(data => {
-      this.camere = data;
-      console.log(data);
-    })
+    this.cameraService.getAll().subscribe({
+      next: (data) => {
+        this.camere = data;
+        console.log(data);
+      },
+      error: (e) => {
+        console.error("Errore durante la richiesta HTTP: ", e.message);
+      }
+    });
   }
-
 }

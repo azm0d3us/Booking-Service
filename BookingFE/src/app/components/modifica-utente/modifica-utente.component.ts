@@ -21,16 +21,21 @@ export class ModificaUtenteComponent {
   constructor(private userService: UserService, private route: Router) {}
 
   modificaUtente() {
-    this.userService.getUserIdByUsername(sessionStorage.getItem("Utente")!).subscribe( data => {
-      console.log(new UserUpdate(data, this.nome, this.cognome, this.ddn, this.codDoc, this.cf));
-      this.userService.update(new UserUpdate(data, this.nome, this.cognome, this.ddn, this.codDoc, this.cf)).subscribe(data => {
-        console.log("Aggiornamento dati riuscito");
-        this.route.navigate(["/success"]);
-      }, error => {
-        console.error("Errore durante la richiesta HTTP: ", error.message);
-      });
-    }, error => {
-      console.error("Errore durante la richiesta HTTP: ", error.message);
+    this.userService.getUserIdByUsername(sessionStorage.getItem("Utente")!).subscribe({
+      next: (data) => {
+        this.userService.update(new UserUpdate(data, this.nome, this.cognome, this.ddn, this.codDoc, this.cf)).subscribe({
+          next: (v) => {
+            console.log("Aggiornamento dati " + v.username + " riuscito");
+            this.route.navigate(["/success"]);
+          },
+          error: (e) => {
+            console.error("Errore durante la richiesta HTTP: ",e.message);
+          }
+        })
+      },
+      error: (e) => {
+        console.error("Errore durante la richiesta HTTP: ", e.message);
+      }
     })
   }
 

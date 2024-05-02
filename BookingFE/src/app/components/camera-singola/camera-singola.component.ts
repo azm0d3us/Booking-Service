@@ -15,10 +15,11 @@ export class CameraSingolaComponent {
   }
 
   ngOnInit(): void {
-    this.cameraService.getById(1).subscribe(data => {
-      this.camera = data;
-      console.log(data);
-    })
+    // this.cameraService.getById(1).subscribe(data => {
+    //   this.camera = data;
+    //   console.log(data);
+    // })
+    // Da sistemare, forse inutile, singola camera richiesta in prenotazione.
   }
 
 }
