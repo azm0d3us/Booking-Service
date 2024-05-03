@@ -36,7 +36,7 @@ public class UtenteBusiness {
         if(utenteOptional.isPresent()) {
            return utenteOptional.get();
         } else {
-            throw new NotFoundException();
+            throw new NotFoundException("Utente non trovato");
         }
     }
 

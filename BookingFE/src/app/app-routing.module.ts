@@ -11,6 +11,7 @@ import { CarouselComponent } from './components/carousel/carousel.component';
 import { ModificaUtenteComponent } from './components/modifica-utente/modifica-utente.component';
 import { SuccessComponent } from './components/success/success.component';
 import { CamereDisponibiliComponent } from './components/camere-disponibili/camere-disponibili.component';
+import { RicevutaComponent } from './components/ricevuta/ricevuta.component';
 
 const routes: Routes = [
   {path: "", component: LoginComponent},
@@ -22,6 +23,7 @@ const routes: Routes = [
   {path: "logout", component: LogoutComponent, canActivate: [RouteguardService]},
   {path: "modifica", component: ModificaUtenteComponent, canActivate: [RouteguardService]},
   {path: "camereDisponibili", component: CamereDisponibiliComponent},
+  {path: "ricevuta", component: RicevutaComponent, canActivate: [RouteguardService]},
   {path: "success", component: SuccessComponent, canActivate: [RouteguardService]},
   {path: "**", component: ErrorComponent}
 ];

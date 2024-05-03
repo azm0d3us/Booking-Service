@@ -15,6 +15,7 @@ export class DatepickerComponent {
   checkIn?: Date;
   checkOut?: Date;
   camere?: CameraCustom;
+  numPersone = 2;
 
   constructor(public calendar: NgbCalendar, public formatter: NgbDateParserFormatter, public cameraService: CameraService, private router: Router) {}
 
@@ -66,8 +67,12 @@ export class DatepickerComponent {
     this.cameraService.getDisponibili(new DateCustom(this.checkIn, this.checkOut)).subscribe({
       next: (data) => {
         this.camere = data;
-        console.log(this.camere);
-        this.router.navigate(["/camereDisponibili"], { queryParams: { camere: JSON.stringify(this.camere)}});
+        this.router.navigate(["/camereDisponibili"], { queryParams: {
+          camere: JSON.stringify(this.camere),
+          checkIn: JSON.stringify(this.checkIn),
+          checkOut: JSON.stringify(this.checkOut),
+          numPersone: JSON.stringify(this.numPersone)
+        }});
       },
       error: (e) => {
         console.error("Errore durante la richiesta HTTP: ", e.message);

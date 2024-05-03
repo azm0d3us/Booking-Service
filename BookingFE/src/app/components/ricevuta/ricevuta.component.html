@@ -1,0 +1,71 @@
+<div class="card">
+  <div class="card-body mx-4">
+    <div class="container">
+      <p class="my-5 mx-5" style="font-size: 30px; text-align: center;">Grazie, prenotazione registrata con successo!</p>
+      <p class="my-5 mx-5" style="font-size: 20px;">Dettagli ricevuta</p>
+      <div class="row">
+        <ul class="list-unstyled">
+          <li class="text-black">Nome: {{utente?.nome}}</li>
+          <li class="text-black">Cognome: {{utente?.cognome}}</li>
+          <li class="text-black">Data di nascita: {{utente?.ddn | date: 'dd/MM/yyyy'}}</li>
+          <li class="text-black">N. Documento: {{utente?.codDoc}}</li>
+          <li class="text-black">Cod. Fiscale: {{utente?.cf}}</li>
+          <li class="text-muted mt-1"><span class="text-black">Ricevuta</span> #{{prenotazione?.idPrenotazione}}</li>
+          <li class="text-black mt-1">{{currentDate | date: 'dd/MM/yyyy'}}</li>
+        </ul>
+        <hr>
+        <div class="col-xl-10">
+          <p>Costo Camera</p>
+        </div>
+        <div class="col-xl-2">
+          <p class="float-end">{{totaleParziale | currency:'EUR' }}
+          </p>
+        </div>
+        <hr>
+      </div>
+      <div class="row">
+        <div class="col-xl-10">
+          <p style="padding-left: 100px;">Costo complessivo (Costo camera * Numero Persone)</p>
+        </div>
+        <div class="col-xl-2">
+          <p class="float-end">{{prenotazione?.totale | currency:'EUR'}}
+          </p>
+        </div>
+        <hr>
+      </div>
+      <div class="row">
+        <div class="col-xl-10">
+          <p>Tassa Di Soggiorno (Per notte)</p>
+        </div>
+        <div class="col-xl-2">
+          <p class="float-end">{{tassa | currency:'EUR' }}
+          </p>
+        </div>
+        <hr>
+      </div>
+      <div class="row">
+        <div class="col-xl-10">
+          <p style="padding-left: 100px;">Totale tassa</p>
+        </div>
+        <div class="col-xl-2">
+          <p class="float-end">{{totaleTassa | currency:'EUR' }}
+          </p>
+        </div>
+        <hr style="border: 2px solid black;">
+      </div>
+      <div class="row text-black">
+
+        <div class="col-xl-12">
+          <p class="float-end fw-bold">Totale: {{totaleFinale | currency:'EUR' }}
+          </p>
+        </div>
+        <hr style="border: 2px solid black;">
+      </div>
+      <div class="text-center" style="margin-top: 90px;">
+        <a routerLink="/carousel">Torna alla home</a>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
+      </div>
+
+    </div>
+  </div>
+</div>

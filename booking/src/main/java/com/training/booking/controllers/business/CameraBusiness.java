@@ -29,7 +29,6 @@ public class CameraBusiness {
 
     public Camera getById(Long id) throws NotFoundException, InternalServerErrorException {
         return cameraService.getById(id);
-
     }
 
     public Camera getByNumero(String numero) throws NotFoundException, InternalServerErrorException {

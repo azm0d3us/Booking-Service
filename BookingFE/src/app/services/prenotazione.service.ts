@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { CameraCustom } from '../models/camera-custom';
 import { Observable } from 'rxjs';
 import { DateCustom } from '../models/date-custom';
+import { PrenotazioneCustom } from '../models/prenotazione-custom';
+import { Prenotazione } from '../models/prenotazione';
 
 @Injectable({
   providedIn: 'root'
@@ -14,4 +16,9 @@ export class PrenotazioneService {
   constructor(private http: HttpClient) {
     this.prenotazioneUrl = "http://localhost:8080/api/prenotazioni/"
    }
+
+   public prenota(prenotazione: PrenotazioneCustom): Observable<Prenotazione>{
+    return this.http.post<Prenotazione>("http://localhost:8080/api/prenotazioni/nuovaPrenotazione", prenotazione);
+   }
+
 }

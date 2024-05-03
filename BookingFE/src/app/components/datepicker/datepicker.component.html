@@ -75,6 +75,16 @@
         </button>
       </div>
     </div>
+    <div class="col-6">
+      <input
+          type="number"
+          class="form-control"
+          placeholder="Numero di persone"
+          [(ngModel)]="numPersone"
+          name="numeroPersone"
+        />
+    </div>
+
     <div class="col-6" style="margin-right: auto;">
       <div class="input-group">
         <button class="btn btn-outline-secondary" (click)="trovaAlloggi()">

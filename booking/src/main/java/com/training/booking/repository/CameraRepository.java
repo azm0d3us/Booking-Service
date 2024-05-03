@@ -21,9 +21,11 @@ public interface CameraRepository extends JpaRepository<Camera, Long> {
 
     List<Camera> findByPrezzoBaseBetween(double prezzoMin, double prezzoMax);
 
-    @Query("SELECT c FROM Camera c WHERE c.idCamera NOT IN (SELECT p.cameraPrenotata.idCamera FROM Prenotazione p " +
-            "WHERE NOT (p.checkOut < :checkIn OR p.checkIn > :checkOut))")
-    List<Camera> findCamereDisponibili(@Param("checkIn") Date checkIn, @Param("checkOut") Date checkOut);
+    @Query("SELECT c FROM Camera c " +
+            "WHERE c.idCamera NOT IN " +
+            "(SELECT p.cameraPrenotata.idCamera FROM Prenotazione p " +
+            "WHERE ((p.checkIn <= :checkOut) AND (p.checkOut >= :checkIn)))")
+    List<Camera> findCamereDisponibili(Date checkIn, Date checkOut);
 
     @Transactional
     Camera save(Camera obj);

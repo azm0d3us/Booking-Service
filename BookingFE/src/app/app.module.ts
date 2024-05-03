@@ -21,6 +21,7 @@ import { ModificaUtenteComponent } from './components/modifica-utente/modifica-u
 import { PasswordResetComponent } from './components/password-reset/password-reset.component';
 import { SuccessComponent } from './components/success/success.component';
 import { CamereDisponibiliComponent } from './components/camere-disponibili/camere-disponibili.component';
+import { RicevutaComponent } from './components/ricevuta/ricevuta.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { CamereDisponibiliComponent } from './components/camere-disponibili/came
     PasswordResetComponent,
     SuccessComponent,
     CamereDisponibiliComponent,
+    RicevutaComponent,
   ],
   imports: [
     BrowserModule,

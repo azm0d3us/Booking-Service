@@ -1,39 +1,3 @@
-<!-- <table class="table table-bordered">
-  <thead>
-    <tr>
-      <th scope="col">Posti Letto</th>
-      <th scope="col">PrezzoBase</th>
-      <th scope="col">Tipo</th>
-      <th scope="col">Orario Check Out</th>
-    </tr>
-  </thead>
-  <tbody *ngFor="let camera of alloggi">
-    <tr>
-      <td>{{camera.postiLetto}}</td>
-      <td>{{camera.prezzoBase}}</td>
-      <td>{{camera.tipo}}</td>
-      <td>{{camera.infoCheckOut}}</td>
-    </tr>
-  </tbody>
-</table>
-
-
-<tr *ngFor="let camera of alloggi">
-  <div class="card" style="width: 18rem;">
-    <img src="/assets/images/1.jpg" class="card-img-top" alt="...">
-    <div class="card-body">
-      <h5 class="card-title">Qualche titolo</h5>
-      <div class="card-text">
-        Posti Letto: {{camera.postiLetto}}<hr>
-        Prezzo Base: {{camera.prezzoBase}} € a notte<hr>
-        Tipologia: {{camera.tipo}}<hr>
-        Orario Check-Out: {{camera.infoCheckOut}}
-      </div>
-      <a href="#" class="btn btn-primary">Prenota</a>
-    </div>
-    </div>
-</tr> -->
-
 <div class="row">
   <div class="col-sm-4" *ngFor="let camera of camere">
     <div class="card" style="width: 18rem;">
@@ -48,7 +12,8 @@
         <li class="list-group-item">Orario Check-Out: {{camera.infoCheckOut}}</li>
       </ul>
       <div class="card-body">
-        <a href="#" class="btn btn-primary">Prenota</a>
+        <!-- <a class="btn btn-primary" (click)="prenota(camera.id)">Prenota</a> -->
+        <button class="btn btn-primary" (click)="prenota(camera.id)" [ngClass]="{'disabled-button': !authService.isLogged()}">Prenota</button>
       </div>
     </div>
   </div>

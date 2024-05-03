@@ -81,11 +81,7 @@ public class PrenotazioneController {
     public ResponseEntity<?> newPrenotazione(@RequestBody PrenotazionePOJO prenotazione) {
         try {
             return new ResponseEntity<>(prenotazioneBusiness.newPrenotazione(prenotazione), HttpStatus.OK);
-        } catch (NotFoundException e) {
-            throw new RuntimeException(e);
-        } catch (InternalServerErrorException e) {
-            throw new RuntimeException(e);
-        } catch (NotValidException e) {
+        } catch (NotFoundException | InternalServerErrorException | NotValidException e) {
             throw new RuntimeException(e);
         }
     }

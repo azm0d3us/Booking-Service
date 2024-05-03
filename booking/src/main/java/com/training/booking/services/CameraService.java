@@ -41,7 +41,7 @@ public class CameraService implements ICameraService {
         try {
             Optional<Camera> cameraOptional = cameraRepository.findById(id);
             if (!cameraOptional.isPresent()) {
-                throw new NotFoundException();
+                throw new NotFoundException("Camera non trovata");
             } else {
                 return cameraOptional.get();
             }
