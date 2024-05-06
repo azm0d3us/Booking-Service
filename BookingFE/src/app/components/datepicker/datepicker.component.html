@@ -14,9 +14,13 @@
 <hr/>
 <pre>CheckIn: {{ checkIn | json}} CheckOut: {{ checkOut | json }}</pre> -->
 
-<div class="container">
+<div class="container" style="padding-top: 25px; padding-bottom: 25px;">
+
   <form class="row row-cols-sm-auto">
     <div class="col-6" style="margin-left: auto;">
+      <div class="col-6">
+        <label for="fromDate">Data Check-in</label>
+      </div>
       <div class="dp-hidden position-absolute">
         <div class="input-group">
           <input
@@ -47,7 +51,9 @@
         </div>
       </div>
       <div class="input-group">
+
         <input
+        id="fromDate"
           #dpFromDate
           class="form-control"
           placeholder="yyyy-mm-dd"
@@ -61,8 +67,12 @@
       </div>
     </div>
     <div class="col-6">
+      <div class="col-6">
+        <label for="toDate">Data Check-out</label>
+      </div>
       <div class="input-group">
         <input
+          id="toDate"
           #dpToDate
           class="form-control"
           placeholder="yyyy-mm-dd"
@@ -76,16 +86,22 @@
       </div>
     </div>
     <div class="col-6">
+      <div class="col-6">
+        <label for="numPersone">Numero ospiti</label>
+      </div>
       <input
+          id="numPersone"
           type="number"
           class="form-control"
-          placeholder="Numero di persone"
           [(ngModel)]="numPersone"
           name="numeroPersone"
         />
     </div>
 
     <div class="col-6" style="margin-right: auto;">
+      <div class="col-6" style="margin-right: auto;">
+        Testo di prova
+      </div>
       <div class="input-group">
         <button class="btn btn-outline-secondary" (click)="trovaAlloggi()">
           <span class="oi oi-magnifying-glass" title="search" aria-hidden="true"></span>Trova alloggi disponibili

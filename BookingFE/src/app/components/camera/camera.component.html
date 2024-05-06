@@ -1,6 +1,7 @@
 <table class="table table-bordered">
   <thead>
     <tr>
+      <th scope="col"></th>
       <th scope="col">Posti Letto</th>
       <th scope="col">PrezzoBase</th>
       <th scope="col">Tipo</th>
@@ -9,6 +10,31 @@
   </thead>
   <tbody *ngFor="let camera of camere">
     <tr>
+      <td>
+        <div class="card" style="width: 18rem;">
+        <div id="carouselExample" class="carousel slide">
+        <div class="carousel-inner">
+          <div class="carousel-item active" >
+            <img src="/assets/images/camere/1.jpg" class="card-img-top" alt="...">
+          </div>
+          <div class="carousel-item">
+            <img src="/assets/images/camere/2.jpg" class="card-img-top" alt="...">
+          </div>
+          <div class="carousel-item">
+            <img src="/assets/images/camere/3.jpg" class="card-img-top" alt="...">
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </div>
+      </td>
       <td>{{camera.postiLetto}}</td>
       <td>{{camera.prezzoBase}}</td>
       <td>{{camera.tipo}}</td>
