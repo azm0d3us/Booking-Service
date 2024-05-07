@@ -1,5 +1,3 @@
-import { Foto } from "./foto";
-
 export class Camera {
   idCamera?: number;
   postiLetto?: number;

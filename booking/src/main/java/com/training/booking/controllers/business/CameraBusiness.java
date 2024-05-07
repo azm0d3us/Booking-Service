@@ -3,6 +3,7 @@ package com.training.booking.controllers.business;
 import com.training.booking.DTOs.GenericDTO;
 import com.training.booking.POJOs.CameraPOJO;
 import com.training.booking.entities.Camera;
+import com.training.booking.entities.ImmagineCamera;
 import com.training.booking.entities.Residenza;
 import com.training.booking.errors.InternalServerErrorException;
 import com.training.booking.errors.NotFoundException;
@@ -13,7 +14,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Component
@@ -53,6 +56,19 @@ public class CameraBusiness {
         } else {
             return makeRecordList(cameraList);
         }
+    }
+
+    public List<String> getImmaginiCamera(Long idCamera) throws InternalServerErrorException, NotFoundException {
+        Camera camera = cameraService.getById(idCamera);
+        List<String> listaImmagini = new ArrayList<>();
+        System.out.println("PROVA PROVA PROVA AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+
+        for (ImmagineCamera img : camera.getImmaginiCamera()) {
+            System.out.println("********************************************************______________-------------§§§§§§§§§§");
+            System.out.println(img.getUrl() + "<<<<<<<<<<<<<<");
+            listaImmagini.add(img.getUrl());
+        }
+        return listaImmagini;
     }
 
     @Autowired
@@ -103,5 +119,6 @@ public class CameraBusiness {
         record r(Long id, String nomeResidenza, int postiLetto, boolean disponibile, Double prezzoBase, String tipo, String infoCheckOut){};
         return new r(camera.getIdCamera(), camera.getResidenza().getNome(), camera.getPostiLetto(), camera.isDisponibile(), camera.getPrezzoBase(), camera.getTipo(), camera.getInfoCheckOut());
     }
+
 
 }

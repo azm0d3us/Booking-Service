@@ -78,6 +78,15 @@ public class CameraController {
         }
     }
 
+    @GetMapping(value = "/getImmaginiCamera", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> getImmaginiCamera(@RequestParam Long idCamera) {
+        try {
+            return new ResponseEntity<>(cameraBusiness.getImmaginiCamera(idCamera), HttpStatus.OK);
+        } catch (InternalServerErrorException | NotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     @PostMapping(value = "/newCamera", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> newCamera(@RequestBody CameraPOJO camera) {
         try {
