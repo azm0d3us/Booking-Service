@@ -9,30 +9,32 @@
     </tr>
   </thead>
   <tbody *ngFor="let camera of camere">
-    <tr>
-      <td>
-        <div class="card" style="width: 18rem;">
-          <div id="carouselExample" class="carousel slide">
-            <div class="carousel-inner">
-              <div *ngFor="let immagine of immagini" class="carousel-item active">
-                <img src="immagine" class="card-img-top" alt=immagine>
+      <tr>
+        <td>
+          <div class="card-container">
+          <div class="card" style="width: 18rem;">
+            <div [attr.id]="'carouselExample_' + camera.idCamera" class="carousel slide carousel-fade carousel-container">
+                <div class="carousel-inner">
+                    <div *ngFor="let foto of camera.urlImmagini; let isFirst = first" class="carousel-item" [class.active]="isFirst">
+                        <img  [src]="foto" class="d-block w-100" alt="foto">
+                    </div>
+                    </div>
+                <button *ngIf="camera.urlImmagini != undefined && camera.urlImmagini.length > 1" class="carousel-control-prev" type="button" [attr.data-bs-target]="'#carouselExample_' + camera.idCamera" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button *ngIf="camera.urlImmagini != undefined && camera.urlImmagini.length > 1" class="carousel-control-next" type="button" [attr.data-bs-target]="'#carouselExample_' + camera.idCamera" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
               </div>
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Next</span>
-            </button>
           </div>
-        </div>
-      </td>
-      <td>{{camera.postiLetto}}</td>
-      <td>{{camera.prezzoBase}}</td>
-      <td>{{camera.tipo}}</td>
-      <td>{{camera.infoCheckOut}}</td>
-    </tr>
+        </td>
+        <td class="align-middle">{{camera.postiLetto}}</td>
+        <td class="align-middle">{{camera.prezzoBase}}</td>
+        <td class="align-middle">{{camera.tipo}}</td>
+        <td class="align-middle">{{camera.infoCheckOut}}</td>
+      </tr>
   </tbody>
 </table>

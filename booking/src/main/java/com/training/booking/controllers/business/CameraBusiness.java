@@ -110,7 +110,7 @@ public class CameraBusiness {
     }
 
     private List<?> makeRecordList(List<Camera> cameraList) {
-        record r(Long id, String nomeResidenza, int postiLetto, boolean disponibile, Double prezzoBase, String tipo, String infoCheckOut){};
+        record r(Long idCamera, String nomeResidenza, int postiLetto, boolean disponibile, Double prezzoBase, String tipo, String infoCheckOut){};
         List<r> lr = cameraList.stream().map(c -> new r(c.getIdCamera(), c.getResidenza().getNome(), c.getPostiLetto(), c.isDisponibile(), c.getPrezzoBase(), c.getTipo(), c.getInfoCheckOut())).collect(Collectors.toList());
         return lr;
     }

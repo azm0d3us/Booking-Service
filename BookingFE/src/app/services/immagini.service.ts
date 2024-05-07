@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, catchError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +11,7 @@ export class ImmaginiService {
 
   constructor(private http: HttpClient) { }
 
-  public getByCamera(idCamera: any): Observable<string[]> {
+  public getByCamera(idCamera: any): Observable<any> {
     let url = this.imgCameraUrlBase + `camera/${idCamera}`;
     return this.http.get<string[]>(url);
   }

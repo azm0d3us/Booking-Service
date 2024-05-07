@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,19 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'BookingFE';
+
+  /**
+   * Visualizzo il componente DatePicker sempre, a meno che non mi trovi nella route della ricevuta
+   */
+  displayDatePicker: boolean = true;
+
+  constructor(private router: Router, private route: ActivatedRoute) {
+    this.router.events.subscribe( event => {
+      if(event instanceof NavigationEnd) {
+        const currentUrl = this.router.url;
+
+        this.displayDatePicker = !currentUrl.includes("/ricevuta");
+      }
+    })
+  }
 }

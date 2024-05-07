@@ -5,4 +5,5 @@ export class Camera {
   prezzoBase?: number;
   tipo?: string;
   infoCheckOut?: string;
+  urlImmagini?: string[];
 }

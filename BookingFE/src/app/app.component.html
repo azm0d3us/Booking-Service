@@ -1,6 +1,6 @@
-<app-navbar></app-navbar>
-<div class="container">
-  <app-datepicker></app-datepicker>
+<app-navbar class="navbar-fixed-top"></app-navbar>
+<div class="container main-content">
+  <app-datepicker *ngIf="displayDatePicker"></app-datepicker>
   <router-outlet></router-outlet>
 </div>
-  <app-footer></app-footer>
+<app-footer class="footer-fixed-bottom"></app-footer>

@@ -11,7 +11,6 @@ import { ImmaginiService } from '../../services/immagini.service';
 export class CameraComponent {
 
   camere?: Camera[];
-  immagini?: string[];
 
   constructor(private cameraService: CameraService, private immaginiService: ImmaginiService) {
   }
@@ -20,7 +19,10 @@ export class CameraComponent {
     this.cameraService.getAll().subscribe({
       next: (data) => {
         this.camere = data;
-        console.log(data);
+        console.log(this.camere);
+        this.camere.forEach(camera => {
+          this.test(camera.idCamera);
+        })
       },
       error: (e) => {
         console.error("Errore durante la richiesta HTTP: ", e.message);
@@ -31,8 +33,16 @@ export class CameraComponent {
   test(idCamera: any) {
     this.immaginiService.getByCamera(idCamera).subscribe({
       next: (data) => {
-        this.immagini = data;
-        console.log(data);
+        const camera = this.camere?.find(camera => camera.idCamera === idCamera);
+        if(camera) {
+          if(Array.isArray(data) && data.length === 0) {
+            camera.urlImmagini = ["/assets/images/camere/nonPhoto.jpg"]
+          } else {
+            camera.urlImmagini = data;
+            console.log(data);
+          }
+        }
+        // camera ? camera.urlImmagini = data : camera!.urlImmagini?.push("/assets/images/camere/noPhoto.jpg");
       },
       error: (e) => {
         console.error("Errore durante la richiesta HTTP: ", e.message);
