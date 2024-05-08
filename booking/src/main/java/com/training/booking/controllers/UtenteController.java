@@ -1,6 +1,5 @@
 package com.training.booking.controllers;
 
-import com.training.booking.DTOs.GenericDTO;
 import com.training.booking.POJOs.UserPOJO;
 import com.training.booking.POJOs.UtenteRegistra;
 import com.training.booking.POJOs.UtenteUpdate;

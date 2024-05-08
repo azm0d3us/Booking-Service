@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { CameraComponent } from '../camera/camera.component';
 import { CrossTestService } from '../../services/cross-test.service';
 import { Camera } from '../../models/camera';
+import { ImmaginiService } from '../../services/immagini.service';
 
 @Component({
   selector: 'app-carousel',
@@ -12,34 +13,30 @@ import { Camera } from '../../models/camera';
 export class CarouselComponent {
 
   urls: string[] = [];
-  camere: Camera[] = [];
+  shuffledUrls: string[] = [];
 
-  constructor(private crossService: CrossTestService) {
-
+  constructor(private crossService: CrossTestService, ) {
   }
 
   ngOnInit(): void {
-    console.log("On init");
-    this.camere = this.crossService.camere;
-    console.log(this.camere); // it works.
-    this.crossService.camere.forEach(camera => {
-      if(camera.urlImmagini) {
-        // console.log("test" + camera.urlImmagini);
-        this.urls.push(...camera.urlImmagini);
-      }
-    });
-    // camere.camere?.forEach(camera => {
-    //   if(camera.urlImmagini) {
-    //     this.urls.push(...camera.urlImmagini);
-      // }
-      // camera.urlImmagini!.forEach(element => {
-      //   this.urls?.push(element);
-      // });
-    // });
-    console.log("urls" + this.urls);
-
-    console.log("extracted urls " + this.extractRandomUrls(5));
+    this.urls = this.crossService.urls;
+    this.shuffledUrls = this.extractRandomUrls(3);
+    console.log(this.shuffledUrls)
   }
+
+
+  //TESTING PHASE
+  //This works
+  // testerUrls() {
+  //   console.log(this.urls);
+  // }
+
+  // //Now this works as well ^^
+  // testerShuffledUrls() {
+  //   //Se volessi caricare randomicamente da 3 a urls.length elementi, sconsigliabile ^^
+  //   // this.extractRandomUrls(Math.floor(Math.random() * (this.urls.length - 2)) + 3)
+  //   console.log(this.extractRandomUrls(3));
+  // }
 
   private extractRandomUrls(n: any) {
     const shuffledUrls = this.shuffleArray(this.urls);
@@ -50,7 +47,7 @@ export class CarouselComponent {
   private shuffleArray(array: any[]) {
     for(let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
-      [array[i], array[j] = array[j], array[i]];
+      [array[i], array[j]] = [array[j], array[i]];
     }
     return array;
   }
