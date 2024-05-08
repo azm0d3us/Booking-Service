@@ -10,7 +10,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin(origins = "http://localhost:4200")
+//@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api/immagini")
 public class ImmaginiController {
@@ -22,14 +22,15 @@ public class ImmaginiController {
     public ResponseEntity<?> getByIdCamera(@PathVariable("idCamera") Long idCamera) {
         try {
             return new ResponseEntity<>(immaginiBusiness.getByIdCamera(idCamera), HttpStatus.OK);
-        } catch (NotValidException e) {
-            throw new RuntimeException(e);
-        } catch (NotFoundException e) {
-            throw new RuntimeException(e);
-        } catch (InternalServerErrorException e) {
+        } catch (NotValidException | NotFoundException | InternalServerErrorException e) {
             throw new RuntimeException(e);
         }
     }
+
+//    @GetMapping(value = "/residenza/{idResidenza}", produces = MediaType.APPLICATION_JSON_VALUE)
+//    public ResponseEntity<?> getByIdResidenza(@PathVariable("idResidenza") Long idResidenza) {
+//        return new ResponseEntity<>(immaginiBusiness.getByIdResidenza(idResidenza), HttpStatus.OK);
+//    }
 
 
 }

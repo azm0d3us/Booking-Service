@@ -7,13 +7,14 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let residenza of residenze">
+      <tr *ngFor="let residenza of residenze" (click)="test(residenza.id)">
       <td>
-        <img *ngIf="residenza.urlImg !== null" [src]="'/assets/images/residenze/' + residenza.urlImg" alt="Foto Residenza">
+        <img *ngIf="residenza.urlImg !== null" [src]="residenza.urlImg" alt="Foto Residenza">
         <img *ngIf="residenza.urlImg === null" src="/assets/images/residenze/residenzaNoPhoto.jpg" alt="Foto Mancante">
       </td>
-      <td>{{residenza.nome}}</td>
-      <td>{{residenza.indirizzo}}</td>
+      <td class="align-middle">{{residenza.nome}}</td>
+      <td class="align-middle">{{residenza.indirizzo}}</td>
     </tr>
+
   </tbody>
 </table>

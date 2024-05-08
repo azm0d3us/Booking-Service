@@ -22,6 +22,7 @@ import { PasswordResetComponent } from './components/password-reset/password-res
 import { SuccessComponent } from './components/success/success.component';
 import { CamereDisponibiliComponent } from './components/camere-disponibili/camere-disponibili.component';
 import { RicevutaComponent } from './components/ricevuta/ricevuta.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { RicevutaComponent } from './components/ricevuta/ricevuta.component';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    NgbModule
+    NgbModule,
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

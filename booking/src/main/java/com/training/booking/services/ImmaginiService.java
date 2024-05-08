@@ -2,8 +2,11 @@ package com.training.booking.services;
 
 import com.training.booking.entities.Camera;
 import com.training.booking.entities.ImmagineCamera;
+import com.training.booking.entities.ImmagineResidenza;
+import com.training.booking.entities.Residenza;
 import com.training.booking.errors.InternalServerErrorException;
 import com.training.booking.repository.ImmagineCameraRepository;
+import com.training.booking.repository.ImmagineResidenzaRepository;
 import com.training.booking.services.interfaces.IImmaginiService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,4 +28,5 @@ public class ImmaginiService implements IImmaginiService {
             throw new InternalServerErrorException();
         }
     }
+
 }

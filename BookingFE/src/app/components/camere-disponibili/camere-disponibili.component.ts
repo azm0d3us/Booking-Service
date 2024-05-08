@@ -19,6 +19,7 @@ export class CamereDisponibiliComponent {
   userId: any;
   numOspiti: any;
   prenotazione: any;
+  p = 1;
 
   constructor(
     private route: ActivatedRoute,

@@ -2,12 +2,15 @@ package com.training.booking.controllers.business;
 
 import com.training.booking.entities.Camera;
 import com.training.booking.entities.ImmagineCamera;
+import com.training.booking.entities.ImmagineResidenza;
+import com.training.booking.entities.Residenza;
 import com.training.booking.errors.InternalServerErrorException;
 import com.training.booking.errors.NotFoundException;
 import com.training.booking.errors.NotValidException;
 import com.training.booking.services.CameraService;
 import com.training.booking.services.interfaces.ICameraService;
 import com.training.booking.services.interfaces.IImmaginiService;
+import com.training.booking.services.interfaces.IResidenzaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

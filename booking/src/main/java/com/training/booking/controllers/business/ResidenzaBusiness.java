@@ -26,8 +26,12 @@ public class ResidenzaBusiness {
         } else {
             //Prendi l'url se l'immagine c'è, se no mett la stringa a null
             record r(Long id, String nome, String indirizzo, String urlImg){};
-            return residenzaList.stream().map(e -> new r(e.getIdResidenza(), e.getNome(), e.getIndirizzo(),
-                    e.getImgResidenza() != null ? e.getImgResidenza().getUrl() : null)).collect(Collectors.toList());
+            return residenzaList.stream().map(e -> new r(
+                    e.getIdResidenza(),
+                    e.getNome(), e.getIndirizzo(),
+//                    e.getImgResidenza().getUrl()
+                    e.getImgResidenza() != null ? e.getImgResidenza().getUrl() : null
+                    )).collect(Collectors.toList());
         }
     }
 

@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.sql.Date;
 
-@CrossOrigin("http://localhost:4200")
+//@CrossOrigin("http://localhost:4200")
 @RestController
 @RequestMapping("/api/camere")
 public class CameraController {

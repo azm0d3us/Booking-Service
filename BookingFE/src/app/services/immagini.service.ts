@@ -7,12 +7,17 @@ import { Observable, catchError } from 'rxjs';
 })
 export class ImmaginiService {
 
-  private imgCameraUrlBase = "http://localhost:8080/api/immagini/"
+  private imgUrlBase = "http://localhost:8080/api/immagini/";
 
   constructor(private http: HttpClient) { }
 
   public getByCamera(idCamera: any): Observable<any> {
-    let url = this.imgCameraUrlBase + `camera/${idCamera}`;
+    let url = this.imgUrlBase + `camera/${idCamera}`;
+    return this.http.get<string[]>(url);
+  }
+
+  public getByResidenza(idResidenza: any): Observable<any>{
+    let url = this.imgUrlBase + `residenza/${idResidenza}`;
     return this.http.get<string[]>(url);
   }
 }
