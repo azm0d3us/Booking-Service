@@ -15,7 +15,9 @@ export class DatepickerComponent {
   checkIn?: Date;
   checkOut?: Date;
   camere?: CameraCustom;
-  numOspiti = 2;
+  numAdulti = 1;
+  numBambini = 0;
+  numOspiti?: number;
   hoveredDate: NgbDate | null = null;
 	fromDate: NgbDate | null = this.calendar.getToday();
 	toDate: NgbDate | null = this.calendar.getNext(this.calendar.getToday(), 'd', 10);
@@ -60,26 +62,14 @@ export class DatepickerComponent {
   trovaAlloggi() {
     this.checkIn = new Date(this.fromDate?.year!, this.fromDate?.month! - 1, this.fromDate?.day);
     this.checkOut = new Date(this.toDate?.year!, this.toDate?.month! - 1, this.toDate?.day);
+    this.numOspiti = this.numAdulti + this.numBambini;
 
     this.router.navigate(["/camereDisponibili"], { queryParams:{
       checkIn: JSON.stringify(this.checkIn),
       checkOut: JSON.stringify(this.checkOut),
+      numAdulti: JSON.stringify(this.numAdulti),
+      numBambini: JSON.stringify(this.numBambini),
       numOspiti: JSON.stringify(this.numOspiti)
     }});
-
-    // this.cameraService.getDisponibili(new DateCustom(this.checkIn, this.checkOut)).subscribe({
-    //   next: (data) => {
-    //     this.camere = data;
-    //     this.router.navigate(["/camereDisponibili"], { queryParams: {
-    //       camere: JSON.stringify(this.camere),
-    //       checkIn: JSON.stringify(this.checkIn),
-    //       checkOut: JSON.stringify(this.checkOut),
-    //       numPersone: JSON.stringify(this.numPersone)
-    //     }});
-    //   },
-    //   error: (e) => {
-    //     console.error("Errore durante la richiesta HTTP: ", e.message);
-    //   }
-    // })
   }
 }

@@ -97,7 +97,8 @@ public class PrenotazioneBusiness {
             if(!(l.getValiditaInizio().before(checkIn) && l.getValiditaFine().before(checkIn) ||
                     l.getValiditaInizio().after(checkOut) && l.getValiditaFine().after(checkOut))){
                 //Calcolo permanenza sotto prezzo alterato
-                Long periodoListino = ChronoUnit.DAYS.between(l.getValiditaInizio().toLocalDate().isBefore(checkIn.toLocalDate()) ? checkIn.toLocalDate() : l.getValiditaInizio().toLocalDate(),
+                Long periodoListino = ChronoUnit.DAYS.between(
+                        l.getValiditaInizio().toLocalDate().isBefore(checkIn.toLocalDate()) ? checkIn.toLocalDate() : l.getValiditaInizio().toLocalDate(),
                         l.getValiditaFine().toLocalDate().isAfter(checkOut.toLocalDate()) ? checkOut.toLocalDate() : l.getValiditaFine().toLocalDate());
                 //Ricalcolo periodo totale da preventivare sul prezzo base della camera.
                 period -= periodoListino;

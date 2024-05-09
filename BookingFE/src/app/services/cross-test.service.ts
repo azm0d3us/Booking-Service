@@ -8,8 +8,8 @@ import { ImmaginiService } from './immagini.service';
 })
 export class CrossTestService {
 
-  public camere: Camera[] = [];
-  public urls: string[] = [];
+  private camere: Camera[] = [];
+  private urls: string[] = [];
 
   constructor(private cameraService: CameraService, private immaginiService: ImmaginiService) {
     this.cameraService.getAll().subscribe({
@@ -17,8 +17,8 @@ export class CrossTestService {
         this.camere = data;
         this.camere.forEach(camera => {
           this.test(camera.idCamera);
-          console.log(this.camere);
-          console.log(this.urls);
+          // console.log(this.camere);
+          // console.log(this.urls);
         })
 
       }
@@ -41,5 +41,31 @@ export class CrossTestService {
         console.error("Errore durante la richiesta HTTP: ", e.message);
       }
     });
+  }
+
+  public getUrls() {
+    return this.urls;
+  }
+
+  public getCamere() {
+    return this.camere;
+  }
+
+  public getShuffled(n: any) {
+    return this.extractRandomUrls(n);
+  }
+
+  private extractRandomUrls(n: any) {
+    const shuffledUrls = this.shuffleArray(this.urls!);
+    return shuffledUrls.slice(0, n);
+  }
+
+  // Algoritmo di Fisher-Yates
+  private shuffleArray(array: string[]) {
+    for(let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
   }
 }

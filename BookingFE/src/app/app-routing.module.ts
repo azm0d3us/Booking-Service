@@ -12,6 +12,7 @@ import { ModificaUtenteComponent } from './components/modifica-utente/modifica-u
 import { SuccessComponent } from './components/success/success.component';
 import { CamereDisponibiliComponent } from './components/camere-disponibili/camere-disponibili.component';
 import { RicevutaComponent } from './components/ricevuta/ricevuta.component';
+import { HomeComponent } from './components/home/home.component';
 
 const routes: Routes = [
   {path: "", component: LoginComponent},
@@ -25,6 +26,7 @@ const routes: Routes = [
   {path: "camereDisponibili", component: CamereDisponibiliComponent},
   {path: "ricevuta", component: RicevutaComponent, canActivate: [RouteguardService]},
   {path: "success", component: SuccessComponent, canActivate: [RouteguardService]},
+  {path: "home", component: HomeComponent}, //<---- must put this as entry point.
   {path: "**", component: ErrorComponent}
 ];
 

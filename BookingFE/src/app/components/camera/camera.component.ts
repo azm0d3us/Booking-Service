@@ -12,8 +12,10 @@ export class CameraComponent {
 
   camere?: Camera[];
 
-  constructor(private cameraService: CameraService, private immaginiService: ImmaginiService) {
-  }
+  constructor(
+    private cameraService: CameraService,
+    private immaginiService: ImmaginiService
+    ) {  }
 
   ngOnInit(): void {
     this.cameraService.getAll().subscribe({

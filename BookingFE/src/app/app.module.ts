@@ -23,6 +23,7 @@ import { SuccessComponent } from './components/success/success.component';
 import { CamereDisponibiliComponent } from './components/camere-disponibili/camere-disponibili.component';
 import { RicevutaComponent } from './components/ricevuta/ricevuta.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     SuccessComponent,
     CamereDisponibiliComponent,
     RicevutaComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,

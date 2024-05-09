@@ -12,7 +12,7 @@ import { UserUpdate } from '../../models/user-update';
 export class ModificaUtenteComponent {
 
   nome = "";
-  cognome = "";
+  cognome = "Cognme";
   ddn = new Date();
   cf = "";
   codDoc = "";
