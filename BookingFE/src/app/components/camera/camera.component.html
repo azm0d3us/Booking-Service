@@ -13,9 +13,9 @@
         <td>
           <div class="card-container">
           <div class="card" style="width: 18rem;">
-            <div [attr.id]="'carouselExample_' + camera.idCamera" class="carousel slide carousel-fade carousel-container">
+            <div (mouseenter)="onMouseEnter()" (mouseleave)="onMouseLeave()" role="button" [attr.id]="'carouselExample_' + camera.idCamera" class="carousel slide carousel-fade carousel-container">
                 <div class="carousel-inner">
-                    <div *ngFor="let foto of camera.urlImmagini; let isFirst = first" class="carousel-item" [class.active]="isFirst">
+                    <div (click)="goToCamera(camera.idCamera)"  *ngFor="let foto of camera.urlImmagini; let isFirst = first" class="carousel-item" [class.active]="isFirst">
                         <img  [src]="foto" class="d-block w-100" alt="foto">
                     </div>
                     </div>

@@ -29,7 +29,7 @@ export class LoginComponent {
       next: (data) => {
         this.utente = data;
         if(this.authService.autentica(this.username, this.password, this.utente)) {
-          this.router.navigate(['carousel']);
+          this.router.navigate(['home']);
         }
       },
       error: (e) => {

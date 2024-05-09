@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Camera } from '../../models/camera';
 import { CameraService } from '../../services/camera.service';
 import { ImmaginiService } from '../../services/immagini.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-camera',
@@ -14,7 +15,8 @@ export class CameraComponent {
 
   constructor(
     private cameraService: CameraService,
-    private immaginiService: ImmaginiService
+    private immaginiService: ImmaginiService,
+    private route: Router
     ) {  }
 
   ngOnInit(): void {
@@ -44,11 +46,24 @@ export class CameraComponent {
             console.log(data);
           }
         }
-        // camera ? camera.urlImmagini = data : camera!.urlImmagini?.push("/assets/images/camere/noPhoto.jpg");
       },
       error: (e) => {
         console.error("Errore durante la richiesta HTTP: ", e.message);
       }
     });
+  }
+
+  onMouseEnter() {
+    console.log("Something to do here");
+  }
+
+  onMouseLeave() {
+    console.log("Something to do here as well.");
+  }
+
+  goToCamera(idCamera: any) {
+    this.route.navigate(['camera-singola'], { queryParams: {
+      idCamera: JSON.stringify(idCamera)
+    }});
   }
 }

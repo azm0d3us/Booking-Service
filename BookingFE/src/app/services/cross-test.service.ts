@@ -2,58 +2,58 @@ import { Injectable } from '@angular/core';
 import { CameraService } from './camera.service';
 import { Camera } from '../models/camera';
 import { ImmaginiService } from './immagini.service';
+import { BehaviorSubject, Observable, forkJoin } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CrossTestService {
-
   private camere: Camera[] = [];
   private urls: string[] = [];
+  private test: BehaviorSubject<string[]> = new BehaviorSubject<string[]>([]);
 
-  constructor(private cameraService: CameraService, private immaginiService: ImmaginiService) {
+  constructor(
+    private cameraService: CameraService,
+    private immaginiService: ImmaginiService
+  ) {
+    this.init();
+  }
+
+  private init() {
     this.cameraService.getAll().subscribe({
       next: (data) => {
         this.camere = data;
-        this.camere.forEach(camera => {
-          this.test(camera.idCamera);
-          // console.log(this.camere);
-          // console.log(this.urls);
-        })
-
-      }
-    });
-  }
-
-  test(idCamera: any) {
-    this.immaginiService.getByCamera(idCamera).subscribe({
-      next: (data) => {
-        const camera = this.camere?.find(camera => camera.idCamera === idCamera);
-        if(camera) {
-          if(Array.isArray(data) && data.length != 0) {
-            data.forEach(element => {
-              this.urls.push(element);
+        const requests = this.camere.map((camera) =>
+          this.immaginiService.getByCamera(camera.idCamera)
+        );
+        forkJoin(requests).subscribe({
+          next: (results) => {
+            results.forEach((urls) => {
+              if (urls) {
+                urls.forEach((element: string | undefined) => {
+                  if (element !== undefined) {
+                    this.urls.push(element);
+                  }
+                });
+              }
             });
-          }
-        }
+            this.test.next(this.extractRandomUrls(3));
+          },
+          error: (error) => {
+            console.error('errore ', error.message);
+          },
+        });
       },
-      error: (e) => {
-        console.error("Errore durante la richiesta HTTP: ", e.message);
-      }
+      error: (error) => {
+        console.error('Errore : ', error.message);
+      },
     });
   }
 
-  public getUrls() {
-    return this.urls;
+  public getTest(): Observable<string[]> {
+    return this.test.asObservable();
   }
 
-  public getCamere() {
-    return this.camere;
-  }
-
-  public getShuffled(n: any) {
-    return this.extractRandomUrls(n);
-  }
 
   private extractRandomUrls(n: any) {
     const shuffledUrls = this.shuffleArray(this.urls!);
@@ -62,7 +62,7 @@ export class CrossTestService {
 
   // Algoritmo di Fisher-Yates
   private shuffleArray(array: string[]) {
-    for(let i = array.length - 1; i > 0; i--) {
+    for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [array[i], array[j]] = [array[j], array[i]];
     }

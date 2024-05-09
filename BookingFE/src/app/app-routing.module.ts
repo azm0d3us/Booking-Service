@@ -13,12 +13,15 @@ import { SuccessComponent } from './components/success/success.component';
 import { CamereDisponibiliComponent } from './components/camere-disponibili/camere-disponibili.component';
 import { RicevutaComponent } from './components/ricevuta/ricevuta.component';
 import { HomeComponent } from './components/home/home.component';
+import { CameraSingolaComponent } from './components/camera-singola/camera-singola.component';
 
 const routes: Routes = [
-  {path: "", component: LoginComponent},
-  {path: "carousel", component: CarouselComponent},
+  {path: "", component: CarouselComponent},
+  {path: "home", component: CarouselComponent},
+  {path: "carousel", component: HomeComponent},
   {path: "residenze", component: ResidenzeComponent},
   {path: "camere", component: CameraComponent},
+  {path: "camera-singola", component: CameraSingolaComponent},
   {path: "login", component: LoginComponent},
   {path: "signup", component: SignupComponent},
   {path: "logout", component: LogoutComponent, canActivate: [RouteguardService]},
@@ -26,7 +29,6 @@ const routes: Routes = [
   {path: "camereDisponibili", component: CamereDisponibiliComponent},
   {path: "ricevuta", component: RicevutaComponent, canActivate: [RouteguardService]},
   {path: "success", component: SuccessComponent, canActivate: [RouteguardService]},
-  {path: "home", component: HomeComponent}, //<---- must put this as entry point.
   {path: "**", component: ErrorComponent}
 ];
 

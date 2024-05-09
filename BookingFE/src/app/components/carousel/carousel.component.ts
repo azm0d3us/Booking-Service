@@ -1,23 +1,90 @@
-import { Component } from '@angular/core';
-import { CrossTestService } from '../../services/cross-test.service';
+import { AfterContentInit, Component, OnInit } from '@angular/core';
+import { CameraService } from '../../services/camera.service';
+import { ImmaginiService } from '../../services/immagini.service';
+import { Camera } from '../../models/camera';
+import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-carousel',
   templateUrl: './carousel.component.html',
   styleUrl: './carousel.component.css'
 })
-export class CarouselComponent {
+export class CarouselComponent implements OnInit, AfterContentInit {
 
-  urls: string[] = [];
-  shuffledUrls: string[] = [];
+  camere: Camera[];
+  urls: string[];
+  test: string[];
 
-  constructor(private crossService: CrossTestService, ) {
-    this.urls = this.crossService.getUrls();
-    this.shuffledUrls = this.extractRandomUrls(3);
+  constructor(private cameraService: CameraService, private immaginiService: ImmaginiService) {
+    this.urls = [];
+    this.camere = [];
+    this.test = [];
   }
 
   ngOnInit(): void {
-    console.log(this.shuffledUrls)
+    // this.cameraService.getAll().subscribe({
+    //   next: (data) => {
+    //     this.camere = data;
+    //     this.camere.forEach(camera => {
+    //       this.immaginiService.getByCamera(camera.idCamera).subscribe({
+    //         next: urls => {
+    //           camera.urlImmagini = urls;
+    //           if(Array.isArray(camera.urlImmagini)) camera.urlImmagini.forEach(element => {
+    //             if(element !== undefined) {
+    //               this.urls.push(element);
+    //             }
+    //           });
+    //           console.log(this.urls);
+    //         },
+    //         error: (error) => {
+    //           console.error("Errore nella richiesta degli url ", error.message);
+    //         }
+    //       });
+    //     })
+    //   },
+    //   error: (e) => {
+    //     console.error("Errore nella richiesta dei dati ", e.message);
+    //   }
+    // });
+
+    //Metodo funzionante
+
+    this.cameraService.getAll().subscribe({
+      next: (data) => {
+        this.camere = data;
+        const requests = this.camere.map(camera => this.immaginiService.getByCamera(camera.idCamera));
+
+        forkJoin(requests).subscribe({
+          next: (results) => {
+            results.forEach(urls => {
+              if(urls) {
+                urls.forEach((element: string | undefined) => {
+                  if (element !== undefined) {
+                    this.urls.push(element);
+                  }
+                });
+              }
+            });
+            console.log("urls");
+           console.log(this.urls);
+           this.test = this.extractRandomUrls(3);
+           console.log("test")
+           console.log(this.test);
+          },
+          error: (error) => {
+            console.error("errore ", error.message);
+          }
+        });
+      },
+      error: (error) => {
+        console.error("Errore : ", error.message);
+      }
+    });
+  }
+
+  ngAfterContentInit(): void {
+      this.test = this.extractRandomUrls(3);
+      console.log(this.test);
   }
 
   private extractRandomUrls(n: any) {
