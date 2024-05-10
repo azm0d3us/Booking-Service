@@ -1,5 +1,6 @@
 .card {
-  overflow: hidden; /* Impedisce alle immagini di uscire dal riquadro della card */
+  overflow: hidden;
+  width: 18rem;
 }
 
 .carousel-inner {
@@ -16,6 +17,12 @@
   transition: transform 0.6s ease;
   backface-visibility: hidden;
   overflow: hidden; /* Impedisce alle immagini di uscire dal riquadro del carosello */
+}
+
+.carousel-item img {
+  width: 100%; /* Imposta la larghezza dell'immagine al 100% del suo contenitore */
+  height: 100%; /* Imposta l'altezza dell'immagine al 100% del suo contenitore */
+  object-fit: cover; /* Imposta l'immagine per coprire tutto il contenitore senza distorsioni */
 }
 
 .carousel-item.active,
@@ -92,3 +99,17 @@
   flex-direction: column;
   align-items: center;
 }
+
+img{
+  display: block;
+  max-width:286;
+  max-height:179px;
+  width: auto;
+  height: auto;
+}
+
+/* .img-container {
+  max-width: 100%;
+  max-height: 100%;
+  overflow: hidden;
+} */

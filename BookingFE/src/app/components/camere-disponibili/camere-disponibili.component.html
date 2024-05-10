@@ -2,32 +2,24 @@
   <div class="col-sm-4 pt-1 pb-1" *ngFor="let camera of camere | paginate: { itemsPerPage : 6, currentPage: p }">
     <div class="card" style="width: 18rem;">
 
-      <!-- <img src="/assets/images/camere/1.jpg" class="card-img-top" alt="..."> -->
-      <div id="carouselExample" class="carousel slide">
+      <div [attr.id]="'carouselExample_' + camera.idCamera" class="carousel slide">
         <div class="carousel-inner">
-          <div class="carousel-item active" >
-            <img src="/assets/images/camere/1.jpg" class="card-img-top" alt="...">
-          </div>
-          <div class="carousel-item">
-            <img src="/assets/images/camere/2.jpg" class="card-img-top" alt="...">
-          </div>
-          <div class="carousel-item">
-            <img src="/assets/images/camere/3.jpg" class="card-img-top" alt="...">
-          </div>
+          <div *ngFor="let foto of camera.urlImmagini; let isFirst = first" class="carousel-item" [class.active]="isFirst">
+            <img  [src]="foto" class="card-img-top" alt="foto">
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+        <button *ngIf="camera.urlImmagini != undefined && camera.urlImmagini.length > 1" class="carousel-control-prev" type="button" [attr.data-bs-target]="'#carouselExample_' + camera.idCamera" data-bs-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
           <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+      </button>
+      <button *ngIf="camera.urlImmagini != undefined && camera.urlImmagini.length > 1" class="carousel-control-next" type="button" [attr.data-bs-target]="'#carouselExample_' + camera.idCamera" data-bs-slide="next">
           <span class="carousel-control-next-icon" aria-hidden="true"></span>
           <span class="visually-hidden">Next</span>
-        </button>
+      </button>
       </div>
 
       <div class="card-body">
-        <h5 class="card-title">Titolo camera</h5>
-        <p class="card-text">Eventuale breve descrizione o simili.</p>
+        <h5 class="card-title">{{camera.numeroCamera}}</h5>
+        <p class="card-text">Residenza:<br>{{camera.nomeResidenza}}</p>
       </div>
       <ul class="list-group list-group-flush">
         <li class="list-group-item">Posti Letto: {{camera.postiLetto}}</li>
@@ -41,6 +33,10 @@
     </div>
   </div>
   <div class="row pt-1 pb-1 justify-content-center">
-  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+
   </div>
+
 </div>
+
+    <pagination-controls class="my-controls" (pageChange)="p = $event"></pagination-controls>
+

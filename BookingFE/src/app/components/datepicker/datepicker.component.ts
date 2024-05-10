@@ -17,7 +17,7 @@ export class DatepickerComponent {
   camere?: CameraCustom;
   numAdulti = 1;
   numBambini = 0;
-  numOspiti?: number;
+  numOspiti= this.numAdulti + this.numBambini;
   hoveredDate: NgbDate | null = null;
 	fromDate: NgbDate | null = this.calendar.getToday();
 	toDate: NgbDate | null = this.calendar.getNext(this.calendar.getToday(), 'd', 10);

@@ -11,7 +11,7 @@ import { UserUpdate } from '../../models/user-update';
 })
 export class ModificaUtenteComponent {
 
-  nome = "";
+  nome = "Nome";
   cognome = "Cognme";
   ddn = new Date();
   cf = "";

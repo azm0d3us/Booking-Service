@@ -6,6 +6,7 @@ import { AuthorizationService } from '../../services/authorization.service';
 import { PrenotazioneCustom } from '../../models/prenotazione-custom';
 import { CameraService } from '../../services/camera.service';
 import { DateCustom } from '../../models/date-custom';
+import { ImmaginiService } from '../../services/immagini.service';
 
 @Component({
   selector: 'app-camere-disponibili',
@@ -25,6 +26,7 @@ export class CamereDisponibiliComponent {
     private route: ActivatedRoute,
     private router: Router,
     private cameraService: CameraService,
+    private immaginiService: ImmaginiService,
     private prenotazioneService: PrenotazioneService,
     private userService: UserService,
     public authService: AuthorizationService
@@ -44,6 +46,9 @@ export class CamereDisponibiliComponent {
             next: (data) => {
               this.camere = data;
               console.log(this.camere);
+              this.camere.forEach((camera: { idCamera: any; }) => {
+                this.getImmagini(camera.idCamera);
+              })
             },
             error: (e) => {
               console.error('Errore durante la richiesta HTTP: ', e.message);
@@ -53,6 +58,25 @@ export class CamereDisponibiliComponent {
       error: (e) => {
         console.error('Errore dutante la richiesta HTTP: ', e.message);
       },
+    });
+  }
+
+  getImmagini(idCamera: any) {
+    this.immaginiService.getByCamera(idCamera).subscribe({
+      next: (data) => {
+        const camera = this.camere?.find((camera: { idCamera: any; }) => camera.idCamera === idCamera);
+        if(camera) {
+          if(Array.isArray(data) && data.length === 0) {
+            camera.urlImmagini = ["/assets/images/camere/nonPhoto.jpg"]
+          } else {
+            camera.urlImmagini = data;
+            console.log(data);
+          }
+        }
+      },
+      error: (e) => {
+        console.error("Errore durante la richiesta HTTP: ", e.message);
+      }
     });
   }
 

@@ -71,14 +71,26 @@
     </div>
     <div class="col-6">
       <div class="col-6">
-        <label for="numPersone">Numero ospiti</label>
+        <label for="numPersone">Adulti</label>
       </div>
       <input
-          id="numPersone"
+          id="numAdulti"
           type="number"
           class="form-control"
-          [(ngModel)]="numOspiti"
-          name="numeroPersone"
+          [(ngModel)]="numAdulti"
+          name="numAdulti"
+        />
+    </div>
+    <div class="col-6">
+      <div class="col-6">
+        <label for="numPersone">Bambini</label>
+      </div>
+      <input
+          id="numBambini"
+          type="number"
+          class="form-control"
+          [(ngModel)]="numBambini"
+          name="numBambini"
         />
     </div>
 

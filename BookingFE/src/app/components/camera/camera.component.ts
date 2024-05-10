@@ -25,7 +25,7 @@ export class CameraComponent {
         this.camere = data;
         console.log(this.camere);
         this.camere.forEach(camera => {
-          this.test(camera.idCamera);
+          this.getImmagini(camera.idCamera);
         })
       },
       error: (e) => {
@@ -34,7 +34,7 @@ export class CameraComponent {
     });
   }
 
-  test(idCamera: any) {
+  getImmagini(idCamera: any) {
     this.immaginiService.getByCamera(idCamera).subscribe({
       next: (data) => {
         const camera = this.camere?.find(camera => camera.idCamera === idCamera);

@@ -12,11 +12,11 @@
       <tr>
         <td>
           <div class="card-container">
-          <div class="card" style="width: 18rem;">
+          <div class="card">
             <div (mouseenter)="onMouseEnter()" (mouseleave)="onMouseLeave()" role="button" [attr.id]="'carouselExample_' + camera.idCamera" class="carousel slide carousel-fade carousel-container">
                 <div class="carousel-inner">
                     <div (click)="goToCamera(camera.idCamera)"  *ngFor="let foto of camera.urlImmagini; let isFirst = first" class="carousel-item" [class.active]="isFirst">
-                        <img  [src]="foto" class="d-block w-100" alt="foto">
+                        <img  [src]="foto" class="img-container d-block w-100" alt="foto">
                     </div>
                     </div>
                 <button *ngIf="camera.urlImmagini != undefined && camera.urlImmagini.length > 1" class="carousel-control-prev" type="button" [attr.data-bs-target]="'#carouselExample_' + camera.idCamera" data-bs-slide="prev">
@@ -30,6 +30,7 @@
               </div>
             </div>
           </div>
+          <div class="text-center">{{camera.numeroCamera}}</div>
         </td>
         <td class="align-middle">{{camera.postiLetto}}</td>
         <td class="align-middle">{{camera.prezzoBase}}</td>

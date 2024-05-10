@@ -110,14 +110,14 @@ public class CameraBusiness {
     }
 
     private List<?> makeRecordList(List<Camera> cameraList) {
-        record r(Long idCamera, String nomeResidenza, int postiLetto, boolean disponibile, Double prezzoBase, String tipo, String infoCheckOut){};
-        List<r> lr = cameraList.stream().map(c -> new r(c.getIdCamera(), c.getResidenza().getNome(), c.getPostiLetto(), c.isDisponibile(), c.getPrezzoBase(), c.getTipo(), c.getInfoCheckOut())).collect(Collectors.toList());
+        record r(Long idCamera, String nomeResidenza, String numeroCamera, int postiLetto, boolean disponibile, Double prezzoBase, String tipo, String infoCheckOut){};
+        List<r> lr = cameraList.stream().map(c -> new r(c.getIdCamera(), c.getResidenza().getNome(), c.getNumero(), c.getPostiLetto(), c.isDisponibile(), c.getPrezzoBase(), c.getTipo(), c.getInfoCheckOut())).collect(Collectors.toList());
         return lr;
     }
 
     private Object makeRecord(Camera camera) {
-        record r(Long id, String nomeResidenza, int postiLetto, boolean disponibile, Double prezzoBase, String tipo, String infoCheckOut){};
-        return new r(camera.getIdCamera(), camera.getResidenza().getNome(), camera.getPostiLetto(), camera.isDisponibile(), camera.getPrezzoBase(), camera.getTipo(), camera.getInfoCheckOut());
+        record r(Long id, String nomeResidenza, String numeroCamera, int postiLetto, boolean disponibile, Double prezzoBase, String tipo, String infoCheckOut){};
+        return new r(camera.getIdCamera(), camera.getResidenza().getNome(), camera.getNumero(), camera.getPostiLetto(), camera.isDisponibile(), camera.getPrezzoBase(), camera.getTipo(), camera.getInfoCheckOut());
     }
 
 
