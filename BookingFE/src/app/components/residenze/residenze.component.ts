@@ -1,6 +1,8 @@
 import { ResidenzaService } from './../../services/residenza.service';
 import { Residenza } from './../../models/residenza';
 import { Component } from '@angular/core';
+import { UserService } from '../../services/user.service';
+import { AuthorizationService } from '../../services/authorization.service';
 
 @Component({
   selector: 'app-residenze',
@@ -9,9 +11,11 @@ import { Component } from '@angular/core';
 })
 export class ResidenzeComponent {
 
-  residenze?: Residenza[];
+  residenze: Residenza[] = [];
+  panel: boolean[] = [];
+  admin: boolean = false;
 
-  constructor(private residenzeService: ResidenzaService) {
+  constructor(private authorizationService: AuthorizationService, private residenzeService: ResidenzaService) {
   }
 
   ngOnInit() : void {
@@ -24,9 +28,20 @@ export class ResidenzeComponent {
         console.error("Errore durante la richiesta HTTP: ", e.message);
       }
     })
+    this.admin = this.authorizationService.admin;
   }
 
-  test(id: any) {
+  resDetails(id: any) {
     console.log(id);
   }
+
+  adminToggle(index: number){
+    this.panel.fill(false);
+    this.panel[index] = true;
+  }
+
+  adminHide(index: number) {
+    this.panel[index] = false;
+  }
+
 }

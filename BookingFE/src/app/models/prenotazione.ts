@@ -3,6 +3,8 @@ import { User } from "./user";
 
 export class Prenotazione {
   idPrenotazione?: number;
+  numAdulti?: number;
+  numBambini?: number;
   numPersone?: number;
   totale?: number;
   checkIn?: Date;

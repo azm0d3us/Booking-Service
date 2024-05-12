@@ -1,8 +1,6 @@
 import { Component, } from '@angular/core';
 import { NgbCalendar, NgbDate, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
-import { DateCustom } from '../../models/date-custom';
 import { Router } from '@angular/router';
-import { CameraService } from '../../services/camera.service';
 import { CameraCustom } from '../../models/camera-custom';
 
 @Component({
@@ -17,7 +15,7 @@ export class DatepickerComponent {
   camere?: CameraCustom;
   numAdulti = 1;
   numBambini = 0;
-  numOspiti= this.numAdulti + this.numBambini;
+  numOspiti = this.numAdulti + this.numBambini;
   hoveredDate: NgbDate | null = null;
 	fromDate: NgbDate | null = this.calendar.getToday();
 	toDate: NgbDate | null = this.calendar.getNext(this.calendar.getToday(), 'd', 10);

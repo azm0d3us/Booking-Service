@@ -1,20 +1,43 @@
-<table class="table table-bordered">
-  <thead>
-    <tr>
-      <th scope="col">Foto</th>
-      <th scope="col">Nome Residenza</th>
-      <th scope="col">Indirizzo</th>
-    </tr>
-  </thead>
-  <tbody>
-      <tr *ngFor="let residenza of residenze" (click)="test(residenza.id)">
-      <td>
-        <img *ngIf="residenza.urlImg !== null" [src]="residenza.urlImg" alt="Foto Residenza">
-        <img *ngIf="residenza.urlImg === null" src="/assets/images/residenze/residenzaNoPhoto.jpg" alt="Foto Mancante">
-      </td>
-      <td class="align-middle">{{residenza.nome}}</td>
-      <td class="align-middle">{{residenza.indirizzo}}</td>
-    </tr>
-
-  </tbody>
-</table>
+<div class="container pb-5" *ngFor="let residenza of residenze; let i = index;">
+  <div class="row mt-4">
+    <div class="col"></div>
+    <div class="col-8">
+      <h1>{{residenza.nome}}</h1>
+    </div>
+    <div class="col"></div>
+  </div>
+  <div class="row mt-4">
+    <div class="col"></div>
+    <div class="col-10" (click)="resDetails(residenza.id)" role="button">
+      <img class="img-fluid" *ngIf="residenza.urlImg !== null" [src]="residenza.urlImg" alt="Foto Residenza">
+      <img class="img-fluid" *ngIf="residenza.urlImg === null" src="/assets/images/residenze/residenzaNoPhoto.jpg" alt="Foto Mancante">
+    </div>
+    <div class="col"></div>
+  </div>
+  <div class="row mt-4">
+    <div class="col">
+    </div>
+    <div class="col-8 align-middle">
+      <h3>Indirizzo</h3>
+    </div>
+    <div class="col"></div>
+  </div>
+  <div class="row">
+    <div class="col"></div>
+    <div class="col-8 align-middle">
+      {{residenza.indirizzo}}
+    </div>
+    <div class="col"></div>
+  </div>
+  <div class="row mt-4">
+    <div class="col" *ngIf="admin">
+      <button class="btn btn-primary" (click)="adminToggle(i)">Admin</button>
+    </div>
+    <div class="col-4" *ngIf="panel[i]">
+      <button class="btn btn-secondary" (click)="adminHide(i)">-</button>
+    </div>
+  </div>
+  <div class="row pt-4" *ngIf="panel[i]">
+    <button class="col-4 btn btn-primary">Aggiorna {{residenza.nome}}</button>
+  </div>
+</div>

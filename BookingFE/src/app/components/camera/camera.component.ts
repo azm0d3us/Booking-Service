@@ -3,6 +3,7 @@ import { Camera } from '../../models/camera';
 import { CameraService } from '../../services/camera.service';
 import { ImmaginiService } from '../../services/immagini.service';
 import { Router } from '@angular/router';
+import { AuthorizationService } from '../../services/authorization.service';
 
 @Component({
   selector: 'app-camera',
@@ -12,14 +13,18 @@ import { Router } from '@angular/router';
 export class CameraComponent {
 
   camere?: Camera[];
+  admin: boolean = false;
+  panel: boolean[] = [];
 
   constructor(
     private cameraService: CameraService,
     private immaginiService: ImmaginiService,
+    private authorizationService: AuthorizationService,
     private route: Router
     ) {  }
 
   ngOnInit(): void {
+    this.admin = this.authorizationService.admin;
     this.cameraService.getAll().subscribe({
       next: (data) => {
         this.camere = data;
@@ -65,5 +70,14 @@ export class CameraComponent {
     this.route.navigate(['camera-singola'], { queryParams: {
       idCamera: JSON.stringify(idCamera)
     }});
+  }
+
+  adminToggle(index: number) {
+    this.panel.fill(false);
+    this.panel[index] = true;
+  }
+
+  adminHide(index: number) {
+    this.panel[index] = false;
   }
 }

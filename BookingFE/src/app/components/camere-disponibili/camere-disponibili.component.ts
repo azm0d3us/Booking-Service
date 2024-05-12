@@ -18,6 +18,8 @@ export class CamereDisponibiliComponent {
   checkIn: any;
   checkOut: any;
   userId: any;
+  numAdulti: any;
+  numBambini: any;
   numOspiti: any;
   prenotazione: any;
   p = 1;
@@ -35,9 +37,11 @@ export class CamereDisponibiliComponent {
   ngOnInit(): void {
     this.route.queryParams.subscribe({
       next: (params) => {
-        if (params['checkIn'] && params['checkOut'] && params['numOspiti']) {
+        if (params['checkIn'] && params['checkOut']&& params['numAdulti'] && params['numBambini'] && params['numOspiti']) {
           this.checkIn = JSON.parse(params['checkIn']);
           this.checkOut = JSON.parse(params['checkOut']);
+          this.numAdulti = JSON.parse(params['numAdulti']);
+          this.numBambini = JSON.parse(params['numBambini']);
           this.numOspiti = JSON.parse(params['numOspiti']);
         }
         this.cameraService
@@ -80,6 +84,7 @@ export class CamereDisponibiliComponent {
     });
   }
 
+  //Funzione di prenotazione
   prenota(idCamera: number) {
     this.userService
       .getUserIdByUsername(sessionStorage.getItem('Utente')!)
@@ -99,6 +104,7 @@ export class CamereDisponibiliComponent {
             .subscribe({
               next: (data) => {
                 this.prenotazione = data;
+                console.log(this.prenotazione);
                 this.router.navigate(['ricevuta'], {
                   queryParams: {
                     prenotazione: JSON.stringify(this.prenotazione),

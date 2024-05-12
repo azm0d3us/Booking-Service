@@ -1,4 +1,4 @@
-<table class="table table-bordered">
+<!-- <table class="table table-bordered">
   <thead>
     <tr>
       <th scope="col"></th>
@@ -38,4 +38,73 @@
         <td class="align-middle">{{camera.infoCheckOut}}</td>
       </tr>
   </tbody>
-</table>
+</table> -->
+
+<div class="container">
+  <div class="row pt-4 pb-4">
+    <div class="col"></div>
+    <div class="col-2">
+      <p class="col-title">Posti Letto</p>
+    </div>
+    <div class="col-2 text-center">
+      <p class="col-title">Prezzo Base</p>
+    </div>
+    <div class="col-2 text-center">
+      <p class="col-title">Tipologia Camera</p>
+    </div>
+    <div class="col-2 text-center">
+      <p class="col-title">Informazioni check Out</p>
+    </div>
+  </div>
+  <div class="row pb-4 pt-4" *ngFor="let camera of camere; let i = index;">
+    <div class="col">
+      <div class="card-container">
+        <div class="card">
+          <div (mouseenter)="onMouseEnter()" (mouseleave)="onMouseLeave()" role="button" [attr.id]="'carouselExample_' + camera.idCamera" class="carousel slide carousel-fade carousel-container">
+              <div class="carousel-inner">
+                  <div (click)="goToCamera(camera.idCamera)"  *ngFor="let foto of camera.urlImmagini; let isFirst = first" class="carousel-item" [class.active]="isFirst">
+                      <img  [src]="foto" class="img-container d-block w-100" alt="foto">
+                  </div>
+                  </div>
+              <button *ngIf="camera.urlImmagini != undefined && camera.urlImmagini.length > 1" class="carousel-control-prev" type="button" [attr.data-bs-target]="'#carouselExample_' + camera.idCamera" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+              </button>
+              <button *ngIf="camera.urlImmagini != undefined && camera.urlImmagini.length > 1" class="carousel-control-next" type="button" [attr.data-bs-target]="'#carouselExample_' + camera.idCamera" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="text-center pt-4">
+          <p class="col-title">{{camera.numeroCamera}}</p>
+        </div>
+    </div>
+    <div class="col-2 text-center mt-5 ">
+      {{camera.postiLetto}}
+    </div>
+    <div class="col-2 text-center mt-5">
+      {{camera.prezzoBase}}
+    </div>
+    <div class="col-2 text-center mt-5">
+      {{camera.tipo}}
+    </div>
+    <div class="col-2 text-center mt-5">
+      {{camera.infoCheckOut}}
+    </div>
+    <div class="row">
+      <div class="col" *ngIf="admin">
+        <button class="btn btn-primary" (click)="adminToggle(i)">Admin</button>
+      </div>
+      <div (click)="adminHide(i)" class="col" *ngIf="panel[i]">
+        <button class="btn btn-secondary">-</button>
+      </div>
+    </div>
+    <div class="row pt-4" *ngIf="panel[i]">
+      <div class="col">
+        <button class="btn btn-primary">Modifica {{camera.numeroCamera}}</button>
+      </div>
+    </div>
+  </div>
+</div>

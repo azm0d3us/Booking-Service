@@ -43,6 +43,7 @@ export class RicevutaComponent {
     this.totaleNotti = Math.floor((this.dataCheckOut.getTime() - this.dataCheckIn.getTime()) / (1000 * 60 * 60 * 24));
     this.totaleTassa = this.tassa * this.totaleNotti;
     this.totaleFinale = this.totaleTassa + this.prenotazione?.totale!;
+    console.log(this.totaleParziale)
   }
 
   getUser() {

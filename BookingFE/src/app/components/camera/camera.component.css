@@ -108,6 +108,11 @@ img{
   height: auto;
 }
 
+.col-title{
+  text-align: center;
+  font-weight: bold;
+}
+
 /* .img-container {
   max-width: 100%;
   max-height: 100%;
