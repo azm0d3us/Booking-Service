@@ -1,6 +1,8 @@
 package com.training.booking.controllers.business;
 
 import com.training.booking.DTOs.GenericDTO;
+import com.training.booking.DTOs.mappers.UtenteMapper;
+import com.training.booking.DTOs.response.UtenteResponse;
 import com.training.booking.POJOs.UtenteRegistra;
 import com.training.booking.POJOs.UtenteUpdate;
 import com.training.booking.entities.Utente;
@@ -21,6 +23,9 @@ public class UtenteBusiness {
 
     @Autowired
     IUtenteService userService;
+
+    @Autowired
+    private UtenteMapper mapper;
 
     public List<?> getAll() throws NotFoundException, InternalServerErrorException {
         List<Utente> listaUtente = userService.getAll();
@@ -142,5 +147,22 @@ public class UtenteBusiness {
         } else {
             return true;
         }
+    }
+
+
+    public UtenteResponse getMappedById(Long idUtente) throws InternalServerErrorException, NotFoundException {
+        Optional<Utente> utenteOptional = userService.getById(idUtente);
+        if(!utenteOptional.isPresent()) {
+            throw new NotFoundException();
+        }
+        return mapper.utenteMapper(utenteOptional.get());
+    }
+
+    public List<UtenteResponse> getMapped() throws NotFoundException, InternalServerErrorException {
+        List<Utente> utenteList = userService.getAll();
+        if(utenteList.isEmpty()) {
+            throw new NotFoundException();
+        }
+        return mapper.utenteListMapper(utenteList);
     }
 }

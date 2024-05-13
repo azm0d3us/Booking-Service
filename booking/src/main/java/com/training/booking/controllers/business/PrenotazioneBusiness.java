@@ -77,6 +77,7 @@ public class PrenotazioneBusiness {
 
     @Autowired
     ListaPrezziBusiness listaPrezziBusiness;
+
     public Prenotazione newPrenotazione(PrenotazionePOJO prenotazione) throws NotFoundException, InternalServerErrorException, NotValidException {
         Camera camera = cameraBusiness.getById(prenotazione.getIdCamera());
         Utente utente = utenteBusiness.getById(prenotazione.getIdUser());
