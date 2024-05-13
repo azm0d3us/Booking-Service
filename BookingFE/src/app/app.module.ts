@@ -24,6 +24,7 @@ import { CamereDisponibiliComponent } from './components/camere-disponibili/came
 import { RicevutaComponent } from './components/ricevuta/ricevuta.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { HomeComponent } from './components/home/home.component';
+import { PrenotazioneComponent } from './components/prenotazione/prenotazione.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { HomeComponent } from './components/home/home.component';
     CamereDisponibiliComponent,
     RicevutaComponent,
     HomeComponent,
+    PrenotazioneComponent,
   ],
   imports: [
     BrowserModule,

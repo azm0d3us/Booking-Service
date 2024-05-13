@@ -7,6 +7,7 @@ import { PrenotazioneCustom } from '../../models/prenotazione-custom';
 import { CameraService } from '../../services/camera.service';
 import { DateCustom } from '../../models/date-custom';
 import { ImmaginiService } from '../../services/immagini.service';
+import { PrePrenotazioneService } from '../../services/pre-prenotazione.service';
 
 @Component({
   selector: 'app-camere-disponibili',
@@ -22,6 +23,7 @@ export class CamereDisponibiliComponent {
   numBambini: any;
   numOspiti: any;
   prenotazione: any;
+
   p = 1;
 
   constructor(
@@ -30,6 +32,7 @@ export class CamereDisponibiliComponent {
     private cameraService: CameraService,
     private immaginiService: ImmaginiService,
     private prenotazioneService: PrenotazioneService,
+    private prePrenotazioneService: PrePrenotazioneService,
     private userService: UserService,
     public authService: AuthorizationService
   ) {}
@@ -84,7 +87,7 @@ export class CamereDisponibiliComponent {
     });
   }
 
-  //Funzione di prenotazione
+  // Funzione di prenotazione
   prenota(idCamera: number) {
     this.userService
       .getUserIdByUsername(sessionStorage.getItem('Utente')!)
@@ -104,7 +107,7 @@ export class CamereDisponibiliComponent {
             .subscribe({
               next: (data) => {
                 this.prenotazione = data;
-                console.log(this.prenotazione);
+                // console.log(this.prenotazione);
                 this.router.navigate(['ricevuta'], {
                   queryParams: {
                     prenotazione: JSON.stringify(this.prenotazione),
@@ -121,4 +124,52 @@ export class CamereDisponibiliComponent {
         },
       });
   }
+
+
+  preventivo(idcamera: number) {
+    this.router.navigate(['prenotazione'], {
+      queryParams: {
+        idCamera: JSON.stringify(idcamera),
+      }
+    });
+  }
+
+  preparaPrenotazione(idCamera: number) {
+    this.userService
+      .getUserIdByUsername(sessionStorage.getItem('Utente')!)
+      .subscribe({
+        next: (data) => {
+          this.userId = data;
+          this.prePrenotazioneService
+            .prenota(
+              new PrenotazioneCustom(
+                idCamera,
+                this.userId,
+                this.numOspiti,
+                this.checkIn,
+                this.checkOut
+              )
+            )
+            .subscribe({
+              next: (data) => {
+                this.prenotazione = data;
+                console.log(this.prenotazione);
+                this.router.navigate(['prenotazione'], {
+                  queryParams: {
+                    prenotazione: JSON.stringify(this.prenotazione),
+                  },
+                });
+              },
+              error: (e) => {
+                console.error('Errore durante la richiesta HTTP: ', e.messgae);
+              },
+            });
+        },
+        error: (e) => {
+          console.error('Errore durante la richiesta HTTP: ', e.message);
+        },
+      });
+
+  }
+
 }
