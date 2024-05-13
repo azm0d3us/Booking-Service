@@ -5,6 +5,9 @@ import { UserService } from '../../services/user.service';
 import { User } from '../../models/user';
 import { Prenotazione } from '../../models/prenotazione';
 import { PrePrenotazioneService } from '../../services/pre-prenotazione.service';
+import { PrenotazioneService } from '../../services/prenotazione.service';
+import { DateCustom } from '../../models/date-custom';
+import { CameraCustom } from '../../models/camera-custom';
 
 @Component({
   selector: 'app-prenotazione',
@@ -14,6 +17,7 @@ import { PrePrenotazioneService } from '../../services/pre-prenotazione.service'
 export class PrenotazioneComponent {
 
   prenotazione: Prenotazione = new Prenotazione();
+  camere: any;
   idPrePrenotazione = 0;
   idUser: number = 0;
   utente: User = new User();
@@ -28,6 +32,8 @@ export class PrenotazioneComponent {
 
   constructor(
     private prePrenotazioneService: PrePrenotazioneService,
+    private prenotazioneService: PrenotazioneService,
+    private cameraService: CameraService,
     private route: ActivatedRoute,
     private userService: UserService,
     private router: Router
@@ -73,14 +79,30 @@ export class PrenotazioneComponent {
     });
   }
 
-  confermaPrenotazione() {
-    this.router.navigate(['ricevuta']);
+  confermaPrenotazione(id: number) {
+    console.log(this.prenotazione);
+    console.log(id);
+    this.cameraService.getDisponibili(new DateCustom(this.dataCheckIn, this.dataCheckOut)).subscribe({
+      next: (data) => {
+        this.camere = data;
+        console.log(this.camere);
+        this.camere.forEach((camera: CameraCustom) => {
+          console.log(camera.idCamera);
+          console.log(camera.idCamera === id);
+        });
+      },
+      error: (e) => {
+        console.error("Errore nella richiesta HTTP: ", e.message);
+      }
+    })
+    // this.prenotazioneService.prenota(this.prenotazione);
+    // this.router.navigate(['ricevuta']);
   }
 
   annullaPrenotazione() {
     console.log(this.idPrePrenotazione);
     this.prePrenotazioneService.delete(this.idPrePrenotazione).subscribe({
-      next: (data) => {
+      next: () => {
         this.router.navigate(['home']);
       },
       error: (e) => {

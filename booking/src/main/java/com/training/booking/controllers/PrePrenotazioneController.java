@@ -27,8 +27,8 @@ public class PrePrenotazioneController {
         }
     }
 
-    @DeleteMapping(value = "/delete/{idPrenotazione}")
-    public ResponseEntity<?> deletePrePrenotazione(@PathVariable("idPrePrenotazione") Long idPrePrenotazione) {
+    @DeleteMapping(value = "/delete/{id}")
+    public ResponseEntity<?> deletePrePrenotazione(@PathVariable("id") Long idPrePrenotazione) {
         try {
             return new ResponseEntity<>(preBusiness.deletePrePrenotazione(idPrePrenotazione), HttpStatus.NO_CONTENT);
         } catch (InternalServerErrorException | NotFoundException | NotValidException e) {
