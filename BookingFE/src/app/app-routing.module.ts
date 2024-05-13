@@ -14,6 +14,7 @@ import { CamereDisponibiliComponent } from './components/camere-disponibili/came
 import { RicevutaComponent } from './components/ricevuta/ricevuta.component';
 import { HomeComponent } from './components/home/home.component';
 import { CameraSingolaComponent } from './components/camera-singola/camera-singola.component';
+import { PrenotazioneComponent } from './components/prenotazione/prenotazione.component';
 
 const routes: Routes = [
   {path: "", component: CarouselComponent},
@@ -27,6 +28,7 @@ const routes: Routes = [
   {path: "logout", component: LogoutComponent, canActivate: [RouteguardService]},
   {path: "modifica", component: ModificaUtenteComponent, canActivate: [RouteguardService]},
   {path: "camereDisponibili", component: CamereDisponibiliComponent},
+  {path: "prenotazione", component: PrenotazioneComponent, canActivate: [RouteguardService]},
   {path: "ricevuta", component: RicevutaComponent, canActivate: [RouteguardService]},
   {path: "success", component: SuccessComponent, canActivate: [RouteguardService]},
   {path: "**", component: ErrorComponent}
