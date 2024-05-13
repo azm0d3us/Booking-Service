@@ -21,22 +21,6 @@ public class UtenteController {
     @Autowired
     private UtenteBusiness utenteBusiness;
 
-    @GetMapping(value = "/utentiMapped", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> getUtentiMapped() {
-        return new ResponseEntity<>(utenteBusiness.getMapped(), HttpStatus.OK);
-    }
-
-    @GetMapping(value = "/utenteMapped/{idUtente}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> getUtenteMapped(@PathVariable("idUtente") Long idUtente){
-        try {
-            return new ResponseEntity<>(utenteBusiness.getMappedById(idUtente), HttpStatus.OK);
-        } catch (InternalServerErrorException e) {
-            throw new RuntimeException(e);
-        } catch (NotFoundException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
     @GetMapping(value = "/utenti", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> getAllUsers() {
         try {
@@ -45,8 +29,6 @@ public class UtenteController {
             throw new RuntimeException(e);
         }
     }
-
-
 
     @GetMapping(value = "/utente/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> getUserById(@PathVariable("id") Long id) {

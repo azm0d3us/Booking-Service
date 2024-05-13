@@ -13,9 +13,9 @@ export class SignupComponent {
 
   nuovoUtente?: User;
 
-  // nome = "";
-  email = "";
+  nome = "";
   username = "";
+  email = "";
   password = "";
   confirmPassword = "";
 
@@ -23,14 +23,14 @@ export class SignupComponent {
   constructor(private userService: UserService, private router: Router) {}
 
   gestioneRegistrazione() {
-    if(this.email ==="" || this.username === "" || this.password === "" || this.confirmPassword === "") {
+    if(this.nome === "" || this.username === "" || this.email ==="" || this.password === "" || this.confirmPassword === "") {
       console.log("Compilare tutti i campi"); //Ci va un alert qui! o qualche controllo sul form, meglio!
       return;
     }
     if(this.confirmPassword !== this.password) {
       console.log("Errore, password non corrispondenti"); //Qui un alert meglio...
     } else {
-      this.userService.newUser(new UserRegistrationModel(this.email, this.username, this.password)).subscribe({
+      this.userService.newUser(new UserRegistrationModel(this.nome, this.email, this.username, this.password)).subscribe({
         next: (data) => {
           this.nuovoUtente = data;
           console.log("Registrazione avvenuta con successo"); //Meglio alert o success redirection, con modifica sul link però

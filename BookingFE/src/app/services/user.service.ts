@@ -24,7 +24,7 @@ export class UserService {
   }
 
   public getById(id: any): Observable<User> {
-    return this.http.get<User>(`http://localhost:8080/api/utenti/utenteMapped/${id}`);
+    return this.http.get<User>(`http://localhost:8080/api/utenti/utente/${id}`);
   }
 
   public getUserIdByUsername(username: string): Observable<number> {

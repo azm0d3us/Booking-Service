@@ -17,18 +17,23 @@
       </div>
       <div class="tab-pane fade active show" id="pills-register" role="tabpanel" aria-labelledby="tab-register">
         <form (ngSubmit)="gestioneRegistrazione()">
-
-          <!-- Email input -->
+          <!-- Name input -->
           <div data-mdb-input-init="" class="form-outline mb-4" data-mdb-input-initialized="true">
-            <input type="email" id="email" class="form-control" ngModel="email" [ngModelOptions]="{standalone: true}" [(ngModel)]="email">
-            <label class="form-label" for="email" style="margin-left: 0px;">Email</label>
-          <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 40px;"></div><div class="form-notch-trailing"></div></div></div>
+            <input type="text" id="nome" class="form-control" ngModel="nome" [ngModelOptions]="{standalone: true}" [(ngModel)]="nome">
+            <label class="form-label" for="nome" style="margin-left: 0px;">Nome</label>
+          <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 42.4px;"></div><div class="form-notch-trailing"></div></div></div>
 
           <!-- Username input -->
           <div data-mdb-input-init="" class="form-outline mb-4" data-mdb-input-initialized="true">
             <input type="text" id="username" class="form-control" ngModel="username" [ngModelOptions]="{standalone: true}" [(ngModel)]="username">
             <label class="form-label" for="username" style="margin-left: 0px;">Username</label>
           <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 66.4px;"></div><div class="form-notch-trailing"></div></div></div>
+
+          <!-- Email input -->
+          <div data-mdb-input-init="" class="form-outline mb-4" data-mdb-input-initialized="true">
+            <input type="email" id="email" class="form-control" ngModel="email" [ngModelOptions]="{standalone: true}" [(ngModel)]="email">
+            <label class="form-label" for="email" style="margin-left: 0px;">Email</label>
+          <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 40px;"></div><div class="form-notch-trailing"></div></div></div>
 
           <!-- Password input -->
           <div data-mdb-input-init="" class="form-outline mb-4" data-mdb-input-initialized="true">
