@@ -1,0 +1,16 @@
+<div class="container pt-4">
+  <p class="px-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis modi impedit nihil ea possimus veniam sapiente fugit illum iste rem vitae, odio ipsam, praesentium eligendi? Doloremque officia dignissimos dolorem nam.</p>
+</div>
+<form name="nuovaStruttura" class="pt-4" (ngSubmit)="nuovaStruttura()">
+  <div class="form-group">
+    <label for="nomeStruttura">Nome struttura</label>
+    <input type="text" class="form-control" [ngModelOptions]="{standalone: true}" ngModel="nomeStruttura" [(ngModel)]="nomeStruttura">
+  </div>
+  <div class="form-group form-outline mb-4">
+    <label for="indirizzo">Indirizzo</label>
+    <input type="text" class="form-control" [ngModelOptions]="{standalone: true}" ngModel="indirizzo" [(ngModel)]="indirizzo">
+  </div>
+
+  <!-- Submit -->
+  <button type="submit" class="btn btn-primary btn-block mt-3 mb-3" data-mdb-button-initialized="true">Aggiungi</button>
+</form>

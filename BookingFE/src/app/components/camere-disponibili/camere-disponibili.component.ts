@@ -87,45 +87,6 @@ export class CamereDisponibiliComponent {
     });
   }
 
-  // Funzione di prenotazione
-  prenota(idCamera: number) {
-    this.userService
-      .getUserIdByUsername(sessionStorage.getItem('Utente')!)
-      .subscribe({
-        next: (data) => {
-          this.userId = data;
-          this.prenotazioneService
-            .prenota(
-              new PrenotazioneCustom(
-                idCamera,
-                this.userId,
-                this.numOspiti,
-                this.checkIn,
-                this.checkOut
-              )
-            )
-            .subscribe({
-              next: (data) => {
-                this.prenotazione = data;
-                // console.log(this.prenotazione);
-                this.router.navigate(['ricevuta'], {
-                  queryParams: {
-                    prenotazione: JSON.stringify(this.prenotazione),
-                  },
-                });
-              },
-              error: (e) => {
-                console.error('Errore durante la richiesta HTTP: ', e.messgae);
-              },
-            });
-        },
-        error: (e) => {
-          console.error('Errore durante la richiesta HTTP: ', e.message);
-        },
-      });
-  }
-
-
   preventivo(idcamera: number) {
     this.router.navigate(['prenotazione'], {
       queryParams: {
@@ -153,10 +114,11 @@ export class CamereDisponibiliComponent {
             .subscribe({
               next: (data) => {
                 this.prenotazione = data;
-                console.log(this.prenotazione);
+                // console.log(this.prenotazione);
                 this.router.navigate(['prenotazione'], {
                   queryParams: {
                     prenotazione: JSON.stringify(this.prenotazione),
+                    idCamera: JSON.stringify(idCamera)
                   },
                 });
               },
@@ -169,7 +131,46 @@ export class CamereDisponibiliComponent {
           console.error('Errore durante la richiesta HTTP: ', e.message);
         },
       });
-
   }
+
+
+  // // Funzione di prenotazione
+  // prenota(idCamera: number) {
+  //   this.userService
+  //     .getUserIdByUsername(sessionStorage.getItem('Utente')!)
+  //     .subscribe({
+  //       next: (data) => {
+  //         this.userId = data;
+  //         this.prenotazioneService
+  //           .prenota(
+  //             new PrenotazioneCustom(
+  //               idCamera,
+  //               this.userId,
+  //               this.numOspiti,
+  //               this.checkIn,
+  //               this.checkOut
+  //             )
+  //           )
+  //           .subscribe({
+  //             next: (data) => {
+  //               this.prenotazione = data;
+  //               // console.log(this.prenotazione);
+  //               this.router.navigate(['ricevuta'], {
+  //                 queryParams: {
+  //                   prenotazione: JSON.stringify(this.prenotazione),
+  //                 },
+  //               });
+  //             },
+  //             error: (e) => {
+  //               console.error('Errore durante la richiesta HTTP: ', e.messgae);
+  //             },
+  //           });
+  //       },
+  //       error: (e) => {
+  //         console.error('Errore durante la richiesta HTTP: ', e.message);
+  //       },
+  //     });
+  // }
+
 
 }

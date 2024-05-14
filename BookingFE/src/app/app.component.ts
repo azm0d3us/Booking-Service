@@ -14,12 +14,19 @@ export class AppComponent {
    */
   displayDatePicker: boolean = true;
 
-  constructor(private router: Router, private route: ActivatedRoute) {
+  constructor(private router: Router) {
     this.router.events.subscribe( event => {
       if(event instanceof NavigationEnd) {
         const currentUrl = this.router.url;
-
-        this.displayDatePicker = !currentUrl.includes("/ricevuta");
+        if(currentUrl.includes("/ricevuta")
+        || currentUrl.includes("/nuova-struttura")
+        || currentUrl.includes("prenotazione")) {
+          this.displayDatePicker = false;
+        } else {
+          this.displayDatePicker = true;
+        }
+        // this.displayDatePicker = !currentUrl.includes("/ricevuta");
+        // this.displayDatePicker = !currentUrl.includes("/prenotazione");
       }
     })
   }

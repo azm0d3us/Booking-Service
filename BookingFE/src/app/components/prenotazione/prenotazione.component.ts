@@ -8,6 +8,7 @@ import { PrePrenotazioneService } from '../../services/pre-prenotazione.service'
 import { PrenotazioneService } from '../../services/prenotazione.service';
 import { DateCustom } from '../../models/date-custom';
 import { CameraCustom } from '../../models/camera-custom';
+import { PrenotazioneCustom } from '../../models/prenotazione-custom';
 
 @Component({
   selector: 'app-prenotazione',
@@ -18,6 +19,7 @@ export class PrenotazioneComponent {
 
   prenotazione: Prenotazione = new Prenotazione();
   camere: any;
+  idCameraMonitored: number = 0;
   idPrePrenotazione = 0;
   idUser: number = 0;
   utente: User = new User();
@@ -29,6 +31,7 @@ export class PrenotazioneComponent {
   totaleTassa: number = 0;
   totaleFinale: number = 0;
   currentDate = new Date();
+
 
   constructor(
     private prePrenotazioneService: PrePrenotazioneService,
@@ -42,8 +45,9 @@ export class PrenotazioneComponent {
   ngOnInit(): void {
     this.route.queryParams.subscribe({
       next: (params) => {
-        if(params['prenotazione']) {
+        if(params['prenotazione'] && params['idCamera']) {
           this.prenotazione = JSON.parse(params['prenotazione']);
+          this.idCameraMonitored = JSON.parse(params['idCamera']);
         }
         this.idPrePrenotazione = this.prenotazione.idPrePrenotazione!;
       },
@@ -79,16 +83,21 @@ export class PrenotazioneComponent {
     });
   }
 
-  confermaPrenotazione(id: number) {
+  confermaPrenotazione() {
     console.log(this.prenotazione);
-    console.log(id);
+    console.log(this.idCameraMonitored);
     this.cameraService.getDisponibili(new DateCustom(this.dataCheckIn, this.dataCheckOut)).subscribe({
       next: (data) => {
         this.camere = data;
         console.log(this.camere);
         this.camere.forEach((camera: CameraCustom) => {
-          console.log(camera.idCamera);
-          console.log(camera.idCamera === id);
+          // console.log(camera.idCamera);
+          if(camera.idCamera === this.idCameraMonitored) {
+            this.prenota();
+            this.router.navigate(['ricevuta'], {queryParams: {
+              prenotazione: JSON.stringify(this.prenotazione)
+          }});
+          };
         });
       },
       error: (e) => {
@@ -110,4 +119,68 @@ export class PrenotazioneComponent {
       }
     });
   }
+
+  prenota() {
+    this.prenotazioneService.prenota(
+      new PrenotazioneCustom(
+        this.idCameraMonitored,
+        this.idUser,
+        this.prenotazione.numPersone!,
+        this.prenotazione.checkIn!,
+        this.prenotazione.checkOut!
+      )
+      )
+      .subscribe({
+          next: (data) => {
+            this.prenotazione = data;
+            // console.log(this.prenotazione);
+            this.router.navigate(['ricevuta'], {
+              queryParams: {
+                prenotazione: JSON.stringify(this.prenotazione),
+              },
+            });
+          },
+          error: (e) => {
+            console.error('Errore durante la richiesta HTTP: ', e.messgae);
+          },
+        });
+  }
+
+  // // Funzione di prenotazione
+  // prenota(idCamera: number) {
+  //   this.userService
+  //     .getUserIdByUsername(sessionStorage.getItem('Utente')!)
+  //     .subscribe({
+  //       next: (data) => {
+  //         this.userId = data;
+  //         this.prenotazioneService
+  //           .prenota(
+  //             new PrenotazioneCustom(
+  //               idCamera,
+  //               this.userId,
+  //               this.numOspiti,
+  //               this.checkIn,
+  //               this.checkOut
+  //             )
+  //           )
+  //           .subscribe({
+  //             next: (data) => {
+  //               this.prenotazione = data;
+  //               // console.log(this.prenotazione);
+  //               this.router.navigate(['ricevuta'], {
+  //                 queryParams: {
+  //                   prenotazione: JSON.stringify(this.prenotazione),
+  //                 },
+  //               });
+  //             },
+  //             error: (e) => {
+  //               console.error('Errore durante la richiesta HTTP: ', e.messgae);
+  //             },
+  //           });
+  //       },
+  //       error: (e) => {
+  //         console.error('Errore durante la richiesta HTTP: ', e.message);
+  //       },
+  //     });
+  // }
 }

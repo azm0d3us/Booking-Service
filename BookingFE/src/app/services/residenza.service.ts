@@ -1,3 +1,4 @@
+import { ResidenzaRequest } from './../models/residenza-request';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -19,6 +20,10 @@ export class ResidenzaService {
     this.residenzeUrl = this.urlBase;
     this.residenzeUrl += "residenze";
     return this.http.get<Residenza[]>(this.residenzeUrl);
+   }
+
+   public add(residenza: ResidenzaRequest): Observable<any> {
+    return this.http.post("http://localhost:8080/api/residenze/newResidenza", residenza);
    }
 
 }

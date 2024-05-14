@@ -1,6 +1,7 @@
 package com.training.booking.controllers.business;
 
 import com.training.booking.DTOs.GenericDTO;
+import com.training.booking.DTOs.response.CameraResponse;
 import com.training.booking.POJOs.CameraPOJO;
 import com.training.booking.entities.Camera;
 import com.training.booking.entities.ImmagineCamera;
@@ -110,8 +111,23 @@ public class CameraBusiness {
     }
 
     private List<?> makeRecordList(List<Camera> cameraList) {
-        record r(Long idCamera, String nomeResidenza, String numeroCamera, int postiLetto, boolean disponibile, Double prezzoBase, String tipo, String infoCheckOut){};
-        List<r> lr = cameraList.stream().map(c -> new r(c.getIdCamera(), c.getResidenza().getNome(), c.getNumero(), c.getPostiLetto(), c.isDisponibile(), c.getPrezzoBase(), c.getTipo(), c.getInfoCheckOut())).collect(Collectors.toList());
+        record r(
+                Long idCamera,
+                String nomeResidenza,
+                String numeroCamera,
+                int postiLetto,
+                boolean disponibile,
+                Double prezzoBase,
+                String tipo,
+                String infoCheckOut
+        ){};
+
+        List<r> lr = cameraList.stream().map(c ->
+                new r(
+                        c.getIdCamera(),
+                        c.getResidenza().getNome(),
+                        c.getNumero(), c.getPostiLetto(), c.isDisponibile(), c.getPrezzoBase(), c.getTipo(), c.getInfoCheckOut())).collect(Collectors.toList());
+
         return lr;
     }
 

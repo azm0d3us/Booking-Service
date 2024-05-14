@@ -25,6 +25,8 @@ import { RicevutaComponent } from './components/ricevuta/ricevuta.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { HomeComponent } from './components/home/home.component';
 import { PrenotazioneComponent } from './components/prenotazione/prenotazione.component';
+import { NuovaStrutturaComponent } from './components/nuova-struttura/nuova-struttura.component';
+import { ResidenzaSingolaComponent } from './components/residenza-singola/residenza-singola.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +49,8 @@ import { PrenotazioneComponent } from './components/prenotazione/prenotazione.co
     RicevutaComponent,
     HomeComponent,
     PrenotazioneComponent,
+    NuovaStrutturaComponent,
+    ResidenzaSingolaComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,7 +58,7 @@ import { PrenotazioneComponent } from './components/prenotazione/prenotazione.co
     HttpClientModule,
     FormsModule,
     NgbModule,
-    NgxPaginationModule
+    NgxPaginationModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

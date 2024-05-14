@@ -15,12 +15,16 @@ import { RicevutaComponent } from './components/ricevuta/ricevuta.component';
 import { HomeComponent } from './components/home/home.component';
 import { CameraSingolaComponent } from './components/camera-singola/camera-singola.component';
 import { PrenotazioneComponent } from './components/prenotazione/prenotazione.component';
+import { NuovaStrutturaComponent } from './components/nuova-struttura/nuova-struttura.component';
+import { ResidenzaSingolaComponent } from './components/residenza-singola/residenza-singola.component';
 
 const routes: Routes = [
   {path: "", component: CarouselComponent},
   {path: "home", component: CarouselComponent},
   {path: "carousel", component: HomeComponent},
   {path: "residenze", component: ResidenzeComponent},
+  {path: "residenza-singola", component: ResidenzaSingolaComponent},
+  {path: "nuova-struttura", component: NuovaStrutturaComponent, canActivate: [RouteguardService]},
   {path: "camere", component: CameraComponent},
   {path: "camera-singola", component: CameraSingolaComponent},
   {path: "login", component: LoginComponent},

@@ -16,6 +16,4 @@ export class NavbarComponent {
   constructor(public basicAuth: AuthorizationService) {
   }
 
-
-
 }
