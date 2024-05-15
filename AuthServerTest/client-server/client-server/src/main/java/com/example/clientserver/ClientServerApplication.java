@@ -2,9 +2,10 @@ package com.example.clientserver;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.gateway.route.RouteLocator;
+import org.springframework.cloud.gateway.route.builder.GatewayFilterSpec;
+import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
 import org.springframework.context.annotation.Bean;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
 @SpringBootApplication
 public class ClientServerApplication {
@@ -14,9 +15,13 @@ public class ClientServerApplication {
 	}
 
 	@Bean
-	InMemoryUserDetailsManager inMemoryUserDetailsManager() {
-		var one = User.withDefaultPasswordEncoder().roles("admin").username("pippo").password("pippo").build();
-		var two = User.withDefaultPasswordEncoder().roles("user").username("pluto").password("pluto").build() ;
-		return new InMemoryUserDetailsManager(one, two);
+	RouteLocator gateway(RouteLocatorBuilder rlb) {
+		return rlb
+				.routes()
+				.route(rs -> rs
+						.path("/")
+						.filters(GatewayFilterSpec::tokenRelay)
+						.uri("http://localhost:8081"))
+				.build();
 	}
 }
