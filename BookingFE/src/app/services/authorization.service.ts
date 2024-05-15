@@ -10,13 +10,13 @@ export class AuthorizationService {
   constructor() { }
 
   //Commented for debugging §
-  // admin: boolean = false;
-  admin = true;
+  admin: boolean = false;
+  // admin = true;
 
   autentica = (userid: string, password: string, user: User): boolean => {
     var retVal = (userid === user.username && password === user.password) ? true : false;
     //Commented for debugging §
-    // user.admin ? this.admin = true : this.admin = false;
+    user.admin ? this.admin = true : this.admin = false;
     if(retVal) {
       sessionStorage.setItem("Utente", user?.username!);
     }
