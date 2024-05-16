@@ -1,0 +1,5 @@
+Older version:
+https://www.baeldung.com/rest-api-spring-oauth2-angular-legacy
+
+Old version:
+https://www.baeldung.com/rest-api-spring-oauth2-angular
