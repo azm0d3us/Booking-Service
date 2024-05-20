@@ -83,7 +83,8 @@ public class PrenotazioneBusiness {
         Set<ListaPrezzi> setListini = listaPrezziBusiness.getByCamera(camera.getIdCamera());
         Double totale = makeToalePrev(setListini, prenotazione.getCheckIn(), prenotazione.getCheckOut(), camera);
         totale *= prenotazione.getNumPersone();
-        Prenotazione p = new Prenotazione(null, prenotazione.getNumPersone(), totale, prenotazione.getCheckIn(), prenotazione.getCheckOut(), utente, camera);
+        Prenotazione p = new Prenotazione(null, prenotazione.getNumPersone(), totale, prenotazione.getCheckIn(),
+                prenotazione.getCheckOut(), utente, camera);
         return prenotazioneService.newPrenotazione(p);
     }
 
