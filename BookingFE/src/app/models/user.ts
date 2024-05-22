@@ -1,5 +1,3 @@
-import { Foto } from "./foto";
-
 export class User {
   id?: number;
   nome?: string;
