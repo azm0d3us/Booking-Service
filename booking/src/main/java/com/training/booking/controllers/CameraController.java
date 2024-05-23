@@ -7,14 +7,12 @@ import com.training.booking.controllers.business.CameraBusiness;
 import com.training.booking.errors.InternalServerErrorException;
 import com.training.booking.errors.NotFoundException;
 import com.training.booking.errors.NotValidException;
-import com.training.booking.repository.CameraRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.Date;
 
 //@CrossOrigin("http://localhost:4200")
 @RestController
