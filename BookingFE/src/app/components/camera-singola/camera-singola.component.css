@@ -1,0 +1,9 @@
+.scroll-container {
+  display: flex;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+.scroll-container img {
+  max-height: 200px; /* Altezza massima per le immagini */
+  margin-right: 10px; /* Spazio tra le immagini */
+}

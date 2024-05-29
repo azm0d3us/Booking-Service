@@ -27,6 +27,7 @@ import { HomeComponent } from './components/home/home.component';
 import { PrenotazioneComponent } from './components/prenotazione/prenotazione.component';
 import { NuovaStrutturaComponent } from './components/nuova-struttura/nuova-struttura.component';
 import { ResidenzaSingolaComponent } from './components/residenza-singola/residenza-singola.component';
+import { CustomCurrencyPipe } from './pipes/custom-currency.pipe';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { ResidenzaSingolaComponent } from './components/residenza-singola/reside
     PrenotazioneComponent,
     NuovaStrutturaComponent,
     ResidenzaSingolaComponent,
+    CustomCurrencyPipe,
   ],
   imports: [
     BrowserModule,

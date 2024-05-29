@@ -13,12 +13,12 @@ export class CarouselComponent implements OnInit, AfterContentInit {
 
   camere: Camera[];
   urls: string[];
-  test: string[];
+  imgRandom: string[];
 
   constructor(private cameraService: CameraService, private immaginiService: ImmaginiService) {
     this.urls = [];
     this.camere = [];
-    this.test = [];
+    this.imgRandom = [];
   }
 
   ngOnInit(): void {
@@ -67,9 +67,9 @@ export class CarouselComponent implements OnInit, AfterContentInit {
             });
             console.log("urls");
            console.log(this.urls);
-           this.test = this.extractRandomUrls(3);
+           this.imgRandom = this.extractRandomUrls(3);
            console.log("test")
-           console.log(this.test);
+           console.log(this.imgRandom);
           },
           error: (error) => {
             console.error("errore ", error.message);
@@ -83,8 +83,8 @@ export class CarouselComponent implements OnInit, AfterContentInit {
   }
 
   ngAfterContentInit(): void {
-      this.test = this.extractRandomUrls(3);
-      console.log(this.test);
+      this.imgRandom = this.extractRandomUrls(3);
+      console.log(this.imgRandom);
   }
 
   private extractRandomUrls(n: any) {

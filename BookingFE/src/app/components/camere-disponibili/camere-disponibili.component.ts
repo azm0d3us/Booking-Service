@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { PrenotazioneService } from '../../services/prenotazione.service';
 import { UserService } from '../../services/user.service';
 import { AuthorizationService } from '../../services/authorization.service';
 import { PrenotazioneCustom } from '../../models/prenotazione-custom';
@@ -31,7 +30,6 @@ export class CamereDisponibiliComponent {
     private router: Router,
     private cameraService: CameraService,
     private immaginiService: ImmaginiService,
-    private prenotazioneService: PrenotazioneService,
     private prePrenotazioneService: PrePrenotazioneService,
     private userService: UserService,
     public authService: AuthorizationService
@@ -132,45 +130,5 @@ export class CamereDisponibiliComponent {
         },
       });
   }
-
-
-  // // Funzione di prenotazione
-  // prenota(idCamera: number) {
-  //   this.userService
-  //     .getUserIdByUsername(sessionStorage.getItem('Utente')!)
-  //     .subscribe({
-  //       next: (data) => {
-  //         this.userId = data;
-  //         this.prenotazioneService
-  //           .prenota(
-  //             new PrenotazioneCustom(
-  //               idCamera,
-  //               this.userId,
-  //               this.numOspiti,
-  //               this.checkIn,
-  //               this.checkOut
-  //             )
-  //           )
-  //           .subscribe({
-  //             next: (data) => {
-  //               this.prenotazione = data;
-  //               // console.log(this.prenotazione);
-  //               this.router.navigate(['ricevuta'], {
-  //                 queryParams: {
-  //                   prenotazione: JSON.stringify(this.prenotazione),
-  //                 },
-  //               });
-  //             },
-  //             error: (e) => {
-  //               console.error('Errore durante la richiesta HTTP: ', e.messgae);
-  //             },
-  //           });
-  //       },
-  //       error: (e) => {
-  //         console.error('Errore durante la richiesta HTTP: ', e.message);
-  //       },
-  //     });
-  // }
-
 
 }

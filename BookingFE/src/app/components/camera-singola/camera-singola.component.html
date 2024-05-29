@@ -1,7 +1,14 @@
-<div>
-  <p>Camera singola component works</p>
-  {{camera.urlImmagini}}
-  {{camera.idCamera}}
-  {{camera.prezzoBase}}
-  {{camera.postiLetto}}
+<h1 class="text-center">{{camera.numero}}</h1>
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente dignissimos iure rerum magnam hic iusto mollitia laborum sunt tempore nisi, illo, commodi soluta optio porro vitae voluptate praesentium, nam animi!</p>
+<hr>
+<div class="container mt-4">
+  <div class="scroll-container">
+    <img *ngFor="let url of urls" [src]="url" alt="img">
+  </div>
+</div>
+<hr>
+<div class="pl-5">
+  <p>Tipo: {{camera.tipo}}</p>
+  <p>Posti Letto: {{camera.postiLetto}}</p>
+  <p>Prezzo per notte: {{camera.prezzoBase! | customCurrency}}</p>
 </div>

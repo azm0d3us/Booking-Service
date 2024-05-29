@@ -27,8 +27,15 @@
         <li class="list-group-item">Orario Check-Out: {{camera.infoCheckOut}}</li>
       </ul>
       <div class="card-body">
-        <!-- <a class="btn btn-primary" (click)="prenota(camera.id)">Prenota</a> -->
-        <button class="btn btn-primary" (click)="preparaPrenotazione(camera.idCamera)" [ngClass]="{'disabled-button': !authService.isLogged()}">Prenota</button>
+        <button class="btn btn-primary"
+        (click)="preparaPrenotazione(camera.idCamera)"
+        [ngClass]="{'disabled-button': !authService.isLogged()}"
+        ngbTooltip="Devi effettuare il login per poter procedere con la prenotazione!"
+        [autoClose]="false"
+        triggers="manual"
+        #t="ngbTooltip"
+        (mouseenter)="!authService.isLogged() && t.open()"
+        (mouseleave)="!authService.isLogged() && t.close()">Prenota</button>
       </div>
     </div>
   </div>
@@ -38,5 +45,4 @@
 
 </div>
 
-    <pagination-controls class="my-controls" (pageChange)="p = $event"></pagination-controls>
-
+<pagination-controls class="my-controls" (pageChange)="p = $event"></pagination-controls>

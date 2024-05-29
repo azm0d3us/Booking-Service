@@ -7,11 +7,11 @@
   <div class="form-row">
     <div class="form-group col-md-4">
       <label for="nome">Nome</label>
-      <input type="text" class="form-control" id="nome" ngModel="nome" [ngModelOptions]="{standalone: true}" [(ngModel)]="nome">
+      <input type="text" class="form-control" id="nome" ngModel="nome" [ngModelOptions]="{standalone: true}" [(ngModel)]="utenteUpdate!.nome!">
     </div>
     <div class="form-group col-md-4">
       <label for="cognome">Cognome</label>
-      <input type="text" class="form-control" id="cognome" ngModel="cognome" [ngModelOptions]="{standalone: true}" [(ngModel)]="cognome">
+      <input type="text" class="form-control" id="cognome" ngModel="cognome" [ngModelOptions]="{standalone: true}" [(ngModel)]="utenteUpdate!.cognome!">
     </div>
     <div class="form-group col-md-2">
       <label for="ddn">Data di nascita</label>
@@ -19,11 +19,11 @@
     </div>
     <div class="form-group col-md-2">
       <label for="codDoc">Codice Documento</label>
-      <input type="text" class="form-control" id="codDoc" ngModel="codDoc" [ngModelOptions]="{standalone: true}" [(ngModel)]="codDoc">
+      <input type="text" class="form-control" id="codDoc" ngModel="codDoc" [ngModelOptions]="{standalone: true}" [(ngModel)]="utenteUpdate!.docCod">
     </div>
     <div class="form-group col-md-6">
       <label for="cf">Codice Fiscale</label>
-      <input type="text" class="form-control" id="cf" ngModel="cf" [ngModelOptions]="{standalone: true}" [(ngModel)]="cf">
+      <input type="text" class="form-control" id="cf" ngModel="cf" [ngModelOptions]="{standalone: true}" [(ngModel)]="utenteUpdate!.cf!">
     </div>
   </div>
   <hr>
