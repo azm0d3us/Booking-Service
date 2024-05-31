@@ -1,6 +1,7 @@
 package com.training.booking.services;
 
 import com.training.booking.entities.Camera;
+import com.training.booking.entities.Residenza;
 import com.training.booking.errors.InternalServerErrorException;
 import com.training.booking.errors.NotFoundException;
 import com.training.booking.errors.handler.RestExceptionHandler;
@@ -116,6 +117,15 @@ public class CameraService implements ICameraService {
     public void delete(Camera camera) throws InternalServerErrorException {
         try {
             delete(camera);
+        } catch (HttpServerErrorException.InternalServerError e) {
+            throw new InternalServerErrorException();
+        }
+    }
+
+    @Override
+    public List<Camera> getCameraByResidenza(Residenza residenza) throws InternalServerErrorException {
+        try {
+            return cameraRepository.findCameraByResidenza(residenza);
         } catch (HttpServerErrorException.InternalServerError e) {
             throw new InternalServerErrorException();
         }

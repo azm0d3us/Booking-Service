@@ -36,6 +36,8 @@
           <li><a class="dropdown-item" *ngIf="!basicAuth.isLogged()" routerLink="/login">Accedi</a></li>
           <li><a class="dropdown-item" *ngIf="!basicAuth.isLogged()" routerLink="/signup">Registrati</a></li>
           <li><a class="dropdown-item" routerLink="/nuova-struttura">Registra struttura</a></li>
+          <li *ngIf="basicAuth.admin"><a class="dropdown-item" routerLink="/aggiungi-prenotazione">Aggiungi prenotazione</a></li>
+          <li *ngIf="basicAuth.admin"><a class="dropdown-item" routerLink="/visualizza-prenotazioni">Visualizza prenotazioni</a></li>
           <li *ngIf="basicAuth.isLogged()"><hr class="dropdown-divider"></li>
           <li><a class="dropdown-item" *ngIf="basicAuth.isLogged()" routerLink="/modifica">Area Personale</a></li>
           <li><a class="dropdown-item" *ngIf="basicAuth.isLogged()" routerLink="/logout">Logout {{basicAuth.loggedUser()}}</a></li>

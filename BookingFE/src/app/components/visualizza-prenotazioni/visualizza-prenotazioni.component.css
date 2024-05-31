@@ -1,0 +1,30 @@
+table {
+  text-align: center;
+}
+
+/* Stile di base per gli header della tabella */
+th {
+  cursor: pointer;
+  padding: 10px;
+  background-color: #f1f1f1;
+}
+
+/* Stile per evidenziare il testo quando il mouse passa sopra */
+th:hover {
+  background-color: #ddd;
+  color: #000;
+}
+
+/* Stile di base per le righe del corpo della tabella */
+.td-special {
+  cursor: pointer;
+  background-color: #e0e0e0;
+  transition: background-color 0.3s ease;
+  max-width: 100px;
+  font-weight: bold;
+}
+
+/* Stile per evidenziare le righe quando il mouse passa sopra */
+.td-special:hover {
+  background-color: #d1c3c3;
+}

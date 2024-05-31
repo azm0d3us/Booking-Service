@@ -14,7 +14,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CameraComponent } from './components/camera/camera.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { CameraSingolaComponent } from './components/camera-singola/camera-singola.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DatepickerComponent } from './components/datepicker/datepicker.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ModificaUtenteComponent } from './components/modifica-utente/modifica-utente.component';
@@ -28,6 +28,10 @@ import { PrenotazioneComponent } from './components/prenotazione/prenotazione.co
 import { NuovaStrutturaComponent } from './components/nuova-struttura/nuova-struttura.component';
 import { ResidenzaSingolaComponent } from './components/residenza-singola/residenza-singola.component';
 import { CustomCurrencyPipe } from './pipes/custom-currency.pipe';
+import { AggiungiPrenotazioneComponent } from './components/aggiungi-prenotazione/aggiungi-prenotazione.component';
+import { NgxSelectModule } from 'ngx-select-ex';
+import { VisualizzaPrenotazioniComponent } from './components/visualizza-prenotazioni/visualizza-prenotazioni.component';
+import { TimestampToDatePipe } from './pipes/timestamp-to-date.pipe';
 
 @NgModule({
   declarations: [
@@ -53,6 +57,9 @@ import { CustomCurrencyPipe } from './pipes/custom-currency.pipe';
     NuovaStrutturaComponent,
     ResidenzaSingolaComponent,
     CustomCurrencyPipe,
+    AggiungiPrenotazioneComponent,
+    VisualizzaPrenotazioniComponent,
+    TimestampToDatePipe,
   ],
   imports: [
     BrowserModule,
@@ -61,6 +68,9 @@ import { CustomCurrencyPipe } from './pipes/custom-currency.pipe';
     FormsModule,
     NgbModule,
     NgxPaginationModule,
+    NgxSelectModule,
+    ReactiveFormsModule,
+    NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

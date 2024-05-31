@@ -1,6 +1,7 @@
 package com.training.booking.controllers.business;
 
 import com.training.booking.DTOs.GenericDTO;
+import com.training.booking.POJOs.UtenteCompletePOJO;
 import com.training.booking.POJOs.UtenteRegistra;
 import com.training.booking.POJOs.UtenteUpdate;
 import com.training.booking.entities.Utente;
@@ -49,6 +50,14 @@ public class UtenteBusiness {
         }
     }
 
+    public Utente getUserByCf(String cf) throws InternalServerErrorException, NotFoundException {
+        Optional<Utente> utenteOptional = userService.getByCf(cf);
+        if(!utenteOptional.isPresent()) {
+            throw new NotFoundException();
+        }
+        return utenteOptional.get();
+    }
+
     public Utente getByUsername(String username) throws NotValidException, InternalServerErrorException, NotFoundException {
         if(username.trim().isEmpty()) {
             throw new NotValidException();
@@ -88,6 +97,39 @@ public class UtenteBusiness {
         } catch (HttpServerErrorException.InternalServerError e) {
             throw new InternalServerErrorException();
         }
+    }
+
+    /**
+     * Overload di saveUtente cui passare un UtenteUpdate per registrare i dati dell'utente immessi nel form della registrazione da parte dell'amministratore
+     * lasciando i campi email, username e password a null.
+     * @param utente
+     * @return
+     * @throws InternalServerErrorException
+     * @throws NotValidException
+     */
+    public Utente saveUtente(UtenteUpdate utente) throws InternalServerErrorException, NotValidException {
+        return userService.save(new Utente(
+                null,
+                utente.getNome(),
+                utente.getCognome(),
+                utente.getDdn(),
+                utente.getCf(),
+                utente.getDocCod(),
+                null,
+                null,
+                null,
+                false,
+                null,
+                null
+        ));
+    }
+
+    public Utente saveUtente(UtenteCompletePOJO utente) throws InternalServerErrorException, NotValidException, NotFoundException {
+        Utente utenteMod = this.getById(utente.getIdUser());
+        utenteMod.setEmail(utente.getEmail());
+        utenteMod.setUsername(utente.getUsername());
+        utenteMod.setPassword(utente.getPassword());
+        return userService.save(utenteMod);
     }
 
     public Utente update(UtenteUpdate utenteUpdate) throws InternalServerErrorException, NotValidException, NotFoundException {

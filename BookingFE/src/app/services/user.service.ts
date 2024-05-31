@@ -31,6 +31,10 @@ export class UserService {
     return this.http.post<number>("http://localhost:8080/api/utenti/getIdByUsername", username);
   }
 
+  public getUserByDocumentCode(cf: string): Observable<any> {
+    return this.http.post<any>("http://localhost:8080/api/utenti/getByDocument", cf);
+  }
+
   public login(simpleUser: any): Observable<User> {
   return this.http.post<User>("http://localhost:8080/api/utenti/login", simpleUser);
   }
@@ -40,7 +44,15 @@ export class UserService {
   }
 
   public update(user: any): Observable<User> {
-  return this.http.post<User>("http://localhost:8080/api/utenti/updateUtente", user)
+  return this.http.post<User>("http://localhost:8080/api/utenti/updateUtente", user);
+  }
+
+  public adminAddUser(user: any): Observable<any> {
+    return this.http.post<any>("http://localhost:8080/api/utenti/adminAddUtente", user);
+  }
+
+  public userUpdateComplete(user: any): Observable<any> {
+    return this.http.post<any>("http://localhost:8080/api/utenti/completaRegistrazione", user);
   }
 
 }

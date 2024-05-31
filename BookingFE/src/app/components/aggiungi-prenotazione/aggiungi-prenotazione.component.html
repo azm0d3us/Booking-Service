@@ -1,0 +1,120 @@
+<div class="container mt-5">
+  <div class="text-center pt-3 pb-3"><h3>Inserire dati prenotazione</h3></div>
+  <form [formGroup]="adminForm" (ngSubmit)="onSubmit()">
+
+    <div *ngIf="userNotFound" class="alert alert-danger mt-2">
+      Utente non trovato
+    </div>
+
+    <div class="form-group">
+      <label for="cf">Ricerca per Codice Fiscale</label>
+      <input type="text" id="cf" formControlName="cf" class="form-control">
+      <button type="button" class="btn btn-primary mt-2" (click)="onSearch()">Cerca</button>
+    </div>
+
+    <ng-container *ngIf="userNotFound">
+      <div class="bordered">
+        <p class="text-center">Registra dati utente per la prenotazione</p>
+        <form [formGroup]="userAddForm" (ngSubmit)="onUserAdd()">
+          <div class="form-group mt-3">
+            <label for="userNome">Nome Utente</label>
+            <input type="text" id="userNome" formControlName="userNome" class="form-control">
+          </div>
+
+          <div class="form-group mt-3">
+            <label for="userCognome">Cognome Utente</label>
+            <input type="text" id="userCognome" formControlName="userCognome" class="form-control">
+          </div>
+
+          <div class="form-group mt-3">
+            <label for="userDdn">Data di Nascita</label>
+            <input type="date" id="userDdn" formControlName="userDdn" class="form-control">
+          </div>
+
+          <div class="form-group mt-3">
+            <label for="userCodDoc">Codice Documento</label>
+            <input type="text" id="userCodDoc" formControlName="userCodDoc" class="form-control">
+          </div>
+
+          <div class="form-group mt-3">
+            <label for="userCf">Codice Fiscale</label>
+            <input type="text" id="userCf" formControlName="userCf" class="form-control">
+          </div>
+          <button type="submit" class="btn btn-primary mt-3">Aggiungi Utente</button>
+        </form>
+      </div>
+    </ng-container>
+
+
+    <div class="form-group mt-3">
+      <label for="nome">Nome Utente</label>
+      <input type="text" id="nome" formControlName="nome" class="form-control">
+    </div>
+
+    <div class="form-group mt-3">
+      <label for="cognome">Cognome Utente</label>
+      <input type="text" id="cognome" formControlName="cognome" class="form-control">
+    </div>
+    <div class="form-group mt-3">
+      <label for="ddn">Data di Nascita</label>
+      <input type="date" id="ddn" formControlName="ddn" class="form-control">
+    </div>
+
+    <div class="form-group mt-3">
+      <label for="codDoc">Codice Documento</label>
+      <input type="text" id="codDoc" formControlName="codDoc" class="form-control">
+    </div>
+
+    <div class="form-group mt-3">
+      <label for="cf">Codice Fiscale</label>
+      <input type="text" id="cf" formControlName="cf" class="form-control">
+    </div>
+
+    <!-- Inizio select  -->
+
+    <div class="form-group mt-3">
+      <label for="residenza">Residenza</label>
+      <select id="residenza" class="form-control" formControlName="residenza" (change)="onResidenzaChange($event)">
+        <option *ngFor="let residenza of residenze" [value]="residenza.id">{{ residenza.nome }}</option>
+      </select>
+    </div>
+
+    <div class="form-group mt-3">
+      <label for="camera">Camera</label>
+      <select id="camera" class="form-control" formControlName="camera" *ngIf="camere" (change)="onCameraChange($event)">
+        <option *ngFor="let camera of camere" [value]="camera.idCamera">{{ camera.numero }}</option>
+      </select>
+    </div>
+
+    <!-- Fine select  -->
+
+    <div class="form-group mt-3">
+      <label for="numPersone">Numero Persone</label>
+      <input type="number" id="numPersone" formControlName="numPersone" class="form-control">
+    </div>
+
+    <div class="form-group mt-3">
+      <label for="checkIn">Data Check-in</label>
+      <input type="date" id="checkIn" formControlName="checkIn" class="form-control">
+    </div>
+
+    <div class="form-group mt-3">
+      <label for="checkOut">Data Check-out</label>
+      <input type="date" id="checkOut" formControlName="checkOut" class="form-control">
+    </div>
+
+    <div>
+      <button type="button" class="btn btn-primary mt-3" (click)="checkDisponibility()">Check Disponibilità</button>
+      <div *ngIf="!disponibile && disponibile !== undefined" class="alert alert-danger mt-2">
+        Camera non più disponibile.
+      </div>
+      <div *ngIf="disponibile && disponibile !== undefined" class="alert alert-success mt-2">
+        Camera ancora disponibile, procedi alla conferma
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-3">Aggiungi Prenotazione</button>
+
+  </form>
+
+</div>

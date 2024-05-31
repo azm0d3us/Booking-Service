@@ -8,12 +8,11 @@ import { AuthorizationService } from '../../services/authorization.service';
 })
 export class NavbarComponent {
 
-
-  ngOnInit(): void {
-
-  }
+  admin: boolean = false;
 
   constructor(public basicAuth: AuthorizationService) {
   }
+
+
 
 }

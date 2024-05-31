@@ -1,45 +1,3 @@
-<!-- <table class="table table-bordered">
-  <thead>
-    <tr>
-      <th scope="col"></th>
-      <th scope="col">Posti Letto</th>
-      <th scope="col">PrezzoBase</th>
-      <th scope="col">Tipo</th>
-      <th scope="col">Orario Check Out</th>
-    </tr>
-  </thead>
-  <tbody *ngFor="let camera of camere">
-      <tr>
-        <td>
-          <div class="card-container">
-          <div class="card">
-            <div (mouseenter)="onMouseEnter()" (mouseleave)="onMouseLeave()" role="button" [attr.id]="'carouselExample_' + camera.idCamera" class="carousel slide carousel-fade carousel-container">
-                <div class="carousel-inner">
-                    <div (click)="goToCamera(camera.idCamera)"  *ngFor="let foto of camera.urlImmagini; let isFirst = first" class="carousel-item" [class.active]="isFirst">
-                        <img  [src]="foto" class="img-container d-block w-100" alt="foto">
-                    </div>
-                    </div>
-                <button *ngIf="camera.urlImmagini != undefined && camera.urlImmagini.length > 1" class="carousel-control-prev" type="button" [attr.data-bs-target]="'#carouselExample_' + camera.idCamera" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button *ngIf="camera.urlImmagini != undefined && camera.urlImmagini.length > 1" class="carousel-control-next" type="button" [attr.data-bs-target]="'#carouselExample_' + camera.idCamera" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
-              </div>
-            </div>
-          </div>
-          <div class="text-center">{{camera.numeroCamera}}</div>
-        </td>
-        <td class="align-middle">{{camera.postiLetto}}</td>
-        <td class="align-middle">{{camera.prezzoBase}}</td>
-        <td class="align-middle">{{camera.tipo}}</td>
-        <td class="align-middle">{{camera.infoCheckOut}}</td>
-      </tr>
-  </tbody>
-</table> -->
-
 <div class="container">
   <div class="row pt-4 pb-4">
     <div class="col"></div>
@@ -60,7 +18,7 @@
     <div class="col">
       <div class="card-container">
         <div class="card">
-          <div (mouseenter)="onMouseEnter()" (mouseleave)="onMouseLeave()" role="button" [attr.id]="'carouselExample_' + camera.idCamera" class="carousel slide carousel-fade carousel-container">
+          <div role="button" [attr.id]="'carouselExample_' + camera.idCamera" class="carousel slide carousel-fade carousel-container">
               <div class="carousel-inner">
                   <div (click)="goToCamera(camera.idCamera)"  *ngFor="let foto of camera.urlImmagini; let isFirst = first" class="carousel-item" [class.active]="isFirst">
                       <img  [src]="foto" class="img-container d-block w-100" alt="foto">

@@ -1,6 +1,20 @@
-<app-navbar class="navbar-fixed-top"></app-navbar>
+<!-- <app-navbar class="navbar-fixed-top"></app-navbar>
 <div class="container main-content">
   <app-datepicker *ngIf="displayDatePicker"></app-datepicker>
   <router-outlet></router-outlet>
 </div>
-<app-footer></app-footer>
+<app-footer></app-footer> -->
+
+<div class="d-flex flex-column min-vh-100">
+  <!-- Navbar o altro contenuto sopra -->
+  <app-navbar class="navbar-fixed-top"></app-navbar>
+
+  <!-- Contenuto principale -->
+  <div class="container main-content flex-grow-1">
+    <app-datepicker *ngIf="displayDatePicker"></app-datepicker>
+    <router-outlet></router-outlet>
+  </div>
+
+  <!-- Footer -->
+  <app-footer class="text-center py-3 mt-auto"></app-footer>
+</div>

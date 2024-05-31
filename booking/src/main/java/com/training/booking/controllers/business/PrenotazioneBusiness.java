@@ -27,12 +27,13 @@ public class PrenotazioneBusiness {
     @Autowired
     UtenteBusiness utenteBusiness;
 
-    public List<Prenotazione> getAll() throws InternalServerErrorException, NotFoundException {
+    public List<?> getAll() throws InternalServerErrorException, NotFoundException {
         List<Prenotazione> prenotazioni = prenotazioneService.getAll();
         if(prenotazioni.isEmpty()) {
             throw new NotFoundException();
         } else {
-            return prenotazioni;
+            record r(Long id, Camera camera, Utente utente, Double totale, Date checkIn, Date checkOut){}
+            return prenotazioni.stream().map(p -> new r(p.getIdPrenotazione(), p.getCameraPrenotata(), p.getUtentePrenotante(), p.getTotale(), p.getCheckIn(), p.getCheckOut())).toList();
         }
     }
 

@@ -2,6 +2,7 @@ package com.training.booking.repository;
 
 import com.training.booking.entities.Camera;
 import com.training.booking.entities.ImmagineCamera;
+import com.training.booking.entities.Residenza;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -30,9 +31,12 @@ public interface CameraRepository extends JpaRepository<Camera, Long> {
             "WHERE ((p.checkIn <= :checkOut) AND (p.checkOut >= :checkIn)))")
     List<Camera> findCamereDisponibili(Date checkIn, Date checkOut);
 
+    List<Camera> findCameraByResidenza(Residenza residenza);
+
     @Transactional
     Camera save(Camera obj);
 
     @Transactional
     void delete(Camera obj);
+
 }

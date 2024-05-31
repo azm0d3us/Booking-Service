@@ -20,7 +20,8 @@ export class AppComponent {
         const currentUrl = this.router.url;
         if(currentUrl.includes("/ricevuta")
         || currentUrl.includes("/nuova-struttura")
-        || currentUrl.includes("prenotazione")) {
+        || currentUrl.includes("prenotazione")
+        || currentUrl.includes("visualizza-prenotazioni")) {
           this.displayDatePicker = false;
         } else {
           this.displayDatePicker = true;

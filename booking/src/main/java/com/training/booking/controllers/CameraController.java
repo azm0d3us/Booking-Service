@@ -1,6 +1,7 @@
 package com.training.booking.controllers;
 
 import com.training.booking.DTOs.GenericDTO;
+import com.training.booking.DTOs.GenericRequestDTO;
 import com.training.booking.POJOs.CameraPOJO;
 import com.training.booking.POJOs.DatesPOJO;
 import com.training.booking.controllers.business.CameraBusiness;
@@ -45,6 +46,15 @@ public class CameraController {
         try {
             return new ResponseEntity<>(cameraBusiness.getByNumero(generic.getTesto()), HttpStatus.OK);
         } catch (NotFoundException | InternalServerErrorException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @PostMapping(value = "/camerePerResidenza", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> getCameraByResidenza(@RequestBody GenericRequestDTO request) {
+        try {
+            return new ResponseEntity<>(cameraBusiness.getCameraByResidenza(request.getId()), HttpStatus.OK);
+        } catch (InternalServerErrorException | NotValidException | NotFoundException e) {
             throw new RuntimeException(e);
         }
     }

@@ -53,6 +53,15 @@ public class UtenteService implements IUtenteService {
     }
 
     @Override
+    public Optional<Utente> getByCf(String cf) throws InternalServerErrorException {
+        try {
+            return utenteRepository.findByCf(cf);
+        } catch (HttpServerErrorException.InternalServerError e) {
+            throw new InternalServerErrorException();
+        }
+    }
+
+    @Override
     public Utente save(Utente obj) throws InternalServerErrorException {
         try {
             return utenteRepository.save(obj);

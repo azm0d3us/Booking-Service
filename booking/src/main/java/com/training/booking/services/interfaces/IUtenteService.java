@@ -16,6 +16,8 @@ public interface IUtenteService {
 
     Optional<Utente> getUserIdByUsername(String username) throws InternalServerErrorException;
 
+    Optional<Utente> getByCf(String cf) throws InternalServerErrorException;
+
     Utente save(Utente obj) throws InternalServerErrorException;
 
     Utente update(Utente obj) throws InternalServerErrorException;

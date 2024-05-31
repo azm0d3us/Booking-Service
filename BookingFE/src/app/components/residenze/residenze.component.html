@@ -3,16 +3,18 @@
     <div class="col"></div>
     <div class="col-8">
       <h1>{{residenza.nome}}</h1>
+      <hr>
     </div>
+    <!-- <hr> -->
     <div class="col"></div>
   </div>
   <div class="row mt-4">
     <div class="col"></div>
-    <div class="col-10" (click)="resDetails(residenza.id)" role="button">
+    <div class="col-5" (click)="resDetails(residenza.id)" role="button">
       <img class="img-fluid" *ngIf="residenza.urlImg !== null" [src]="residenza.urlImg" alt="Foto Residenza">
       <img class="img-fluid" *ngIf="residenza.urlImg === null" src="/assets/images/residenze/residenzaNoPhoto.jpg" alt="Foto Mancante">
     </div>
-    <div class="col"></div>
+    <div class="col-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt recusandae dolore eaque rem ducimus, blanditiis optio voluptatem eveniet, totam, illum est. Soluta voluptatem vitae, totam asperiores voluptates quam quae id.</div>
   </div>
   <div class="row mt-4">
     <div class="col">

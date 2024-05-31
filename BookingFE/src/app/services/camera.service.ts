@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Camera } from '../models/camera';
 import { DateCustom } from '../models/date-custom';
 import { CameraCustom } from '../models/camera-custom';
+import { GenericRequest } from '../models/generic-request';
 
 @Injectable({
   providedIn: 'root'
@@ -28,5 +29,11 @@ export class CameraService {
 
    public getDisponibili(date: DateCustom): Observable<CameraCustom> {
     return this.http.post<CameraCustom>("http://localhost:8080/api/camere/getDisponibili", date);
+   }
+
+   public getCameraByResidenza(id: any): Observable<Camera[]> {
+    let request: GenericRequest = new GenericRequest();
+    request.id = id;
+    return this.http.post<Camera[]>(`http://localhost:8080/api/camere/camerePerResidenza`, request);
    }
 }

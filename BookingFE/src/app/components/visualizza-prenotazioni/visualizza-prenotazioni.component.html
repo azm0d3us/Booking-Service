@@ -1,0 +1,20 @@
+<table class="table mt-4">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col" (click)="sortData('camera')">Camera</th>
+      <th scope="col" (click)="sortData('utente')">Utente Prenotante</th>
+      <th scope="col" (click)="sortData('checkIn')">CheckIn</th>
+      <th scope="col" (click)="sortData('checkOut')">CheckOut</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let prenotazione of prenotazioni">
+      <td class="td-special" (click)="goToPrenotazione(prenotazione.id)">{{prenotazione.id}}</td>
+      <td>{{prenotazione.camera.numero}}</td>
+      <td>{{prenotazione.utente.cognome}} {{prenotazione.utente.nome}}</td>
+      <td>{{prenotazione.checkIn | timestampToDate}}</td>
+      <td>{{prenotazione.checkOut | timestampToDate}}</td>
+    </tr>
+  </tbody>
+</table>

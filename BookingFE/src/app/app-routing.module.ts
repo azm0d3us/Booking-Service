@@ -17,6 +17,8 @@ import { CameraSingolaComponent } from './components/camera-singola/camera-singo
 import { PrenotazioneComponent } from './components/prenotazione/prenotazione.component';
 import { NuovaStrutturaComponent } from './components/nuova-struttura/nuova-struttura.component';
 import { ResidenzaSingolaComponent } from './components/residenza-singola/residenza-singola.component';
+import { AggiungiPrenotazioneComponent } from './components/aggiungi-prenotazione/aggiungi-prenotazione.component';
+import { VisualizzaPrenotazioniComponent } from './components/visualizza-prenotazioni/visualizza-prenotazioni.component';
 
 const routes: Routes = [
   {path: "", component: CarouselComponent},
@@ -35,6 +37,8 @@ const routes: Routes = [
   {path: "prenotazione", component: PrenotazioneComponent, canActivate: [RouteguardService]},
   {path: "ricevuta", component: RicevutaComponent, canActivate: [RouteguardService]},
   {path: "success", component: SuccessComponent, canActivate: [RouteguardService]},
+  {path: "aggiungi-prenotazione", component: AggiungiPrenotazioneComponent, canActivate: [RouteguardService]},
+  {path: "visualizza-prenotazioni", component: VisualizzaPrenotazioniComponent, canActivate: [RouteguardService]},
   {path: "**", component: ErrorComponent}
 ];
 

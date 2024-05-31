@@ -24,7 +24,10 @@ import java.util.stream.Collectors;
 public class CameraBusiness {
 
     @Autowired
-    ICameraService cameraService;
+    private ICameraService cameraService;
+
+    @Autowired
+    private IResidenzaService residenzaService;
 
     public List<?> getAll() throws NotFoundException, InternalServerErrorException {
         List<Camera> cameraList = cameraService.getAll();
@@ -137,4 +140,16 @@ public class CameraBusiness {
     }
 
 
+    public List<Camera> getCameraByResidenza(Long id) throws NotValidException, NotFoundException, InternalServerErrorException {
+        Optional<Residenza> residenzaOptional = residenzaService.getById(id);
+        if(!residenzaOptional.isPresent()) {
+            throw new NotFoundException("Residenza non trovata");
+        }
+        Residenza residenza = residenzaOptional.get();
+        List<Camera> cameraList = cameraService.getCameraByResidenza(residenza);
+        if(cameraList.isEmpty()) {
+            throw new NotFoundException("Nessuna camera trovata");
+        }
+        return cameraList;
+    }
 }

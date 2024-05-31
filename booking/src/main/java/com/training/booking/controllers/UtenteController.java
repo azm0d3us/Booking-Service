@@ -1,6 +1,8 @@
 package com.training.booking.controllers;
 
+import com.training.booking.DTOs.GenericDTO;
 import com.training.booking.POJOs.UserPOJO;
+import com.training.booking.POJOs.UtenteCompletePOJO;
 import com.training.booking.POJOs.UtenteRegistra;
 import com.training.booking.POJOs.UtenteUpdate;
 import com.training.booking.controllers.business.UtenteBusiness;
@@ -48,6 +50,15 @@ public class UtenteController {
         }
     }
 
+    @PostMapping(value = "/getByDocument", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> getUserByDocCod(@RequestBody String cf) {
+        try {
+            return new ResponseEntity<>(utenteBusiness.getUserByCf(cf), HttpStatus.OK);
+        } catch (InternalServerErrorException | NotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     @PostMapping(value = "/byUsername", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> getUserByUsername(@RequestBody String username) {
         try {
@@ -79,6 +90,24 @@ public class UtenteController {
     public ResponseEntity<?> userUpdate(@RequestBody UtenteUpdate utente) {
         try {
             return new ResponseEntity<>(utenteBusiness.update(utente), HttpStatus.OK);
+        } catch (InternalServerErrorException | NotValidException | NotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @PostMapping(value = "/adminAddUtente", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> userAdd(@RequestBody UtenteUpdate utente) {
+        try {
+            return new ResponseEntity<>(utenteBusiness.saveUtente(utente), HttpStatus.OK);
+        } catch (InternalServerErrorException | NotValidException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @PostMapping(value = "/completaRegistrazione", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> userCompleteAdd(@RequestBody UtenteCompletePOJO utente) {
+        try {
+            return new ResponseEntity<>(utenteBusiness.saveUtente(utente), HttpStatus.OK);
         } catch (InternalServerErrorException | NotValidException | NotFoundException e) {
             throw new RuntimeException(e);
         }

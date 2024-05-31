@@ -17,6 +17,8 @@ public interface UtenteRepository extends JpaRepository<Utente, Long> {
 
     Optional<Utente> findUserIdByUsername(String username);
 
+    Optional<Utente> findByCf(String cf);
+
     @Transactional
     Utente save(Utente obj);
 

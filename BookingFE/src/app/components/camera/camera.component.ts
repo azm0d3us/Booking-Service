@@ -58,14 +58,6 @@ export class CameraComponent {
     });
   }
 
-  onMouseEnter() {
-    console.log("Something to do here");
-  }
-
-  onMouseLeave() {
-    console.log("Something to do here as well.");
-  }
-
   goToCamera(idCamera: any) {
     this.route.navigate(['camera-singola'], { queryParams: {
       idCamera: JSON.stringify(idCamera)

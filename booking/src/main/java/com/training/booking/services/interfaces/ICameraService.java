@@ -1,6 +1,7 @@
 package com.training.booking.services.interfaces;
 
 import com.training.booking.entities.Camera;
+import com.training.booking.entities.Residenza;
 import com.training.booking.errors.InternalServerErrorException;
 import com.training.booking.errors.NotFoundException;
 
@@ -27,5 +28,5 @@ public interface ICameraService {
 
     public void delete(Camera camera) throws InternalServerErrorException;
 
-
+    List<Camera> getCameraByResidenza(Residenza residenza) throws InternalServerErrorException;
 }

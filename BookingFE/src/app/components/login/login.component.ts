@@ -5,7 +5,6 @@ import { Component } from '@angular/core';
 import { User } from '../../models/user';
 import { AuthorizationService } from '../../services/authorization.service';
 import { Route, Router } from '@angular/router';
-import { SweetAlertType } from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
