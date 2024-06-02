@@ -8,9 +8,11 @@ import java.util.Optional;
 
 
 public interface IPrePrenotazioneService {
+
+    Optional<PrePrenotazione> getById(Long idPrenotazione) throws InternalServerErrorException;
+
     PrePrenotazione newPrenotazione(PrePrenotazione p) throws InternalServerErrorException;
 
     void delete(PrePrenotazione prenotazione) throws InternalServerErrorException;
 
-    Optional<PrePrenotazione> getById(Long idPrenotazione) throws InternalServerErrorException;
 }

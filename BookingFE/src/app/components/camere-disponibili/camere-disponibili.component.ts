@@ -22,6 +22,7 @@ export class CamereDisponibiliComponent {
   numBambini: any;
   numOspiti: any;
   prenotazione: any;
+  prenotazioneCustom: PrenotazioneCustom = new PrenotazioneCustom();
 
   p = 1;
 
@@ -39,18 +40,17 @@ export class CamereDisponibiliComponent {
     this.route.queryParams.subscribe({
       next: (params) => {
         if (params['checkIn'] && params['checkOut']&& params['numAdulti'] && params['numBambini'] && params['numOspiti']) {
-          this.checkIn = JSON.parse(params['checkIn']);
-          this.checkOut = JSON.parse(params['checkOut']);
-          this.numAdulti = JSON.parse(params['numAdulti']);
-          this.numBambini = JSON.parse(params['numBambini']);
-          this.numOspiti = JSON.parse(params['numOspiti']);
+          this.prenotazioneCustom.checkIn = JSON.parse(params['checkIn']);
+          this.prenotazioneCustom.checkOut = JSON.parse(params['checkOut']);
+          this.prenotazioneCustom.numAdulti = JSON.parse(params['numAdulti']);
+          this.prenotazioneCustom.numBambini = JSON.parse(params['numBambini']);
+          this.prenotazioneCustom.numPersone = JSON.parse(params['numOspiti']);
         }
         this.cameraService
-          .getDisponibili(new DateCustom(this.checkIn, this.checkOut))
+          .getDisponibili(new DateCustom(this.prenotazioneCustom.checkIn!, this.prenotazioneCustom.checkOut!))
           .subscribe({
             next: (data) => {
               this.camere = data;
-              console.log(this.camere);
               this.camere.forEach((camera: { idCamera: any; }) => {
                 this.getImmagini(camera.idCamera);
               })
@@ -75,20 +75,11 @@ export class CamereDisponibiliComponent {
             camera.urlImmagini = ["/assets/images/camere/nonPhoto.jpg"]
           } else {
             camera.urlImmagini = data;
-            console.log(data);
           }
         }
       },
       error: (e) => {
         console.error("Errore durante la richiesta HTTP: ", e.message);
-      }
-    });
-  }
-
-  preventivo(idcamera: number) {
-    this.router.navigate(['prenotazione'], {
-      queryParams: {
-        idCamera: JSON.stringify(idcamera),
       }
     });
   }
@@ -99,24 +90,17 @@ export class CamereDisponibiliComponent {
       .subscribe({
         next: (data) => {
           this.userId = data;
+          this.prenotazioneCustom.idCamera = idCamera;
+          this.prenotazioneCustom.idUser = this.userId;
           this.prePrenotazioneService
-            .prenota(
-              new PrenotazioneCustom(
-                idCamera,
-                this.userId,
-                this.numOspiti,
-                this.checkIn,
-                this.checkOut
-              )
-            )
+            .prenota(this.prenotazioneCustom)
             .subscribe({
               next: (data) => {
-                this.prenotazione = data;
-                // console.log(this.prenotazione);
+                this.prenotazioneCustom.idPrePrenotazione = data.idPrePrenotazione;
                 this.router.navigate(['prenotazione'], {
                   queryParams: {
-                    prenotazione: JSON.stringify(this.prenotazione),
-                    idCamera: JSON.stringify(idCamera)
+                    idPrePrenotazione: JSON.stringify(this.prenotazioneCustom.idPrePrenotazione),
+                    prenotazione: JSON.stringify(this.prenotazioneCustom),
                   },
                 });
               },

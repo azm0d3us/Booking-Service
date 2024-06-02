@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { PrenotazioneService } from '../../services/prenotazione.service';
 import { DateConverterService } from '../../services/date-converter.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-visualizza-prenotazioni',
@@ -18,7 +19,7 @@ export class VisualizzaPrenotazioniComponent {
     'checkOut': true
   };
 
-  constructor(private prenotazioneService: PrenotazioneService, public dateConverter: DateConverterService) {}
+  constructor(private prenotazioneService: PrenotazioneService, public dateConverter: DateConverterService, private router: Router) {}
 
   ngOnInit() {
     this.prenotazioneService.getAll().subscribe({
@@ -50,7 +51,9 @@ export class VisualizzaPrenotazioniComponent {
   }
 
   goToPrenotazione(id: any) {
-    console.log(id);
+    this.router.navigate(["/ricevuta-resume"], { queryParams:{
+      id: JSON.stringify(id)
+    }});
   }
 
 }

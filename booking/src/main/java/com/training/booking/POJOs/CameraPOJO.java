@@ -9,7 +9,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class CameraPOJO {
 
-    private Long id;
+    private Long idCamera;
+    private Long idResidenza;
     private Integer postiLetto;
     private Double prezzoBase;
     private String tipo;

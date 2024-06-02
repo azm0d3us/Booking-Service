@@ -12,6 +12,8 @@ import java.sql.Date;
 public class PrenotazionePOJO {
     private Long idCamera;
     private Long idUser;
+    private Integer numAdulti;
+    private Integer numBambini;
     private Integer numPersone;
     private Date checkIn;
     private Date checkOut;

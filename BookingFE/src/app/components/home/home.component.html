@@ -1,31 +1,32 @@
-@if (urls) {
-	<ngb-carousel>
-		<ng-template ngbSlide  >
-			<div class="picsum-img-wrapper">
-				<img [src]="urls[0]" alt="Random first slide" class="w-100" />
-			</div>
-			<div class="carousel-caption">
-				<h3>First slide label</h3>
-				<p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-			</div>
-		</ng-template>
-		<ng-template ngbSlide>
-			<div class="picsum-img-wrapper">
-				<img [src]="urls[1]" alt="Random second slide" class="w-100" />
-			</div>
-			<div class="carousel-caption">
-				<h3>Second slide label</h3>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-			</div>
-		</ng-template>
-		<ng-template ngbSlide>
-			<div class="picsum-img-wrapper">
-				<img [src]="urls[2]" alt="Random third slide" class="w-100"  />
-			</div>
-			<div class="carousel-caption">
-				<h3>Third slide label</h3>
-				<p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-			</div>
-		</ng-template>
-	</ngb-carousel>
-}
+<div class="text-center">
+  <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nobis unde alias cumque molestias optio accusamus quod in ex libero minima aspernatur debitis quia quos quaerat minus beatae, tempora tempore quo!</p>
+</div>
+<div id="carouselExampleIndicators" class="carousel slide carousel-fade" data-bs-ride="carousel">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <!-- <img src="/assets/images/1.jpg" class="d-block w-100" alt="1"> -->
+      <img [src]="imgRandom[0]" class="d-block w-100" alt="1">
+    </div>
+    <div class="carousel-item">
+      <!-- <img src="/assets/images/2.jpg" class="d-block w-100" alt="2"> -->
+      <img [src]="imgRandom[1]" class="d-block w-100" alt="1">
+    </div>
+    <div class="carousel-item">
+      <!-- <img src="/assets/images/3.jpg" class="d-block w-100" alt="3"> -->
+      <img [src]="imgRandom[2]" class="d-block w-100" alt="1">
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>

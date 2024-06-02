@@ -36,4 +36,8 @@ export class CameraService {
     request.id = id;
     return this.http.post<Camera[]>(`http://localhost:8080/api/camere/camerePerResidenza`, request);
    }
+
+   public addCamera(camera: any): Observable<any> {
+    return this.http.post<any>("http://localhost:8080/api/camere/newCamera", camera);
+   }
 }

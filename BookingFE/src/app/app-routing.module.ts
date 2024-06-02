@@ -7,26 +7,24 @@ import { RouteguardService } from './services/routeguard.service';
 import { ResidenzeComponent } from './components/residenze/residenze.component';
 import { CameraComponent } from './components/camera/camera.component';
 import { SignupComponent } from './components/signup/signup.component';
-import { CarouselComponent } from './components/carousel/carousel.component';
 import { ModificaUtenteComponent } from './components/modifica-utente/modifica-utente.component';
-import { SuccessComponent } from './components/success/success.component';
 import { CamereDisponibiliComponent } from './components/camere-disponibili/camere-disponibili.component';
 import { RicevutaComponent } from './components/ricevuta/ricevuta.component';
 import { HomeComponent } from './components/home/home.component';
 import { CameraSingolaComponent } from './components/camera-singola/camera-singola.component';
 import { PrenotazioneComponent } from './components/prenotazione/prenotazione.component';
-import { NuovaStrutturaComponent } from './components/nuova-struttura/nuova-struttura.component';
 import { ResidenzaSingolaComponent } from './components/residenza-singola/residenza-singola.component';
 import { AggiungiPrenotazioneComponent } from './components/aggiungi-prenotazione/aggiungi-prenotazione.component';
 import { VisualizzaPrenotazioniComponent } from './components/visualizza-prenotazioni/visualizza-prenotazioni.component';
+import { RicevutaResumeComponent } from './components/ricevuta-resume/ricevuta-resume.component';
+import { RegistraStrutturaComponent } from './components/registra-struttura/registra-struttura.component';
 
 const routes: Routes = [
-  {path: "", component: CarouselComponent},
-  {path: "home", component: CarouselComponent},
-  {path: "carousel", component: HomeComponent},
+  {path: "", component: HomeComponent},
+  {path: "home", component: HomeComponent},
   {path: "residenze", component: ResidenzeComponent},
   {path: "residenza-singola", component: ResidenzaSingolaComponent},
-  {path: "nuova-struttura", component: NuovaStrutturaComponent, canActivate: [RouteguardService]},
+  {path: "nuova-struttura", component: RegistraStrutturaComponent, canActivate: [RouteguardService]},
   {path: "camere", component: CameraComponent},
   {path: "camera-singola", component: CameraSingolaComponent},
   {path: "login", component: LoginComponent},
@@ -36,9 +34,9 @@ const routes: Routes = [
   {path: "camereDisponibili", component: CamereDisponibiliComponent},
   {path: "prenotazione", component: PrenotazioneComponent, canActivate: [RouteguardService]},
   {path: "ricevuta", component: RicevutaComponent, canActivate: [RouteguardService]},
-  {path: "success", component: SuccessComponent, canActivate: [RouteguardService]},
   {path: "aggiungi-prenotazione", component: AggiungiPrenotazioneComponent, canActivate: [RouteguardService]},
   {path: "visualizza-prenotazioni", component: VisualizzaPrenotazioniComponent, canActivate: [RouteguardService]},
+  {path: "ricevuta-resume", component: RicevutaResumeComponent, canActivate: [RouteguardService]},
   {path: "**", component: ErrorComponent}
 ];
 

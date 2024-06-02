@@ -26,8 +26,6 @@ export class AppComponent {
         } else {
           this.displayDatePicker = true;
         }
-        // this.displayDatePicker = !currentUrl.includes("/ricevuta");
-        // this.displayDatePicker = !currentUrl.includes("/prenotazione");
       }
     })
   }

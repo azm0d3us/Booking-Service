@@ -1,8 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { CameraCustom } from '../models/camera-custom';
 import { Observable } from 'rxjs';
-import { DateCustom } from '../models/date-custom';
 import { PrenotazioneCustom } from '../models/prenotazione-custom';
 import { Prenotazione } from '../models/prenotazione';
 
@@ -19,6 +17,10 @@ export class PrenotazioneService {
 
    public getAll(): Observable<any> {
     return this.http.get<any>("http://localhost:8080/api/prenotazioni/prenotazioni");
+   }
+
+   public getById(id: any): Observable<any> {
+    return this.http.get<any>(`http://localhost:8080/api/prenotazioni/prenotazioni/${id}`);
    }
 
    public prenota(prenotazione: PrenotazioneCustom): Observable<Prenotazione>{

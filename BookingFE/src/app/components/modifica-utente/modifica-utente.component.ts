@@ -3,6 +3,7 @@ import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
 import { User } from '../../models/user';
 import { UserUpdate } from '../../models/user-update';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-modifica-utente',
@@ -19,7 +20,7 @@ export class ModificaUtenteComponent {
   id = 0;
   utente?: User;
   utenteUpdate?: UserUpdate;
-  constructor(private userService: UserService, private route: Router) {}
+  constructor(private userService: UserService, private router: Router) {}
 
   ngOnInit(): void {
     this.userService.getUserIdByUsername(sessionStorage.getItem("Utente")!).subscribe({
@@ -67,31 +68,18 @@ export class ModificaUtenteComponent {
     console.log(this.utenteUpdate);
     this.userService.update(this.utenteUpdate).subscribe({
       next: (data) => {
-        this.route.navigate(["/success"]);
+        console.log(data);
+          Swal.fire({
+            icon: 'success',
+            title: 'Successo',
+            text: 'Le modifiche sono state apportate con successo',
+            confirmButtonColor: '#28a745'
+          });
       },
       error: (e) => {
         console.error("Errore durante la richiesta HTTP: ", e.message);
       }
     })
   }
-
-  // modificaUtente() {
-  //   this.userService.getUserIdByUsername(sessionStorage.getItem("Utente")!).subscribe({
-  //     next: (data) => {
-  //       this.userService.update(new UserUpdate(data, this.nome, this.cognome, this.ddn, this.codDoc, this.cf)).subscribe({
-  //         next: (v) => {
-  //           console.log("Aggiornamento dati " + v.username + " riuscito");
-  //           this.route.navigate(["/success"]);
-  //         },
-  //         error: (e) => {
-  //           console.error("Errore durante la richiesta HTTP: ",e.message);
-  //         }
-  //       })
-  //     },
-  //     error: (e) => {
-  //       console.error("Errore durante la richiesta HTTP: ", e.message);
-  //     }
-  //   })
-  // }
 
 }

@@ -14,6 +14,36 @@
           <li class="text-black mt-1">{{currentDate | date: 'dd/MM/yyyy'}}</li>
         </ul>
         <hr>
+
+        <div class="col-xl-10">
+          <p>Numero di persone</p>
+        </div>
+        <div class="col-xl-2">
+          <p class="float-end">{{ prenotazione!.numPersone }}</p>
+        </div>
+        <hr>
+        <div class="col-xl-10">
+          <p>Numero Adulti</p>
+        </div>
+        <div class="col-xl-2">
+          <p class="float-end">{{ prenotazione!.numAdulti }}</p>
+        </div>
+        <hr>
+          <div *ngIf="prenotazione?.numBambini !== 0 && prenotazione?.numBambini" class="col-xl-10">
+            <p>Numero Bambini</p>
+          </div>
+          <div *ngIf="prenotazione?.numBambini !== 0 && prenotazione?.numBambini" class="col-xl-2">
+            <p class="float-end">{{ prenotazione!.numBambini }}</p>
+          </div>
+          <hr *ngIf="prenotazione?.numBambini !== 0 && prenotazione?.numBambini">
+          <div class="col-xl-10">
+            <p>Totale Notti</p>
+          </div>
+          <div class="col-xl-2">
+            <p class="float-end">{{ totaleNotti }}</p>
+          </div>
+          <hr>
+
         <div class="col-xl-10">
           <p>Costo Camera</p>
         </div>

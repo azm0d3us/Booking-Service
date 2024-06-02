@@ -22,6 +22,12 @@ public class PrePrenotazione {
     @Column(name = "id_pre_prenotazione")
     private Long idPrePrenotazione;
 
+    @Column(name = "num_adulti")
+    private Integer numAdulti;
+
+    @Column(name = "num_bambini")
+    private Integer numBambini;
+
     @Column(name = "num_persone")
     private Integer numPersone;
 

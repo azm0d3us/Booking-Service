@@ -1,0 +1,23 @@
+/* signup.component.css */
+
+/* Stile per il campo di input validato */
+.is-valid {
+  border-color: #28a745 !important;
+}
+
+.is-invalid {
+  border-color: #dc3545 !important;
+}
+
+/* Stile per l'asterisco rosso */
+.required::after {
+  content: '*';
+  color: red;
+  margin-left: 5px;
+}
+
+/* Rimuovi il bordo verde di default per mdb e aggiungi quello personalizzato */
+.form-control:focus {
+  border-color: #28a745;
+  box-shadow: none;
+}

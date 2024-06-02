@@ -18,6 +18,15 @@ public class PrePrenotazioneController {
     @Autowired
     private PrePrenotazioneBusiness preBusiness;
 
+    @GetMapping(value = "/pre-prenotazione/{idPrePrenotazione}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> getById(@PathVariable("idPrePrenotazione") Long idPrePrenotazione) {
+        try {
+            return new ResponseEntity<>(preBusiness.getById(idPrePrenotazione), HttpStatus.OK);
+        } catch (InternalServerErrorException | NotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     @PutMapping(value = "/new", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> newPrePrenotazione(@RequestBody PrenotazionePOJO prenotazione) {
         try {

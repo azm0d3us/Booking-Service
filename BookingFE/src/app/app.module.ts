@@ -19,19 +19,19 @@ import { DatepickerComponent } from './components/datepicker/datepicker.componen
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ModificaUtenteComponent } from './components/modifica-utente/modifica-utente.component';
 import { PasswordResetComponent } from './components/password-reset/password-reset.component';
-import { SuccessComponent } from './components/success/success.component';
 import { CamereDisponibiliComponent } from './components/camere-disponibili/camere-disponibili.component';
 import { RicevutaComponent } from './components/ricevuta/ricevuta.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { HomeComponent } from './components/home/home.component';
 import { PrenotazioneComponent } from './components/prenotazione/prenotazione.component';
-import { NuovaStrutturaComponent } from './components/nuova-struttura/nuova-struttura.component';
 import { ResidenzaSingolaComponent } from './components/residenza-singola/residenza-singola.component';
 import { CustomCurrencyPipe } from './pipes/custom-currency.pipe';
 import { AggiungiPrenotazioneComponent } from './components/aggiungi-prenotazione/aggiungi-prenotazione.component';
 import { NgxSelectModule } from 'ngx-select-ex';
 import { VisualizzaPrenotazioniComponent } from './components/visualizza-prenotazioni/visualizza-prenotazioni.component';
 import { TimestampToDatePipe } from './pipes/timestamp-to-date.pipe';
+import { RicevutaResumeComponent } from './components/ricevuta-resume/ricevuta-resume.component';
+import { RegistraStrutturaComponent } from './components/registra-struttura/registra-struttura.component';
 
 @NgModule({
   declarations: [
@@ -49,17 +49,17 @@ import { TimestampToDatePipe } from './pipes/timestamp-to-date.pipe';
     DatepickerComponent,
     ModificaUtenteComponent,
     PasswordResetComponent,
-    SuccessComponent,
     CamereDisponibiliComponent,
     RicevutaComponent,
     HomeComponent,
     PrenotazioneComponent,
-    NuovaStrutturaComponent,
     ResidenzaSingolaComponent,
     CustomCurrencyPipe,
     AggiungiPrenotazioneComponent,
     VisualizzaPrenotazioniComponent,
     TimestampToDatePipe,
+    RicevutaResumeComponent,
+    RegistraStrutturaComponent,
   ],
   imports: [
     BrowserModule,

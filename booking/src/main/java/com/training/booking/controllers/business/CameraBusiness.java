@@ -81,7 +81,7 @@ public class CameraBusiness {
         if(!validateCamera(camera)) {
             throw new NotValidException();
         } else {
-            Residenza residenza = rs.getById(camera.getId()).get();
+            Residenza residenza = rs.getById(camera.getIdResidenza()).get();
             return cameraService.save(new Camera(null, camera.getPostiLetto(),
                     true, camera.getPrezzoBase(),
                     camera.getTipo(), camera.getNumero(),
@@ -91,7 +91,7 @@ public class CameraBusiness {
     }
 
     public Camera editCamera(CameraPOJO cameraPOJO) throws InternalServerErrorException, NotFoundException {
-        Camera camera = cameraService.getById(cameraPOJO.getId());
+        Camera camera = cameraService.getById(cameraPOJO.getIdCamera());
         return cameraService.update(new Camera(camera.getIdCamera(),
                 camera.getPostiLetto(), camera.isDisponibile(),
                 cameraPOJO.getPrezzoBase(),

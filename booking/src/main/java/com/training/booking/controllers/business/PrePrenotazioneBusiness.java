@@ -26,13 +26,22 @@ public class PrePrenotazioneBusiness {
     @Autowired
     private CameraBusiness cameraBusiness;
 
+
+    public PrePrenotazione getById(Long idPrePrenotazione) throws InternalServerErrorException, NotFoundException {
+        Optional<PrePrenotazione> prenotazioneOptional = preService.getById(idPrePrenotazione);
+        if(!prenotazioneOptional.isPresent()) {
+            throw new NotFoundException();
+        }
+        return prenotazioneOptional.get();
+    }
+
     public PrePrenotazione newPrePrenotazione(PrenotazionePOJO prenotazione) throws NotFoundException, InternalServerErrorException, NotValidException {
         Camera camera = cameraBusiness.getById(prenotazione.getIdCamera());
         Utente utente = utenteBusiness.getById(prenotazione.getIdUser());
         Set<ListaPrezzi> setListini = listaPrezziBusiness.getByCamera(camera.getIdCamera());
         Double totale = makeToalePrev(setListini, prenotazione.getCheckIn(), prenotazione.getCheckOut(), camera);
-        totale *= prenotazione.getNumPersone();
-        PrePrenotazione p = new PrePrenotazione(null, prenotazione.getNumPersone(), totale, prenotazione.getCheckIn(), prenotazione.getCheckOut(), utente, camera);
+//        totale *= prenotazione.getNumPersone();
+        PrePrenotazione p = new PrePrenotazione(null, prenotazione.getNumAdulti(), prenotazione.getNumBambini(), prenotazione.getNumPersone(), totale, prenotazione.getCheckIn(), prenotazione.getCheckOut(), utente, camera);
         return preService.newPrenotazione(p);
     }
 
@@ -69,6 +78,8 @@ public class PrePrenotazioneBusiness {
         PrePrenotazione prenotazione = prenotazioneOptional.get();
         PrePrenotazione prenotazioneCancellata = new PrePrenotazione(
                 prenotazione.getIdPrePrenotazione(),
+                prenotazione.getNumAdulti(),
+                prenotazione.getNumBambini(),
                 prenotazione.getNumPersone(),
                 prenotazione.getTotale(),
                 prenotazione.getCheckIn(),

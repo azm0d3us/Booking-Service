@@ -27,6 +27,9 @@ export class SignupComponent {
   password = "";
   confirmPassword = "";
   cfFound?: boolean;
+  terminiAccettati = false;
+
+  emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
 
 
@@ -104,15 +107,37 @@ export class SignupComponent {
     }
   }
 
+  onInputChange() {
+    if(this.cf.length === 16) this.verificaCf();
+  }
+
   verificaCf() {
     if(this.cf === "") this.verificaClear();
     this.userService.getUserByDocumentCode(this.cf).subscribe({
       next: (data) => {
         if(data) {
+          this.codDoc = data.codDoc;
           this.nome = data.nome;
+          this.cognome = data.cognome;
           this.cfFound = true;
           console.log(data);
           this.idUser = data.idUser;
+          this.userService.getById(this.idUser).subscribe({
+            next: (data) => {
+              if(data.username !== null && data.password !== null && data.email !== null) {
+                Swal.fire({
+                  icon: 'success',
+                  title: 'Bentornato!',
+                  text: 'Codice Fiscale già presente in memoria, questo utente risponde a una registrazione precedente.',
+                  confirmButtonColor: '#28a745'
+                });
+                this.router.navigate(['/login']);
+              }
+            },
+            error: (e) => {
+              console.error("Errore nella richiesta HTTP: ", e.message);
+            }
+          });
           Swal.fire({
             icon: 'success',
             title: 'Bentornato!',
@@ -120,31 +145,20 @@ export class SignupComponent {
             confirmButtonColor: '#28a745'
           });
         } else {
-          this.nome = "";
-          this.cfFound = false;
-          // Swal.fire({
-          //     icon: 'info',
-          //     title: 'Non trovato',
-          //     text: 'Codice Fiscale non trovato',
-          //     confirmButtonColor: '#3085d6'
-          //   });
+          this.verificaClear();
         }
       },
       error: (e) => {
         console.error("Errore nella richiesta HTTP: ", e.message);
-        // Swal.fire({
-        //   icon: 'error',
-        //   title: 'Errore',
-        //   text: 'Errore durante la verifica del Codice Fiscale: ' + e.message,
-        //   confirmButtonColor: '#d33'
-        // });
       }
     });
   }
 
   verificaClear() {
     this.cfFound = false;
+    this.codDoc = "";
     this.nome = "";
+    this.cognome = "";
   }
 
 }

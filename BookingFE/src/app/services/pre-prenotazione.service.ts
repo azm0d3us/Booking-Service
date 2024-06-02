@@ -11,7 +11,11 @@ export class PrePrenotazioneService {
 
   constructor(private http: HttpClient) { }
 
-  public prenota(prenotazione: PrenotazioneCustom): Observable<Prenotazione>{
+  public getById(idPrePrenotazione: any): Observable<any> {
+    return this.http.get<any>(`http://localhost:8080/api/pre-prenotazione/pre-prenotazione/${idPrePrenotazione}`);
+  }
+
+  public prenota(prenotazione: PrenotazioneCustom): Observable<any>{
     return this.http.put<Prenotazione>("http://localhost:8080/api/pre-prenotazione/new", prenotazione);
    }
 

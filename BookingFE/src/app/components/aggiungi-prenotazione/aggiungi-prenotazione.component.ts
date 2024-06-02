@@ -116,13 +116,13 @@ export class AggiungiPrenotazioneComponent {
 
   onSubmit() {
     if(this.adminForm.valid) {
-      this.prenotazioneService.prenota(new PrenotazioneCustom(
-        this.idCamera,
-        this.idUser,
-        3,
-        this.adminForm.get('checkIn')?.value,
-        this.adminForm.get('checkOut')?.value
-      )).subscribe({
+      let prenotazione = new PrenotazioneCustom();
+      prenotazione.idCamera = this.idCamera;
+      prenotazione.idUser = this.idUser;
+      prenotazione.numPersone = 2; //TODO
+      prenotazione.checkIn = this.adminForm.get('checkIn')?.value;
+      prenotazione.checkOut = this.adminForm.get('checkOut')?.value;
+      this.prenotazioneService.prenota(prenotazione).subscribe({
         next: (data) => {
           console.log("Prenotazione ", data , " avvenuta con successo.");
         },

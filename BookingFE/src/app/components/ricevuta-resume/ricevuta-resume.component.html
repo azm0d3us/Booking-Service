@@ -1,0 +1,86 @@
+<div class="card">
+  <div class="card-body mx-4">
+    <div class="container">
+      <p class="my-5 mx-5" style="font-size: 30px; text-align: center;">Dettagli Prenotazione</p>
+      <p class="my-5 mx-5" style="font-size: 20px;">Dettagli ricevuta</p>
+      <div class="row">
+        <ul class="list-unstyled">
+          <li class="text-black">Nome: {{ prenotazione?.utente?.nome }}</li>
+          <li class="text-black">Cognome: {{ prenotazione?.utente?.cognome }}</li>
+          <li class="text-muted mt-1"><span class="text-black">Ricevuta</span> #{{ prenotazione?.idPrenotazione }}</li>
+        </ul>
+        <hr>
+        <div class="col-xl-10">
+          <p>Numero di persone</p>
+        </div>
+        <div class="col-xl-2">
+          <p class="float-end">{{ prenotazione?.numPersone }}</p>
+        </div>
+        <hr>
+        <div class="col-xl-10">
+          <p>Numero Adulti</p>
+        </div>
+        <div class="col-xl-2">
+          <p class="float-end">{{ prenotazione?.numAdulti }}</p>
+        </div>
+        <hr>
+          <div *ngIf="prenotazione?.numBambini !== 0 && prenotazione?.numBambini" class="col-xl-10">
+            <p>Numero Bambini</p>
+          </div>
+          <div *ngIf="prenotazione?.numBambini !== 0 && prenotazione?.numBambini" class="col-xl-2">
+            <p class="float-end">{{ prenotazione?.numBambini }}</p>
+          </div>
+          <hr *ngIf="prenotazione?.numBambini !== 0 && prenotazione?.numBambini">
+        <div class="col-xl-10">
+          <p>Data di Check-in</p>
+        </div>
+        <div class="col-xl-2">
+          <p class="float-end">{{ prenotazione?.checkIn | date: 'dd/MM/yyyy' }}</p>
+        </div>
+        <hr>
+        <div class="col-xl-10">
+          <p>Data di Check-out</p>
+        </div>
+        <div class="col-xl-2">
+          <p class="float-end">{{ prenotazione?.checkOut | date: 'dd/MM/yyyy' }}</p>
+        </div>
+        <hr>
+        <div class="col-xl-10">
+          <p>Totale Notti</p>
+        </div>
+        <div class="col-xl-2">
+          <p class="float-end">{{ totaleNotti }}</p>
+        </div>
+        <hr>
+        <div class="col-xl-10">
+          <p>Camera prenotata</p>
+        </div>
+        <div class="col-xl-2">
+          <p class="float-end">{{ prenotazione?.camera?.numero }}</p>
+        </div>
+        <hr>
+      </div>
+      <div class="row">
+        <div class="col-xl-10">
+          <p>Costo Camera</p>
+        </div>
+        <div class="col-xl-2">
+          <p class="float-end">{{ prenotazione?.camera!.prezzoBase | currency: 'EUR' }}</p>
+        </div>
+        <hr>
+      </div>
+      <div class="row">
+        <div class="col-xl-10">
+          <p>Costo complessivo (Costo camera * Numero Notti)</p>
+        </div>
+        <div class="col-xl-2">
+          <p class="float-end">{{ prenotazione?.totale | currency: 'EUR' }}</p>
+        </div>
+        <hr>
+      </div>
+      <div class="text-center" style="margin-top: 90px;">
+        <a routerLink="/visualizza-prenotazioni">Torna alla lista prenotazioni</a>
+      </div>
+    </div>
+  </div>
+</div>

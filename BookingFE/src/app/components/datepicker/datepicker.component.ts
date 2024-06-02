@@ -1,4 +1,4 @@
-import { Component, } from '@angular/core';
+import { Component, OnChanges, } from '@angular/core';
 import { NgbCalendar, NgbDate, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
 import { CameraCustom } from '../../models/camera-custom';
@@ -18,7 +18,7 @@ export class DatepickerComponent {
   numOspiti = this.numAdulti + this.numBambini;
   hoveredDate: NgbDate | null = null;
 	fromDate: NgbDate | null = this.calendar.getToday();
-	toDate: NgbDate | null = this.calendar.getNext(this.calendar.getToday(), 'd', 10);
+	toDate: NgbDate | null = this.calendar.getNext(this.calendar.getToday(), 'd', 2);
 
   constructor(public calendar: NgbCalendar, public formatter: NgbDateParserFormatter, private router: Router) {}
 
@@ -56,6 +56,18 @@ export class DatepickerComponent {
 		const parsed = this.formatter.parse(input);
     return parsed && this.calendar.isValid(NgbDate.from(parsed)) ? NgbDate.from(parsed) : currentValue;
 	}
+
+  validateNumAdulti() {
+    if(this.numAdulti < 1) {
+      this.numAdulti = 1;
+    }
+  }
+
+  validateNumBambini() {
+    if(this.numBambini < 0) {
+      this.numBambini = 0;
+    }
+  }
 
   trovaAlloggi() {
     this.checkIn = new Date(this.fromDate?.year!, this.fromDate?.month! - 1, this.fromDate?.day);

@@ -1,5 +1,6 @@
 package com.training.booking.controllers.business;
 
+import com.training.booking.DTOs.response.PrenotazioneRecord;
 import com.training.booking.POJOs.PrenotazionePOJO;
 import com.training.booking.entities.*;
 import com.training.booking.errors.InternalServerErrorException;
@@ -37,12 +38,13 @@ public class PrenotazioneBusiness {
         }
     }
 
-    public Prenotazione getById(Long id) throws NotFoundException, InternalServerErrorException {
+    public PrenotazioneRecord getById(Long id) throws NotFoundException, InternalServerErrorException {
         Optional<Prenotazione> prenotazioneOptional = prenotazioneService.getById(id);
         if(!prenotazioneOptional.isPresent()) {
             throw new NotFoundException();
         } else {
-            return prenotazioneOptional.get();
+            Prenotazione prenotazione = prenotazioneOptional.get();
+            return new PrenotazioneRecord(prenotazione.getIdPrenotazione(), prenotazione.getNumAdulti(), prenotazione.getNumBambini(), prenotazione.getNumPersone(), prenotazione.getTotale(), prenotazione.getCheckIn(), prenotazione.getCheckOut(), prenotazione.getUtentePrenotante(), prenotazione.getCameraPrenotata());
         }
     }
 
@@ -83,8 +85,8 @@ public class PrenotazioneBusiness {
         Utente utente = utenteBusiness.getById(prenotazione.getIdUser());
         Set<ListaPrezzi> setListini = listaPrezziBusiness.getByCamera(camera.getIdCamera());
         Double totale = makeToalePrev(setListini, prenotazione.getCheckIn(), prenotazione.getCheckOut(), camera);
-        totale *= prenotazione.getNumPersone();
-        Prenotazione p = new Prenotazione(null, prenotazione.getNumPersone(), totale, prenotazione.getCheckIn(),
+//        totale *= prenotazione.getNumPersone();
+        Prenotazione p = new Prenotazione(null, prenotazione.getNumAdulti(), prenotazione.getNumBambini(), prenotazione.getNumPersone(), totale, prenotazione.getCheckIn(),
                 prenotazione.getCheckOut(), utente, camera);
         return prenotazioneService.newPrenotazione(p);
     }

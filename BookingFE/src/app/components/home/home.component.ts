@@ -12,19 +12,18 @@ import { forkJoin } from 'rxjs';
 })
 export class HomeComponent {
 
-  urls: string[];
-  images: string[];
   camere: Camera[];
+  urls: string[];
+  imgRandom: string[];
 
-  //images = [944, 1011, 984].map((n) => `https://picsum.photos/id/${n}/900/500`);
-
-  constructor(private immaginiService: ImmaginiService, private cameraService: CameraService ) {
+  constructor(private cameraService: CameraService, private immaginiService: ImmaginiService) {
     this.urls = [];
     this.camere = [];
-    this.images = [];
+    this.imgRandom = [];
   }
 
   ngOnInit(): void {
+
     this.cameraService.getAll().subscribe({
       next: (data) => {
         this.camere = data;
@@ -43,9 +42,9 @@ export class HomeComponent {
             });
             console.log("urls");
            console.log(this.urls);
-           this.images = this.extractRandomUrls(3);
+           this.imgRandom = this.extractRandomUrls(3);
            console.log("test")
-           console.log(this.images);
+           console.log(this.imgRandom);
           },
           error: (error) => {
             console.error("errore ", error.message);
@@ -59,8 +58,8 @@ export class HomeComponent {
   }
 
   ngAfterContentInit(): void {
-      this.images = this.extractRandomUrls(3);
-      console.log(this.images);
+      this.imgRandom = this.extractRandomUrls(3);
+      console.log(this.imgRandom);
   }
 
   private extractRandomUrls(n: any) {

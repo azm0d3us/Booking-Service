@@ -1,3 +1,11 @@
-img {
-  height: 60vh
+.carousel {
+  margin: auto;
+  position: center;
+  width:640px;
+  height:360px;
+}
+
+.carousel-item {
+  width: 640px;
+  height: 360px;
 }
